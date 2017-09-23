@@ -56,13 +56,6 @@ button.close {
   font-family: "Roboto","Helvetica Neue",Arial,sans-serif;
   font-weight: 400; }
 
-
-
-.li-sem-bolinha li {
-  list-style-type:none;
-}
-
-
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
   font-weight: 300;
   margin: 30px 0 15px; }
@@ -2820,3 +2813,19 @@ body > .navbar-collapse {
     overflow-y: hidden;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     -webkit-overflow-scrolling: touch; } }
+
+.div-botao-listar{
+  text-align: center;
+}
+.botoes-f{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    width: 250px;
+    height: 100px;
+    font-size: 40px;
+}
+.separar-div{
+  margin-left: 20px;
+}

@@ -76,11 +76,18 @@
                     @endauth
                 </div>
             @endif
+            
+            
 
             <div class="content">
                 <div class="title m-b-md">
-                    <img src="" alt="">
-                    Lar Das Crianças - ADM 
+                    <div class="row" align="center">
+                        <img src="img/logo.png" alt="">
+                    </div>
+                    
+                    <div class="row">
+                        Lar Das Crianças - ADM
+                    </div> 
                 </div>
             </div>
         </div>

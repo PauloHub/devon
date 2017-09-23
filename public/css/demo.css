@@ -59,12 +59,3 @@
 .table-upgrade td:nth-child(3){
     text-align: center;
 }
-.input_number{
-        -webkit-appearance: none;
-        margin: 0;
-
-}
-
-input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
