@@ -34,7 +34,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top"  style="position:fixed; top:0; left:0;">
+        <nav class="navbar navbar-default navbar-static-top"  style="position:absolute; width: 100%;">
             <div class="container">
                 <div class="navbar-header">
 
@@ -48,8 +48,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                        <?php echo e(config('app.name', 'Laravel')); ?>
-
+                       Lar Das Crianças
                     </a>
                 </div>
 
