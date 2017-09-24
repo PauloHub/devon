@@ -9,8 +9,24 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="header">
-                                <h4 class="title">Ficha de Cadastro</h4>
-                                <p class="category">Ficha de Cadastro de Crianças no Sistema</p>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <ul>
+                                            <li style="list-style-type:none;">
+                                                <h4 class="title">Ficha de Cadastro</h4>
+                                            </li>
+                                            <li style="list-style-type:none;">
+                                                <p class="category">Ficha de Cadastro de Crianças no Sistema</p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <ul>
+                                        <li style="list-style-type:none; text-align: right; margin-right: 8%;">
+                                            <a href="#" class="btn btn-primary btn-lg">
+                                            <span class="glyphicon glyphicon-list"></span> Listar Crianças</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                             <div class="content">
 
@@ -130,7 +146,16 @@
                                                     <label class="radio-inline"><input type="radio" name="sexo" value="f" for="Feminino"/>Feminino</label>
                                                 </div>
                                             </div>
-                                        </div> 
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label>Foro Vara da Criança</label><br/>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label class="radio-inline"><input type="radio" name="foro_cri" value="s" for="Sim" />Sim</label>
+                                                <label class="radio-inline"><input type="radio" name="foro_cri" value="n" for="Nao"/>Nao</label>
+                                            </div>
+                                        </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Data Acolhimento</label><br>
@@ -145,15 +170,6 @@
                                                         <option value="Chegada 1">Chegada 1</option>
                                                         <option value="Chegada 2">Chegada 2</option>
                                                 </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <label>Foro Vara da Criança</label><br/>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                                <label class="radio-inline"><input type="radio" name="foro_cri" value="s" for="Sim" />Sim</label>
-                                                <label class="radio-inline"><input type="radio" name="foro_cri" value="n" for="Nao"/>Nao</label>
                                             </div>
                                         </div>
                                     </div>
@@ -1168,22 +1184,15 @@
                                             <input style="margin-left:10%; width: 150px;" type="submit" name="" value="Cancelar" class="btn btn-info btn-danger" >
                                         </div>
                                         <br>
-
                                     </div>
-                                    
                                     <div class="clearfix"></div>
-
-                                
                                 </form>
-                                <!-- termina as views -->         
-
                             </div>
                         </div> 
                     </div>                
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 

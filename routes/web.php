@@ -17,5 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/register_child', 'ChildController@index');
+Route::get('/home', 'HomeController@index');
+//Register
+Route::get('/register_child', 'ChildController@create');
+Route::get('/register_employee', 'EmployeeController@create');
+
+//List

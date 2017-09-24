@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ChildController extends Controller
+class EmployeeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +28,7 @@ class ChildController extends Controller
     //Register
     public function create()
     {
-        return view('register_child');
+        return view('register_employee');
     }
 
     /**
@@ -40,7 +40,11 @@ class ChildController extends Controller
     //Save
     public function store(Request $request)
     {
-        //
+        //array de dados que vem do post
+        //$dados = $request->all();
+        //instalciar model
+        //Client::create($dados);
+        //return back()->with(['success' => 'Cliente cadastrado com sucesso!']);
     }
 
     /**
