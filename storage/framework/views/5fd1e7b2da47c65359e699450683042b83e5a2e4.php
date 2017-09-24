@@ -50,7 +50,7 @@
                 <?php
                     //Verificar qual link esta atualmente para poder identificar qual menu esta acessando e marcar o li
                     $link = $_SERVER ['REQUEST_URI'];
-                    if($link == '/devon/public/home'){
+                    if($link == '/devon/public/home' or $link == '/home'){
                         echo "<li class='active'>";
                     }else{
                         echo "<li>";
@@ -67,9 +67,10 @@
                         <p>Usuário</p>
                     </a>
                 </li>
+
                 <?php
                     $link = $_SERVER ['REQUEST_URI'];
-                    if($link == '/devon/public/register_employee'){
+                    if($link == '/devon/public/register_employee' or $link == '/register_employee'){
                         echo "<li class='active'>";
                     }else{
                         echo "<li>";
@@ -83,7 +84,7 @@
                 </li>
                 <?php
                     $link = $_SERVER ['REQUEST_URI'];
-                    if($link == '/devon/public/register_child'){
+                    if($link == '/devon/public/register_child' or $link == '/register_child'){
                         echo "<li class='active'>";
                     }else{
                         echo "<li>";

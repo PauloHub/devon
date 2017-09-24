@@ -1185,7 +1185,6 @@
                                         </div>
                                         <br>
                                     </div>
-                                    <div class="clearfix"></div>
                                 </form>
                             </div>
                         </div> 
