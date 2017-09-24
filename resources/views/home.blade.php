@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="criancas.php">
+                    <a href="{{url('register_child')}}">
                         <i class="pe-7s-smile"></i>
                         <p>Crianças</p>
                     </a>
