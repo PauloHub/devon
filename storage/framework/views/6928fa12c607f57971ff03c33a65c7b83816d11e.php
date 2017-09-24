@@ -1,81 +1,8 @@
 <?php $__env->startSection('content'); ?>
 <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg" style="position:fixed; margin-top:60px;" >
-
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
-        <div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="index.php" class="simple-text">
-                    Lar Das Crianças
-                </a>
-            </div>
-
-            <ul class="nav">
-                <li class="active">
-                    <a href="index.php">
-                        <i class="pe-7s-graph"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="usuario.php">
-                        <i class="pe-7s-user"></i>
-                        <p>Usuário</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="funcionarios.php">
-                        <i class="pe-7s-id"></i>
-                        <p>Funcionários</p>
-
-                    </a>
-                </li>
-                <li>
-                    <a href="<?php echo e(url('register_child')); ?>">
-                        <i class="pe-7s-smile"></i>
-                        <p>Crianças</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="doacoes.php">
-                        <i class="pe-7s-piggy"></i>
-                        <p>Doações</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="doadores.php">
-                        <i class="pe-7s-user-female"></i>
-                        <p>Doadores</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="voluntarios.php">
-                        <i class="pe-7s-users"></i>
-                        <p>Voluntarios</p>
-                    </a>
-                </li>
-                <li class="active-pro">
-                    <a href="gerenciamento.php">
-                        <i class="pe-7s-tools"></i>
-                        <p>Gerenciamento</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-
     <div class="main-panel">
-        <nav class="navbar navbar-default navbar-fixed">
-           
+        <nav class="navbar navbar-default navbar-fixed">           
         </nav>
-
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -276,42 +203,9 @@
                 </div>
             </div>
         </div>
-
-
-        <footer class="footer">
-            <div class="container-fluid">
-                <nav class="pull-left">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                Home
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Company
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                Portfolio
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                               Blog
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <p class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                </p>
-            </div>
-        </footer>
-
     </div>
 </div>
 <?php $__env->stopSection(); ?>
 
+<?php echo $__env->make('layouts.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 <?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

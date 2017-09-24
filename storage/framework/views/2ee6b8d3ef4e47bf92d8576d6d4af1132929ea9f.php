@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title><?php echo e(config('app.name', 'Laravel')); ?></title>
+    <title>Lar Das Crianças</title>
 
     <!-- Styles -->
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
@@ -38,17 +38,9 @@
             <div class="container">
                 <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="<?php echo e(url('/')); ?>">
-                       Lar Das Crianças
+                    <a class="navbar-brand" href="<?php echo e(url('/home')); ?>" style="margin-left: -80px;">
+                       LAR DAS CRIANÇAS
                     </a>
                 </div>
 
