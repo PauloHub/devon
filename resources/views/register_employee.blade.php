@@ -121,7 +121,7 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <div class="form-group">
-                                                <label>Estado</label>
+                                                <label>Cidade</label>
                                                 <br>
                                                 <select name="ID_CIDADE">
                                                     <option value="">Selecione</option>
