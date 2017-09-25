@@ -103,14 +103,14 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Estado</label>
                                                 <br>
-                                                <select name="ID_ESTADO">
+                                                <select name="ID_ESTADO" class="col-md-8">
                                                     <option value="">Selecione</option>
                                                     <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($state->id); ?>"><?php echo e($state->name); ?></option>
+                                                        <option value="<?php echo e($state->id); ?>" ><?php echo e($state->nome); ?></option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
@@ -120,19 +120,13 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Estado</label>
-                                                <br>
-                                                <select name="ID_CIDADE">
-                                                    <option value="">Selecione</option>
-                                                    <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($city->id); ?>"><?php echo e($city->name); ?></option>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                </select>
+                                                <input type="text" class="form-control" placeholder="Cidade"  name="FUNC_CIDADE">
                                             </div>
                                         </div>
 
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>BAIRRO</label>
+                                                <label>Bairro</label>
                                                 <input type="text" class="form-control" placeholder="Bairro" name="FUNC_BAIRRO">
                                             </div>
                                         </div>

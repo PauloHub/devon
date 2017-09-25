@@ -112,7 +112,7 @@
                                                 <select name="ID_ESTADO">
                                                     <option value="">Selecione</option>
                                                     @foreach($stats as $state)
-                                                        <option value="{{ $state->id }}">{{ $state->name }}</option>
+                                                        <option value="{{ $state->id }}">{{ $state->nome }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -126,7 +126,7 @@
                                                 <select name="ID_CIDADE">
                                                     <option value="">Selecione</option>
                                                     @foreach($cities as $city)
-                                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                        <option value="{{ $city->id }}">{{ $city->nome }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
