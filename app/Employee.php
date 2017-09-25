@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    protected $table = 'ldcr_funcionario';
+    protected $table = 'funcionario';
 	public $timestamps = false;
 
     //Declarando quals inputs do form
@@ -29,8 +29,9 @@ class Employee extends Model
     	'FUNC_EMAIL',
     	'FUNC_TEL',
     	'FUNC_ENDERECO',
-    	'FUNC_CIDADE',
-    	'FUNC_ESTADO',
+    	'FK_FUNC_CIDADE',
+    	'FK_FUNC_ESTADO',
     	'FUNC_CEP'
     ];
+
 }

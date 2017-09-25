@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Employee;
+use App\City;
+use App\State;
 
 class EmployeeController extends Controller
 {
@@ -15,9 +18,11 @@ class EmployeeController extends Controller
     //List
     public function index()
     {
-        //$employees = Client::all();
+        //$employees = Employee::all();
+        $cities = City::all();
+        $stats = State::all();
         //o nome index abaixo refere-se ao nome da view tirando a parte .blade.php
-        //return view('index', compact('clients'));
+        return view('index', compact('cities','stats'));
     }
 
     /**
@@ -28,7 +33,11 @@ class EmployeeController extends Controller
     //Register
     public function create()
     {
-        return view('register_employee');
+        //$employees = Employee::all();
+        $cities = City::all();
+        $stats = State::all();
+        //o nome index abaixo refere-se ao nome da view tirando a parte .blade.php
+        return view('register_employee', compact('cities','stats'));
     }
 
     /**
