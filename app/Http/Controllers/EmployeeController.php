@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Employee;
-use App\City;
-use App\State;
+use App\ldcr_funcionario;
+use App\ldcr_municipio;
+use App\ldcr_estado;
+use App\Ldcr_cargo;
+use App\User;
+use Illuminate\Support\Facades\DB;
+
 
 class EmployeeController extends Controller
 {
@@ -18,11 +22,12 @@ class EmployeeController extends Controller
     //List
     public function index()
     {
-        //$employees = Employee::all();
-        $cities = City::all();
-        $stats = State::all();
+        $users = User::all();
+        $cargos = Ldcr_cargo::all();
+        $cities = ldcr_municipio::all();
+        $stats = ldcr_estado::all();
         //o nome index abaixo refere-se ao nome da view tirando a parte .blade.php
-        return view('index', compact('cities','stats'));
+        return view('index', compact('cities','stats','cargos', 'users'));
     }
 
     /**
@@ -33,11 +38,12 @@ class EmployeeController extends Controller
     //Register
     public function create()
     {
-        //$employees = Employee::all();
-        $cities = City::all();
-        $stats = State::all();
+        $users = User::all();
+        $cargos = Ldcr_cargo::all();
+        $cities = ldcr_municipio::all();
+        $stats = ldcr_estado::all();
         //o nome index abaixo refere-se ao nome da view tirando a parte .blade.php
-        return view('register_employee', compact('cities','stats'));
+        return view('register_employee', compact('cities','stats', 'cargos', 'users'));
     }
 
     /**
@@ -54,6 +60,14 @@ class EmployeeController extends Controller
         //instalciar model
         //Client::create($dados);
         //return back()->with(['success' => 'Cliente cadastrado com sucesso!']);
+
+        $dados = $request->all();
+
+        Ldcr_funcionario::create($dados);
+
+        return back()->with(['success' => 'Funcionário cadastrado com sucesso!']);
+
+
     }
 
     /**
@@ -65,7 +79,10 @@ class EmployeeController extends Controller
     //Show one
     public function show($id)
     {
-        //
+        
+        //$func = DB::table('ldcr_funcionario as f ')->select('f.*')->where('FUNC_ID', '$id');
+        $employee = Ldcr_funcionario::findOrFail($id);
+        return view('show_employee', compact('employee','cities','stats', 'cargos', 'users'));
     }
 
     /**
@@ -103,5 +120,11 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function listar()
+    {
+        $funcs = Ldcr_funcionario::all();
+        return view('list_employee', compact('funcs'));
     }
 }

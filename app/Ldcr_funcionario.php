@@ -4,13 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class Ldcr_funcionario extends Model
 {
-    protected $table = 'funcionario';
+    protected $table = 'ldcr_funcionario';
 	public $timestamps = false;
 
     //Declarando quals inputs do form
     protected $fillable = [
+        'FUNC_ID',
     	'FUNC_NOME',
     	'FUNC_RG',
     	'FUNC_CPF',
@@ -22,16 +23,16 @@ class Employee extends Model
     	'FUNC_BAIRRO',
     	'FUNC_MAE',
     	'FUNC_PAI',
-    	'FUNC_DTA_NASCI',
-    	'FK_FUNC_ESCOLA',
-    	'FK_FUNC_CARGO',
-    	'FK_USER_ID',
+    	'FUNC_DT_NASCI',
+        'FK_FUNC_CARGO',
+        'FK_USER_ID',
     	'FUNC_EMAIL',
     	'FUNC_TEL',
     	'FUNC_ENDERECO',
-    	'FK_FUNC_CIDADE',
-    	'FK_FUNC_ESTADO',
-    	'FUNC_CEP'
+    	'FUNC_CIDADE',
+    	'FUNC_ESTADO',
+    	'FUNC_CEP',        
+        'FUNC_FORMACAO'
     ];
 
 }

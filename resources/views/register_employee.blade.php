@@ -24,14 +24,21 @@
                                     </div>
                                     <ul>
                                         <li style="list-style-type:none; text-align: right; margin-right: 8%;">
-                                            <a href="#" class="btn btn-primary btn-lg">
+                                            <a href="{{ url('/list_employee') }}" class="btn btn-primary btn-lg">
                                             <span class="glyphicon glyphicon-list"></span> Listar Funcionários</a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="content">
-                                <form method="POST">
+
+                                @if(session('success'))
+                                    <p class="alert-success">
+                                    {{session('success')}} </p>
+                                @endif
+
+                                <form action="{{ url('/register_employee') }}" method="POST">
+                                    {{csrf_field()}}
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
@@ -109,10 +116,10 @@
                                             <div class="form-group">
                                                 <label>Estado</label>
                                                 <br>
-                                                <select name="ID_ESTADO">
+                                                <select name="FUNC_ESTADO" class="form-control">
                                                     <option value="">Selecione</option>
                                                     @foreach($stats as $state)
-                                                        <option value="{{ $state->id }}">{{ $state->nome }}</option>
+                                                        <option value="{{ $state->ESTD_ID }}">{{ $state->ESTD_DESC }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -123,10 +130,10 @@
                                             <div class="form-group">
                                                 <label>Cidade</label>
                                                 <br>
-                                                <select name="ID_CIDADE">
+                                                <select name="FUNC_CIDADE" class="form-control">
                                                     <option value="">Selecione</option>
                                                     @foreach($cities as $city)
-                                                        <option value="{{ $city->id }}">{{ $city->nome }}</option>
+                                                        <option value="{{ $city->MUNI_ID }}">{{ $city->MUNI_DESCR }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -166,10 +173,16 @@
                                                 <input type="date" class="form-control"  name="FUNC_DT_DEMISSAO">
                                             </div>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Cargo</label>
-                                                <input type="text" class="form-control"  placeholder="Cargo/Função" name="FUNC_CARGO">
+                                                <br>
+                                                <select name="FK_FUNC_CARGO" class="form-control">
+                                                    <option value="">Selecione</option>
+                                                    @foreach($cargos as $cargo)
+                                                        <option value="{{ $cargo->CARG_ID }}">{{ $cargo->CARG_DESC }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -181,10 +194,25 @@
                                     </div>
 
                                     <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Usuário</label>
+                                                <br>
+                                                <select name="FK_USER_ID" class="form-control">
+                                                    <option value="">Selecione</option>
+                                                    @foreach($users as $user)
+                                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
                                     <br><br>
                                         <div align="center">
-                                            <button type="submit" class="btn btn-info btn-fill">Cadastrar Funcionário</button>
-                                            <input style="margin-left:10%; width: 150px;" type="submit" name="" value="Cancelar" class="btn btn-info btn-danger" >
+                                            <input type="submit" value="Cadastrar Funcionário" name="" class="btn btn-info btn-fill">
+                                            <input style="margin-left:10%; width: 150px;" type="submit" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
                                         </div>
                                         <br>
                                     </div>
