@@ -81,6 +81,7 @@ class EmployeeController extends Controller
     {
         
         //$func = DB::table('ldcr_funcionario as f ')->select('f.*')->where('FUNC_ID', '$id');
+        $users = User::all();
         $employee = Ldcr_funcionario::findOrFail($id);
         $cargos = ldcr_cargo::all();
         $stats = ldcr_estado::all();

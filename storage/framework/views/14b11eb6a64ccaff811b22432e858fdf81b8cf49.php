@@ -112,7 +112,7 @@
                                                 <select name="FUNC_ESTADO" class="form-control" disabled>
                                                     <!--<?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <?php if($state->ESTADO_ID == $employee->FK_FUNC_ESTADO): ?>
-                                                            <option value="<?php echo e($state->ESTADO_DESCR); ?>" selected><?php echo e($state->ESTADO_DESCR); ?></option>
+                                                            <option value="<?php echo e($state->ESTADO_ID); ?>" selected><?php echo e($state->ESTADO_DESCR); ?></option>
                                                         <?php endif; ?>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> -->
                                                     <option value="<?php echo e($employee->FUNC_ESTADO); ?>" selected><?php echo e($employee->FUNC_ESTADO); ?></option>                                                   
@@ -128,7 +128,7 @@
                                                 <select name="FUNC_CIDADE" class="form-control" disabled>
                                                     <!--<?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <?php if($city->CIDADE_ID == $employee->FK_FUNC_CIDADE): ?>
-                                                            <option value="<?php echo e($city->CIDADE_DESCR); ?>" selected><?php echo e($city->CIDADE_DESCR); ?></option>
+                                                            <option value="<?php echo e($city->CIDADE_ID); ?>" selected><?php echo e($city->CIDADE_DESCR); ?></option>
                                                         <?php endif; ?>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> -->
                                                     <option value="<?php echo e($employee->FUNC_CIDADE); ?>" selected><?php echo e($employee->FUNC_CIDADE); ?></option>
@@ -177,7 +177,7 @@
                                                 <select name="FK_FUNC_CARGO" class="form-control" disabled>
                                                     <?php $__currentLoopData = $cargos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cargo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <?php if($cargo->CARG_ID == $employee->FK_FUNC_CARGO): ?>
-                                                            <option value="<?php echo e($cargo->CARG_DESC); ?>" selected><?php echo e($cargo->CARG_DESC); ?></option>
+                                                            <option value="<?php echo e($cargo->CARG_ID); ?>" selected><?php echo e($cargo->CARG_DESC); ?></option>
                                                         <?php endif; ?>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
@@ -192,12 +192,17 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label>Usuário</label>
                                                 <br>
                                                 <select name="FK_USER_ID" class="form-control" disabled>
-                                                        <option value="<?php echo e($employee->FK_USER_ID); ?>" selected><?php echo e($employee->FK_USER_ID); ?></option>
+                                                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if($user->id == $employee->ID): ?>
+                                                            <option value="<?php echo e($user->id); ?>" selected><?php echo e($user->email); ?></option>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        
                                                 </select>
                                             </div>
                                         </div>
@@ -206,7 +211,7 @@
                                     <div class="row">
                                     <br><br>
                                         <div align="center">
-                                            <input type="submit"  onClick="<?php echo e(url('/edit_employee', $employee->ID)); ?>" value="Editar Funcionário" name="" class="btn btn-info btn-fill">
+                                            <input type="submit" href="<?php echo e(url('/edit_employee', $employee->ID)); ?>" value="Editar Funcionário" name="" class="btn btn-info btn-fill">
                                             <input style="margin-left:10%; width: 150px;" type="submit" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
                                         </div>
                                         <br>

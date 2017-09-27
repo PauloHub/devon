@@ -113,7 +113,7 @@
                                                 <select name="FUNC_ESTADO" class="form-control" disabled>
                                                     <!--@foreach($stats as $state)
                                                         @if($state->ESTADO_ID == $employee->FK_FUNC_ESTADO)
-                                                            <option value="{{$state->ESTADO_DESCR}}" selected>{{$state->ESTADO_DESCR}}</option>
+                                                            <option value="{{$state->ESTADO_ID}}" selected>{{$state->ESTADO_DESCR}}</option>
                                                         @endif
                                                     @endforeach -->
                                                     <option value="{{$employee->FUNC_ESTADO}}" selected>{{$employee->FUNC_ESTADO}}</option>                                                   
@@ -129,7 +129,7 @@
                                                 <select name="FUNC_CIDADE" class="form-control" disabled>
                                                     <!--@foreach($cities as $city)
                                                         @if($city->CIDADE_ID == $employee->FK_FUNC_CIDADE)
-                                                            <option value="{{$city->CIDADE_DESCR}}" selected>{{$city->CIDADE_DESCR}}</option>
+                                                            <option value="{{$city->CIDADE_ID}}" selected>{{$city->CIDADE_DESCR}}</option>
                                                         @endif
                                                     @endforeach -->
                                                     <option value="{{$employee->FUNC_CIDADE}}" selected>{{$employee->FUNC_CIDADE}}</option>
@@ -178,7 +178,7 @@
                                                 <select name="FK_FUNC_CARGO" class="form-control" disabled>
                                                     @foreach($cargos as $cargo)
                                                         @if($cargo->CARG_ID == $employee->FK_FUNC_CARGO)
-                                                            <option value="{{$cargo->CARG_DESC}}" selected>{{$cargo->CARG_DESC}}</option>
+                                                            <option value="{{$cargo->CARG_ID}}" selected>{{$cargo->CARG_DESC}}</option>
                                                         @endif
                                                     @endforeach
                                                 </select>
@@ -193,12 +193,17 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-2">
+                                        <div class="col-md-3">
                                             <div class="form-group">
                                                 <label>Usuário</label>
                                                 <br>
                                                 <select name="FK_USER_ID" class="form-control" disabled>
-                                                        <option value="{{$employee->FK_USER_ID}}" selected>{{$employee->FK_USER_ID}}</option>
+                                                    @foreach($users as $user)
+                                                        @if($user->id == $employee->ID)
+                                                            <option value="{{$user->id}}" selected>{{$user->email}}</option>
+                                                        @endif
+                                                    @endforeach
+                                                        
                                                 </select>
                                             </div>
                                         </div>
