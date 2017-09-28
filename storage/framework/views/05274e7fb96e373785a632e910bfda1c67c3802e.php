@@ -1,4 +1,21 @@
 <?php $__env->startSection('content'); ?>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    $(function(){
+      $('section#hide_section article div.btn').click(function(){
+        $(this).siblings('div.row').slideToggle();
+        if($(this).text() == "Mostrar"){
+            $(this).text("Ocultar");
+        }else {
+            $(this).text("Mostrar");  
+        }
+      });  
+    });
+</script>
+<script> </script>
+
 <div class="wrapper">
     <div class="main-panel">        
         <nav class="navbar navbar-default navbar-fixed">         
@@ -33,6 +50,10 @@
                                 <!-- aqui entra as views -->
 
                                 <form method="POST">
+
+                                    <section id="hide_section" >
+                                        <article>
+                                             <div class="btn func">Ocultar</div>
 
                                     <div class="row">
 
@@ -173,7 +194,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                        
+
+                                </article>
+                            </section><br>
+                                 
+
+                             <section id="hide_section">
+                                        <article>
+                                             <div class="btn func">Ocultar</div>
+
                                     <div class="row">
 
                                         <div class="col-md-10">
@@ -306,7 +335,6 @@
                                                 <label class="radio-inline"><input type="radio" name="def_pub" value="n" for="Nao"/>Nao</label>
                                             </div>
                                         </div>  
-
                                     </div>
 
                                     <div class="row">
@@ -320,6 +348,13 @@
                                         </div>
 
                                     </div>
+
+                                        </article>
+                                    </section><br>
+
+                                    <section id="hide_section">
+                                        <article>
+                                             <div class="btn func">Ocultar</div>
 
                                     <div class="row">
 
@@ -898,6 +933,13 @@
                                         </div>  
                                     </div>
 
+                                     </article>
+                                    </section><br>
+
+                                   <section id="hide_section">
+                                        <article>
+                                             <div class="btn func">Ocultar</div>
+
                                     <div class="row">
 
                                         <div class="col-md-4">
@@ -1004,6 +1046,13 @@
                                         </div>
 
                                     </div>  
+
+                                        </article>
+                                    </section><br>
+
+                                    <section id="hide_section">
+                                        <article>
+                                             <div class="btn func">Ocultar</div>
 
                                      <div class="row">
                                         <div class="col-md-11">
@@ -1175,6 +1224,9 @@
                                         </div>  
 
                                     </div>
+
+                                        </article>
+                                    </section><br>
 
                                     <div class="row">
 
