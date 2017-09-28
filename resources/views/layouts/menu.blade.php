@@ -59,29 +59,8 @@
                     }
                 ?>
                     <a href="{{url('home')}}">
-                        <i class="pe-7s-graph"></i>
+                        <i class="glyphicon glyphicon-dashboard"></i>
                         <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="usuario.php">
-                        <i class="pe-7s-user"></i>
-                        <p>Usuário</p>
-                    </a>
-                </li>
-
-                <?php
-                    $link = $_SERVER ['REQUEST_URI'];
-                    if($link == '/devon/public/register_employee' or $link == '/register_employee'){
-                        echo "<li class='active'>";
-                    }else{
-                        echo "<li>";
-                    }
-                ?>
-                    <a href="{{url('register_employee')}}">
-                        <i class="pe-7s-id"></i>
-                        <p>Funcionários</p>
-
                     </a>
                 </li>
                 <?php
@@ -93,28 +72,45 @@
                     }
                 ?>
                     <a href="{{url('register_child')}}">
-                        <i class="pe-7s-smile"></i>
+                        <i class="glyphicon glyphicon-user"></i>
                         <p>Crianças</p>
                     </a>
                 </li>
                 <li>
-                    <a href="doacoes.php">
-                        <i class="pe-7s-piggy"></i>
-                        <p>Doações</p>
-                    </a>
-                </li>
-                <li>
                     <a href="doadores.php">
-                        <i class="pe-7s-user-female"></i>
+                        <i class="glyphicon glyphicon-gift"></i>
                         <p>Doadores</p>
                     </a>
                 </li>
                 <li>
+                    <a href="doacoes.php">
+                        <i class="glyphicon glyphicon-piggy-bank"></i>
+                        <p>Doações</p>
+                    </a>
+                </li>
+                <li>
                     <a href="voluntarios.php">
-                        <i class="pe-7s-users"></i>
+                        <i class="glyphicon glyphicon-heart-empty"></i>
                         <p>Voluntarios</p>
                     </a>
                 </li>
+                <?php
+                    $link = $_SERVER ['REQUEST_URI'];
+                    if($link == '/devon/public/register_employee' or $link == '/register_employee'){
+                        echo "<li class='active'>";
+                    }else{
+                        echo "<li>";
+                    }
+                ?>
+                    <a href="{{url('register_employee')}}">
+                        <i class="glyphicon glyphicon-briefcase"></i>
+                        <p>Funcionários</p>
+
+                    </a>
+                </li>
+                
+                
+                
                 <li class="active-pro" style="margin-bottom: 25%;">
                     <a href="gerenciamento.php">
                         <i class="pe-7s-tools"></i>
