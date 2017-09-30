@@ -9,9 +9,9 @@ class Ldcr_funcionario extends Model
     protected $table = 'ldcr_funcionario';
 	public $timestamps = false;
 
-    //Declarando quals inputs do form
+    //Declarando quais inputs do form
     protected $fillable = [
-          'ID',
+             'ID',
     	'FUNC_NOME',
     	'FUNC_RG',
     	'FUNC_CPF',
@@ -24,8 +24,8 @@ class Ldcr_funcionario extends Model
     	'FUNC_MAE',
     	'FUNC_PAI',
     	'FUNC_DT_NASCI',
-          'FUNC_FORMACAO',
-          'FUNC_CARGO',
+            'FUNC_FORMACAO',
+            'FUNC_CARGO',
     	'FUNC_EMAIL',
     	'FUNC_TEL',
     	'FUNC_ENDERECO',

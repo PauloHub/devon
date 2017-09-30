@@ -39,13 +39,13 @@
                                             </tr>
                                         </thead>
                                             
-                                         <?php $__currentLoopData = $funcs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $func): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>                                                    
+                                         <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>                                                    
                                             <tbody>
                                                
-                                                 <td><?php echo e($func->ID); ?></td>
-                                                 <td style="padding-left:2%; width: 70%";><?php echo e($func->FUNC_NOME); ?></td>
-                                                 <td><a href="<?php echo e(url('/show_employee', $func->ID)); ?>" > <i class="fa fa-eye" aria-hidden="true" style="margin-left:19%;"></i></a></td>
-                                                 <td><a href="<?php echo e(url('/edit_employee', $func->ID)); ?>" > <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-left:19%;"></i></a></td>
+                                                 <td><?php echo e($employee->ID); ?></td>
+                                                 <td style="padding-left:2%; width: 70%";><?php echo e($employee->FUNC_NOME); ?></td>
+                                                 <td><a href="<?php echo e(url('/show_employee', $employee->ID)); ?>" > <i class="fa fa-eye" aria-hidden="true" style="margin-left:19%;"></i></a></td>
+                                                 <td><a href="<?php echo e(url('/edit_employee', $employee->ID)); ?>" > <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-left:19%;"></i></a></td>
                                             </tr>
                                             </tbody>
                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

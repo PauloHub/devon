@@ -41,13 +41,13 @@
                                             </tr>
                                         </thead>
                                             
-                                         @foreach($funcs as $func)                                                    
+                                         @foreach($employees as $employee)                                                    
                                             <tbody>
                                                
-                                                 <td>{{$func->ID}}</td>
-                                                 <td style="padding-left:2%; width: 70%";>{{$func->FUNC_NOME}}</td>
-                                                 <td><a href="{{ url('/show_employee', $func->ID) }}" > <i class="fa fa-eye" aria-hidden="true" style="margin-left:19%;"></i></a></td>
-                                                 <td><a href="{{ url('/edit_employee', $func->ID) }}" > <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-left:19%;"></i></a></td>
+                                                 <td>{{$employee->ID}}</td>
+                                                 <td style="padding-left:2%; width: 70%";>{{$employee->FUNC_NOME}}</td>
+                                                 <td><a href="{{ url('/show_employee', $employee->ID) }}" > <i class="fa fa-eye" aria-hidden="true" style="margin-left:19%;"></i></a></td>
+                                                 <td><a href="{{ url('/edit_employee', $employee->ID) }}" > <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-left:19%;"></i></a></td>
                                             </tr>
                                             </tbody>
                                        @endforeach

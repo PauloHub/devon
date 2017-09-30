@@ -78,7 +78,6 @@ class EmployeeController extends Controller
     public function show($id)
     {
         
-        //$func = DB::table('ldcr_funcionario as f ')->select('f.*')->where('FUNC_ID', '$id');
         $users = User::all();
         $employee = Ldcr_funcionario::findOrFail($id);
         $stats = Ldcr_estado::all();
@@ -95,7 +94,11 @@ class EmployeeController extends Controller
     //View edit
     public function edit($id)
     {
-        //
+        $users = User::all();
+        $employee = Ldcr_funcionario::findOrFail($id);
+        $stats = Ldcr_estado::all();
+        $cities = Ldcr_cidade::all();
+        return view('edit_employee', compact('employee','cities','stats', 'users'));
     }
 
     /**
@@ -108,7 +111,16 @@ class EmployeeController extends Controller
     //Save update
     public function update(Request $request, $id)
     {
-        //
+        $request_form = $request->all();
+        $employee = Ldcr_funcionario::findOrFail($id);
+        $update_employee = $employee->update($request_form);
+
+        if($update_employee){
+            $employees = Ldcr_funcionario::all();
+            return view('list_employee', compact('employees'))->with(['success' => 'Funcionário cadastrado com sucesso!']);
+        }else{
+             return back()->with(['success' => 'Falha ao atualizar, tente novamente...!']);
+        }
     }
 
     /**
@@ -123,7 +135,7 @@ class EmployeeController extends Controller
         //
     }
 
-    public function listar()
+    public function list()
     {
         $employees = Ldcr_funcionario::all();
         return view('list_employee', compact('employees'));

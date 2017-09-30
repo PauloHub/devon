@@ -18,14 +18,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
-//Register
+
 Route::get('/register_child', 'ChildController@create');
 
 Route::get('/register_employee', 'EmployeeController@create', 'CityController@state_city');
 Route::post('/register_employee', 'EmployeeController@store');
-Route::get('/list_employee', 'EmployeeController@listar');
+Route::get('/list_employee', 'EmployeeController@list');
 Route::get('/show_employee/{id}', 'EmployeeController@show');
+Route::get('/edit_employee/{id}', 'EmployeeController@edit');
+Route::put('/edit_employee/{id}', 'EmployeeController@update'); //metodo http para edição do laravel
 
 Route::get('/find_cities',  'CityController@find_cities');
 
-//List
+

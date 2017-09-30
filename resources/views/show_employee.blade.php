@@ -21,7 +21,13 @@
                                                 <p class="category">Ficha de Cadastro de Funcionários no Sistema</p>
                                             </li>
                                         </ul>
-                                    </div>                                   
+                                    </div>
+                                    <ul>
+                                        <li style="list-style-type:none; text-align: right; margin-right: 8%;">
+                                            <a href="{{ url('/list_employee') }}" class="btn btn-primary btn-lg">
+                                            <span class="glyphicon glyphicon-list"></span> Listar Funcionários</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                             <div class="content">
@@ -31,7 +37,7 @@
                                     {{session('success')}} </p>
                                 @endif
 
-                                <form action="" method="POST">
+                                <form>
                                     {{csrf_field()}}
                                     <div class="row">
                                         <div class="col-md-4">
@@ -43,19 +49,19 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>RG</label>
-                                                <input type="number" class="form-control" placeholder="RG" name="FUNC_RG" value="{{$employee->FUNC_RG}}" disabled>
+                                                <input type="text" class="form-control" placeholder="RG" name="FUNC_RG" value="{{$employee->FUNC_RG}}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>CPF</label>
-                                                <input type="number" class="form-control" placeholder="CPF" name="FUNC_CPF" value="{{$employee->FUNC_CPF}}" disabled>
+                                                <input type="text" class="form-control" placeholder="CPF" name="FUNC_CPF" value="{{$employee->FUNC_CPF}}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Conta</label>
-                                                <input type="number" class="form-control" placeholder="Conta" name="FUNC_CONTA" value="{{$employee->FUNC_CONTA}}" disabled>
+                                                <input type="text" class="form-control" placeholder="Conta" name="FUNC_CONTA" value="{{$employee->FUNC_CONTA}}" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +70,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Telefone</label>
-                                                <input type="number" class="form-control" placeholder="Telefone" name="FUNC_TEL" value="{{$employee->FUNC_TEL}}" disabled>
+                                                <input type="text" class="form-control" placeholder="Telefone" name="FUNC_TEL" value="{{$employee->FUNC_TEL}}" disabled>
                                             </div>
                                         </div>
 
@@ -110,13 +116,10 @@
                                             <div class="form-group">
                                                 <label>Estado</label>
                                                 <br>
-                                                <select name="FUNC_ESTADO" class="form-control" disabled>
-                                                    <!--@foreach($stats as $state)
-                                                        @if($state->ESTADO_ID == $employee->FK_FUNC_ESTADO)
-                                                            <option value="{{$state->ESTADO_ID}}" selected>{{$state->ESTADO_DESCR}}</option>
-                                                        @endif
-                                                    @endforeach -->
-                                                    <option value="{{$employee->FUNC_ESTADO}}" selected>{{$employee->FUNC_ESTADO}}</option>                                                   
+                                                <select name="FK_FUNC_ESTD" id="id_estd" class="form-control state_city" disabled>
+                                                    @foreach($stats as $state)
+                                                        <option value="{{$employee->FK_FUNC_ESTD}}">{{ $employee->FK_FUNC_ESTD}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -126,13 +129,10 @@
                                             <div class="form-group">
                                                 <label>Cidade</label>
                                                 <br>
-                                                <select name="FUNC_CIDADE" class="form-control" disabled>
-                                                    <!--@foreach($cities as $city)
-                                                        @if($city->CIDADE_ID == $employee->FK_FUNC_CIDADE)
-                                                            <option value="{{$city->CIDADE_ID}}" selected>{{$city->CIDADE_DESCR}}</option>
-                                                        @endif
-                                                    @endforeach -->
-                                                    <option value="{{$employee->FUNC_CIDADE}}" selected>{{$employee->FUNC_CIDADE}}</option>
+                                                <select name="FK_FUNC_CIDADE" id="id_cidade" class="form-control city_state" disabled>
+                                                    @foreach($cities as $city)
+                                                        <option value="{{ $employee->FK_FUNC_CIDADE }}">{{  $employee->FK_FUNC_CIDADE }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -174,14 +174,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Cargo</label>
-                                                <br>
-                                                <select name="FK_FUNC_CARGO" class="form-control" disabled>
-                                                    @foreach($cargos as $cargo)
-                                                        @if($cargo->CARG_ID == $employee->FK_FUNC_CARGO)
-                                                            <option value="{{$cargo->CARG_ID}}" selected>{{$cargo->CARG_DESC}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" class="form-control"  placeholder="Cargo" name="FUNC_CARGO" value="{{$employee->FUNC_CARGO}}" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -193,17 +186,16 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Usuário</label>
+                                                <label>Status</label>
                                                 <br>
-                                                <select name="FK_USER_ID" class="form-control" disabled>
-                                                    @foreach($users as $user)
-                                                        @if($user->id == $employee->ID)
-                                                            <option value="{{$user->id}}" selected>{{$user->email}}</option>
-                                                        @endif
-                                                    @endforeach
-                                                        
+                                                <select name="FUNC_STATUS" class="form-control" disabled>
+                                                    @if($employee->FUNC_STATUS == 1)                                                  
+                                                        <option value="1">Ativo</option>
+                                                        @else
+                                                        <option value="0">Inativo</option>     
+                                                        @endif                                               
                                                 </select>
                                             </div>
                                         </div>
@@ -212,7 +204,8 @@
                                     <div class="row">
                                     <br><br>
                                         <div align="center">
-                                            <input type="submit" href="{{ url('/edit_employee', $employee->ID) }}" value="Editar Funcionário" name="" class="btn btn-info btn-fill">
+
+                                            <a href="{{ url('/edit_employee', $employee->ID) }}" class="btn btn-info btn-fill">Editar Funcionário</a>
                                             <input style="margin-left:10%; width: 150px;" type="submit" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
                                         </div>
                                         <br>
@@ -226,5 +219,4 @@
         </div>
     </div>
 </div>
-
 @endsection
