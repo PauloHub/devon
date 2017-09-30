@@ -11,7 +11,7 @@ class Ldcr_funcionario extends Model
 
     //Declarando quals inputs do form
     protected $fillable = [
-        'FUNC_ID',
+          'ID',
     	'FUNC_NOME',
     	'FUNC_RG',
     	'FUNC_CPF',
@@ -24,15 +24,15 @@ class Ldcr_funcionario extends Model
     	'FUNC_MAE',
     	'FUNC_PAI',
     	'FUNC_DT_NASCI',
-        'FK_FUNC_CARGO',
-        'FK_USER_ID',
+          'FUNC_FORMACAO',
+          'FUNC_CARGO',
     	'FUNC_EMAIL',
     	'FUNC_TEL',
     	'FUNC_ENDERECO',
-    	'FUNC_CIDADE',
-    	'FUNC_ESTADO',
+    	'FK_FUNC_CIDADE',
+    	'FK_FUNC_ESTD',
     	'FUNC_CEP',        
-        'FUNC_FORMACAO'
+          
     ];
 
 }

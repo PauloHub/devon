@@ -43,6 +43,8 @@
     <link href="<?php echo e(asset('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('http://fonts.googleapis.com/css?family=Roboto:400,700,300')); ?>" rel='stylesheet' type='text/css'>
     <link href="<?php echo e(asset('css/pe-icon-7-stroke.css')); ?>" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
     <div class="sidebar" data-color="purple" data-image="img/sidebar-5.jpg" style="position:fixed; margin-top:60px;" >
@@ -113,7 +115,7 @@
                 
                 <li class="active-pro" style="margin-bottom: 25%;">
                     <a href="gerenciamento.php">
-                        <i class="pe-7s-tools"></i>
+                        <i class="glyphicon glyphicon-wrench"></i>
                         <p>Gerenciamento</p>
                     </a>
                 </li>

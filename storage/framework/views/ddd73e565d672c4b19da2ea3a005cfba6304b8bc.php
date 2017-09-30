@@ -48,19 +48,19 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>RG</label>
-                                                <input type="number" class="form-control" placeholder="RG" name="FUNC_RG">
+                                                <input type="text" class="form-control" placeholder="RG" name="FUNC_RG">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>CPF</label>
-                                                <input type="number" class="form-control" placeholder="CPF" name="FUNC_CPF">
+                                                <input type="text" class="form-control" placeholder="CPF" name="FUNC_CPF">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Conta</label>
-                                                <input type="number" class="form-control" placeholder="Conta" name="FUNC_CONTA">
+                                                <input type="text" class="form-control" placeholder="Conta" name="FUNC_CONTA">
                                             </div>
                                         </div>
                                     </div>
@@ -69,7 +69,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Telefone</label>
-                                                <input type="number" class="form-control" placeholder="Telefone" name="FUNC_TEL">
+                                                <input type="text" class="form-control" placeholder="Telefone" name="FUNC_TEL">
                                             </div>
                                         </div>
 
@@ -115,10 +115,10 @@
                                             <div class="form-group">
                                                 <label>Estado</label>
                                                 <br>
-                                                <select name="FUNC_ESTADO" class="form-control">
+                                                <select name="FK_FUNC_ESTD" id="id_estd" class="form-control state_city">
                                                     <option value="">Selecione</option>
                                                     <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($state->ESTD_ID); ?>"><?php echo e($state->ESTD_DESC); ?></option>
+                                                        <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
@@ -129,10 +129,10 @@
                                             <div class="form-group">
                                                 <label>Cidade</label>
                                                 <br>
-                                                <select name="FUNC_CIDADE" class="form-control">
+                                                <select name="FK_FUNC_CIDADE" id="id_cidade" class="form-control city_state">
                                                     <option value="">Selecione</option>
                                                     <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($city->MUNI_ID); ?>"><?php echo e($city->MUNI_DESCR); ?></option>
+                                                        <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
@@ -175,13 +175,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Cargo</label>
-                                                <br>
-                                                <select name="FK_FUNC_CARGO" class="form-control">
-                                                    <option value="">Selecione</option>
-                                                    <?php $__currentLoopData = $cargos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $cargo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($cargo->CARG_ID); ?>"><?php echo e($cargo->CARG_DESC); ?></option>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                </select>
+                                                <input type="text" class="form-control"  placeholder="Cargo" name="FUNC_CARGO">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -195,13 +189,12 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Usuário</label>
+                                                <label>Status</label>
                                                 <br>
-                                                <select name="FK_USER_ID" class="form-control">
-                                                    <option value="">Selecione</option>
-                                                    <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($user->id); ?>"><?php echo e($user->name); ?></option>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <select name="FUNC_STATUS" class="form-control">
+                                                    <option value="">Selecione</option>                                                    
+                                                        <option value="1">Ativo</option>
+                                                        <option value="0">Inativo</option>                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -224,6 +217,46 @@
         </div>
     </div>
 </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(document).on('change', ' .state_city', function(){
+           //console.log("mudou!");
+
+            var estd_uf = $(this).val();
+            //console.log(estd_uf);
+
+            var div = $(this).parents();
+
+            var op=" ";
+
+            $.ajax({
+                type: 'get',
+                url: '<?php echo URL::to('find_cities'); ?>', 
+                data:{'uf':estd_uf},
+                success:function(data){
+                    //console.log('com sucesso!');
+                    console.log(data);
+                    //console.log(data.length);
+
+                    op+='<option value="0" selected disabled>Selecione a cidade</option>';
+                    for(var i=0; i<data.length; i++){
+                        op+='<option value=" '+data[i].CIDADE_DESC+' "> '+data[i].CIDADE_DESC+'</option>';
+                    }     
+
+                    div.find('.city_state').html(" ");
+                    div.find('.city_state').append(op);
+
+                },
+                error:function(){
+
+                }
+            });
+
+        } );
+    } );
+</script>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

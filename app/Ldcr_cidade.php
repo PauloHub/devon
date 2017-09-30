@@ -4,15 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Ldcr_municipio extends Model
+class Ldcr_cidade extends Model
 {
-    protected $table = 'ldcr_municipio';
+    protected $table = 'ldcr_cidade';
 	public $timestamps = false;
 
 	//Declarando quals inputs do form
     protected $fillable = [
-    	'MUNI_ID',
-    	'MUNI_DESCR',
-    	'FK_ESTD_ID'
+    	'CIDADE_ID',
+    	'CIDADE_DESC',
+    	'FK_ESTD_UF'
     ];
 }

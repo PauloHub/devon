@@ -20,9 +20,12 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 //Register
 Route::get('/register_child', 'ChildController@create');
-Route::get('/register_employee', 'EmployeeController@create');
+
+Route::get('/register_employee', 'EmployeeController@create', 'CityController@state_city');
 Route::post('/register_employee', 'EmployeeController@store');
 Route::get('/list_employee', 'EmployeeController@listar');
 Route::get('/show_employee/{id}', 'EmployeeController@show');
+
+Route::get('/find_cities',  'CityController@find_cities');
 
 //List

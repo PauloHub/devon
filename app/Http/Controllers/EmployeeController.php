@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\ldcr_funcionario;
-use App\ldcr_municipio;
-use App\ldcr_estado;
+use App\Ldcr_funcionario;
+use App\Ldcr_cidade;
+use App\Ldcr_estado;
 use App\Ldcr_cargo;
 use App\User;
 use Illuminate\Support\Facades\DB;
@@ -23,11 +23,10 @@ class EmployeeController extends Controller
     public function index()
     {
         $users = User::all();
-        $cargos = Ldcr_cargo::all();
-        $cities = ldcr_municipio::all();
-        $stats = ldcr_estado::all();
+        $cities = Ldcr_cidade::all();
+        $stats = Ldcr_estado::all();
         //o nome index abaixo refere-se ao nome da view tirando a parte .blade.php
-        return view('index', compact('cities','stats','cargos', 'users'));
+        return view('index', compact('cities','stats', 'users'));
     }
 
     /**
@@ -39,11 +38,10 @@ class EmployeeController extends Controller
     public function create()
     {
         $users = User::all();
-        $cargos = Ldcr_cargo::all();
-        $cities = ldcr_municipio::all();
-        $stats = ldcr_estado::all();
+        $cities = Ldcr_cidade::all();
+        $stats = Ldcr_estado::all();
         //o nome index abaixo refere-se ao nome da view tirando a parte .blade.php
-        return view('register_employee', compact('cities','stats', 'cargos', 'users'));
+        return view('register_employee', compact('cities','stats', 'users'));
     }
 
     /**
@@ -61,9 +59,9 @@ class EmployeeController extends Controller
         //Client::create($dados);
         //return back()->with(['success' => 'Cliente cadastrado com sucesso!']);
 
-        $dados = $request->all();
+        $employee = $request->all();
 
-        Ldcr_funcionario::create($dados);
+        Ldcr_funcionario::create($employee);
 
         return back()->with(['success' => 'Funcionário cadastrado com sucesso!']);
 
@@ -83,10 +81,9 @@ class EmployeeController extends Controller
         //$func = DB::table('ldcr_funcionario as f ')->select('f.*')->where('FUNC_ID', '$id');
         $users = User::all();
         $employee = Ldcr_funcionario::findOrFail($id);
-        $cargos = ldcr_cargo::all();
-        $stats = ldcr_estado::all();
-        $cities = ldcr_municipio::all();
-        return view('show_employee', compact('employee','cities','stats', 'cargos', 'users'));
+        $stats = Ldcr_estado::all();
+        $cities = Ldcr_cidade::all();
+        return view('show_employee', compact('employee','cities','stats', 'users'));
     }
 
     /**
@@ -128,7 +125,7 @@ class EmployeeController extends Controller
 
     public function listar()
     {
-        $funcs = Ldcr_funcionario::all();
-        return view('list_employee', compact('funcs'));
+        $employees = Ldcr_funcionario::all();
+        return view('list_employee', compact('employees'));
     }
 }

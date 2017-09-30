@@ -1,3 +1,5 @@
+
+
 @extends('layouts.app')
 @extends('layouts.menu')
 @section('content')
@@ -49,19 +51,19 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>RG</label>
-                                                <input type="number" class="form-control" placeholder="RG" name="FUNC_RG">
+                                                <input type="text" class="form-control" placeholder="RG" name="FUNC_RG">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>CPF</label>
-                                                <input type="number" class="form-control" placeholder="CPF" name="FUNC_CPF">
+                                                <input type="text" class="form-control" placeholder="CPF" name="FUNC_CPF">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Conta</label>
-                                                <input type="number" class="form-control" placeholder="Conta" name="FUNC_CONTA">
+                                                <input type="text" class="form-control" placeholder="Conta" name="FUNC_CONTA">
                                             </div>
                                         </div>
                                     </div>
@@ -70,7 +72,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Telefone</label>
-                                                <input type="number" class="form-control" placeholder="Telefone" name="FUNC_TEL">
+                                                <input type="text" class="form-control" placeholder="Telefone" name="FUNC_TEL">
                                             </div>
                                         </div>
 
@@ -116,10 +118,10 @@
                                             <div class="form-group">
                                                 <label>Estado</label>
                                                 <br>
-                                                <select name="FUNC_ESTADO" class="form-control">
+                                                <select name="FK_FUNC_ESTD" id="id_estd" class="form-control state_city">
                                                     <option value="">Selecione</option>
                                                     @foreach($stats as $state)
-                                                        <option value="{{ $state->ESTD_ID }}">{{ $state->ESTD_DESC }}</option>
+                                                        <option value="{{ $state->ESTD_UF }}">{{ $state->ESTD_DESC }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -130,10 +132,10 @@
                                             <div class="form-group">
                                                 <label>Cidade</label>
                                                 <br>
-                                                <select name="FUNC_CIDADE" class="form-control">
+                                                <select name="FK_FUNC_CIDADE" id="id_cidade" class="form-control city_state">
                                                     <option value="">Selecione</option>
                                                     @foreach($cities as $city)
-                                                        <option value="{{ $city->MUNI_ID }}">{{ $city->MUNI_DESCR }}</option>
+                                                        <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -176,13 +178,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Cargo</label>
-                                                <br>
-                                                <select name="FK_FUNC_CARGO" class="form-control">
-                                                    <option value="">Selecione</option>
-                                                    @foreach($cargos as $cargo)
-                                                        <option value="{{ $cargo->CARG_ID }}">{{ $cargo->CARG_DESC }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="text" class="form-control"  placeholder="Cargo" name="FUNC_CARGO">
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -196,13 +192,12 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Usuário</label>
+                                                <label>Status</label>
                                                 <br>
-                                                <select name="FK_USER_ID" class="form-control">
-                                                    <option value="">Selecione</option>
-                                                    @foreach($users as $user)
-                                                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                                    @endforeach
+                                                <select name="FUNC_STATUS" class="form-control">
+                                                    <option value="">Selecione</option>                                                    
+                                                        <option value="1">Ativo</option>
+                                                        <option value="0">Inativo</option>                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -225,5 +220,45 @@
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(document).on('change', ' .state_city', function(){
+           //console.log("mudou!");
+
+            var estd_uf = $(this).val();
+            //console.log(estd_uf);
+
+            var div = $(this).parents();
+
+            var op=" ";
+
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('find_cities')!!}', 
+                data:{'uf':estd_uf},
+                success:function(data){
+                    //console.log('com sucesso!');
+                    console.log(data);
+                    //console.log(data.length);
+
+                    op+='<option value="0" selected disabled>Selecione a cidade</option>';
+                    for(var i=0; i<data.length; i++){
+                        op+='<option value=" '+data[i].CIDADE_DESC+' "> '+data[i].CIDADE_DESC+'</option>';
+                    }     
+
+                    div.find('.city_state').html(" ");
+                    div.find('.city_state').append(op);
+
+                },
+                error:function(){
+
+                }
+            });
+
+        } );
+    } );
+</script>
 
 @endsection
