@@ -205,7 +205,7 @@
                                         <div align="center">
 
                                             <a href="<?php echo e(url('/edit_employee', $employee->ID)); ?>" class="btn btn-info btn-fill">Editar Funcionário</a>
-                                            <input style="margin-left:10%; width: 150px;" type="submit" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
+                                           <input style="margin-left:10%; width: 150px;" type="button" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
                                         </div>
                                         <br>
                                     </div>

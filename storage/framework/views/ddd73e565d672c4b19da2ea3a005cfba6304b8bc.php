@@ -204,7 +204,7 @@
                                     <br><br>
                                         <div align="center">
                                             <input type="submit" value="Cadastrar Funcionário" name="" class="btn btn-info btn-fill">
-                                            <input style="margin-left:10%; width: 150px;" type="submit" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
+                                            <input style="margin-left:10%; width: 150px;" type="button" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
                                         </div>
                                         <br>
                                     </div>
