@@ -25,9 +25,12 @@
                             </div>
                             <div class="content">
 
+                                <?php if(session('success')): ?>
+                                    <p class="alert-success">
+                                    <?php echo e(session('success')); ?> </p>
+                                <?php endif; ?>
+
                                 <div class="content table-responsive table-full-width">
-
-
                                     <table class="table table-hover table-striped">
                                         
                                          <thead>

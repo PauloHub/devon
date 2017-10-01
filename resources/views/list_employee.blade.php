@@ -27,9 +27,12 @@
                             </div>
                             <div class="content">
 
+                                @if(session('success'))
+                                    <p class="alert-success">
+                                    {{session('success')}} </p>
+                                @endif
+
                                 <div class="content table-responsive table-full-width">
-
-
                                     <table class="table table-hover table-striped">
                                         
                                          <thead>
