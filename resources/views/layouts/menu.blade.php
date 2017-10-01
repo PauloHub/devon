@@ -47,7 +47,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="sidebar" data-color="purple" data-image="img/sidebar-5.jpg" style="position:fixed; margin-top:60px;" >
+
+     <!--
+
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+        Tip 2: you can also add an image using data-image tag
+
+    -->
+    <div class="sidebar" data-color="purple" data-image="{{asset('img/imagem.jpg')}}"   style="position:fixed; margin-top:60px;" >
+        <img class="sidebar" src="img/sidebar-4.jpg" style="position:fixed; margin-top:60px;" >
         <div class="sidebar-wrapper">
             <br>
             <ul class="nav">

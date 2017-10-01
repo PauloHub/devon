@@ -1289,7 +1289,7 @@
                                         <br><br>
                                         <div align="center" >
                                             <button type="submit" class="btn btn-info btn-fill">Cadastrar Criança</button>
-                                            <input style="margin-left:10%; width: 150px;" type="submit" name="" value="Cancelar" class="btn btn-info btn-danger" >
+                                            <input style="margin-left:10%; width: 150px;" type="button" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
                                         </div>
                                         <br>
                                     </div>
