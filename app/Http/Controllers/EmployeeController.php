@@ -14,12 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class EmployeeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    //List
+  
     public function index()
     {
         $users = User::all();
@@ -29,12 +24,7 @@ class EmployeeController extends Controller
         return view('index', compact('cities','stats', 'users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    //Register
+   
     public function create()
     {
         $users = User::all();
@@ -44,13 +34,7 @@ class EmployeeController extends Controller
         return view('register_employee', compact('cities','stats', 'users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    //Save
+
     public function store(Request $request)
     {
         //array de dados que vem do post
@@ -68,13 +52,7 @@ class EmployeeController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //Show one
+    
     public function show($id)
     {
         
@@ -85,13 +63,7 @@ class EmployeeController extends Controller
         return view('show_employee', compact('employee','cities','stats', 'users'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //View edit
+   
     public function edit($id)
     {
         $users = User::all();
@@ -101,35 +73,22 @@ class EmployeeController extends Controller
         return view('edit_employee', compact('employee','cities','stats', 'users'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //Save update
+   
     public function update(Request $request, $id)
     {
-        $request_form = $request->all();
+        /*$request_form = $request->all();
         $employee = Ldcr_funcionario::findOrFail($id);
-        $update_employee = $employee->update($request_form);
+        $update_employee = $employee->update($request->all());*/
 
-        if($update_employee){
-            $employees = Ldcr_funcionario::all();
-            return view('list_employee', compact('employees'))->with(['success' => 'Funcionário cadastrado com sucesso!']);
-        }else{
-             return back()->with(['success' => 'Falha ao atualizar, tente novamente...!']);
-        }
+        DB::table('Ldcr_funcionario')->where('ID', $id)->update(['FUNC_NOME' => $request->FUNC_NOME, 'FUNC_RG' => $request->FUNC_RG, 'FUNC_CPF' => $request->FUNC_CPF, 'FUNC_CONTA' => $request->FUNC_CONTA, 'FUNC_DT_ADMISSAO' => $request->FUNC_DT_ADMISSAO, 'FUNC_DT_DEMISSAO' => $request->FUNC_DT_DEMISSAO, 'FUNC_STATUS' => $request->FUNC_STATUS, 'FUNC_NUMERO_CASA' => $request->FUNC_NUMERO_CASA, 'FUNC_BAIRRO' => $request->FUNC_BAIRRO, 'FUNC_MAE' => $request->FUNC_MAE, 'FUNC_PAI' => $request->FUNC_PAI, 'FUNC_DT_NASCI' => $request->FUNC_DT_NASCI, 'FUNC_FORMACAO' => $request->FUNC_FORMACAO, 'FUNC_CARGO' => $request->FUNC_CARGO, 'FUNC_EMAIL' => $request->FUNC_EMAIL, 'FUNC_TEL' => $request->FUNC_TEL, 'FUNC_ENDERECO' => $request->FUNC_ENDERECO, 'FK_FUNC_CIDADE' => $request->FK_FUNC_CIDADE, 'FK_FUNC_ESTD' => $request->FK_FUNC_ESTD, 'FUNC_CEP' => $request->FUNC_CEP]);
+
+
+        $employees = Ldcr_funcionario::all();
+        return view('list_employee', compact('employees'))->with(['success' => 'Funcionário cadastrado com sucesso!']);
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    //Delete
+ 
     public function destroy($id)
     {
         //

@@ -196,9 +196,12 @@
                                                 <select name="FUNC_STATUS" class="form-control" >
                                                     @if($employee->FUNC_STATUS == 1)                                                  
                                                         <option value="1">Ativo</option>
-                                                        @else
+                                                    @else
                                                         <option value="0">Inativo</option>     
-                                                        @endif                                               
+                                                    @endif        
+                                                        <option value="1">Ativo</option>
+                                                        <option value="0">Inativo</option>
+
                                                 </select>
                                             </div>
                                         </div>

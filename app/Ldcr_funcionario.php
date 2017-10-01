@@ -11,7 +11,6 @@ class Ldcr_funcionario extends Model
 
     //Declarando quais inputs do form
     protected $fillable = [
-             'ID',
     	'FUNC_NOME',
     	'FUNC_RG',
     	'FUNC_CPF',
