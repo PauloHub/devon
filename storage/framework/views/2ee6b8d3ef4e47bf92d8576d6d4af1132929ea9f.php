@@ -42,7 +42,7 @@
                 <div class="navbar-header">
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="<?php echo e(url('/home')); ?>" style=" max-width: 100%; height: auto; margin-left: -130px; margin-top: -20px; position:absolute;"> <img src="img/logo.png" width="210px">
+                    <a class="navbar-brand" href="<?php echo e(url('/home')); ?>" style=" max-width: 100%; height: auto; margin-left: -130px; margin-top: -20px; position:absolute;"> <img src="<?php echo e(asset('img/logo.png')); ?>" width="210px">
 
                        
                     </a>

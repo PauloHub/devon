@@ -57,18 +57,20 @@
                                                             <label>Conselho Tutelar</label><br>
                                                                 <select name="COTL_NOME" class="form-control">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="conselho_1">Conselho 1</option>
-                                                                    <option value="conselho_2">Conselho 2</option>
+                                                                    <?php $__currentLoopData = $conselhos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($conselho->ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Conselheiro Responsável</label><br>
-                                                                <select name="COTL_NOME" class="form-control">
+                                                                <select name="CONS_NOME" class="form-control">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="conselho_1">Conselheiro 1</option>
-                                                                    <option value="conselho_2">Conselheiro 2</option>
+                                                                    <?php $__currentLoopData = $conselheiros; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselheiro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($conselheiro->ID); ?>"><?php echo e($conselheiro->CONS_NOME); ?></option>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
                                                     </div> 
@@ -106,27 +108,29 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_ESTD_ID" class="form-control">
+                                                                <select name="FK_FUNC_ESTD" id="id_estd" class="form-control state_city">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="estado_1">Estado 1</option>
-                                                                    <option value="estado_2">Estado 2</option>
-                                                            </select>
+                                                                    <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_MUNI_ID" class="form-control">
-                                                                    <option value="">Selecione</option>
-                                                                    <option value="cidade_1">Cidade 1</option>
-                                                                    <option value="cidade_2">Cidade 2</option>
+                                                                <select name="FK_FUNC_CIDADE" id="id_cidade" class="form-control city_state">
+                                                                <option value="">Selecione</option>
+                                                                <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Data de Nascimento</label>
-                                                            <input type="date" class="form-control"  name="CRIA_DTA_NASC">
+                                                            <input type="date" class="form-control"  name="CRIA_DT_NASC">
                                                         </div>    
                                                     </div>
                                                     <div class="col-md-1 input_number">
@@ -161,11 +165,12 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Raça/Cor</label><br>
-                                                                <select name="FK_RACA_ID"  class="form-control col-md-2">
+                                                                 <select name="FK_RACA_ID" id="id_estd" class="form-control state_city">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="Raca 1">Raca 1</option>
-                                                                    <option value="Raca 2">Raca 2</option>
-                                                            </select>
+                                                                    <?php $__currentLoopData = $racas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $raca): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                        <option value="<?php echo e($raca->RACA_ID); ?>"><?php echo e($raca->RACA_DESCRICAO); ?></option>
+                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,8 +182,8 @@
                                                             <label>Sexo</label><br/>                                                   
                                                             <div class="row">
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <label class="radio-inline"><input type="radio" name="sexo" value="m" for="Masculino" />Masculino</label>
-                                                                <label class="radio-inline"><input type="radio" name="sexo" value="f" for="Feminino"/>Feminino</label>
+                                                                <label class="radio-inline"><input type="radio" name="CRIA_SEXO" value="M" for="Masculino" />Masculino</label>
+                                                                <label class="radio-inline"><input type="radio" name="CRIA_SEXO" value="F" for="Feminino"/>Feminino</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1300,6 +1305,46 @@
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(document).on('change', ' .state_city', function(){
+           //console.log("mudou!");
+
+            var estd_uf = $(this).val();
+            //console.log(estd_uf);
+
+            var div = $(this).parents();
+
+            var op=" ";
+
+            $.ajax({
+                type: 'get',
+                url: '<?php echo URL::to('find_cities'); ?>', 
+                data:{'uf':estd_uf},
+                success:function(data){
+                    //console.log('com sucesso!');
+                    console.log(data);
+                    //console.log(data.length);
+
+                    op+='<option value="0" selected disabled>Selecione a cidade</option>';
+                    for(var i=0; i<data.length; i++){
+                        op+='<option value=" '+data[i].CIDADE_DESC+' "> '+data[i].CIDADE_DESC+'</option>';
+                    }     
+
+                    div.find('.city_state').html(" ");
+                    div.find('.city_state').append(op);
+
+                },
+                error:function(){
+
+                }
+            });
+
+        } );
+    } );
+</script>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

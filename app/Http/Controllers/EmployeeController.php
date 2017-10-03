@@ -37,17 +37,11 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        //array de dados que vem do post
-        //$dados = $request->all();
-        //instalciar model
-        //Client::create($dados);
-        //return back()->with(['success' => 'Cliente cadastrado com sucesso!']);
-
+       
         $employee = $request->all();
         Ldcr_funcionario::create($employee);
 
         return back()->with(['success' => 'Funcionário cadastrado com sucesso!']);
-
 
     }
 

@@ -4,6 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Ldcr_funcionario;
+use App\Ldcr_cidade;
+use App\Ldcr_estado;
+use App\Ldcr_cargo;
+use App\User;
+use App\Ldcr_conselho_tutelar;
+use App\Ldcr_conselheiros_tute;
+use App\Ldcr_raca;
+
+
+use Illuminate\Support\Facades\DB;
 
 class ChildController extends Controller
 {
@@ -28,7 +39,15 @@ class ChildController extends Controller
     //Register
     public function create()
     {
-        return view('register_child');
+        
+        $cities = Ldcr_cidade::all();
+        $stats = Ldcr_estado::all();
+        $conselheiros = Ldcr_conselheiros_tute::all();
+        $conselhos = Ldcr_conselho_tutelar::all();
+        $racas = Ldcr_raca::all();
+
+        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas'));
+        
     }
 
     /**

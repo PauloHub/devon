@@ -55,7 +55,7 @@
 
     -->
     <div class="sidebar" data-color="purple" data-image="{{asset('img/imagem.jpg')}}"   style="position:fixed; margin-top:60px;" >
-        <img class="sidebar" src="img/sidebar-4.jpg" style="position:fixed; margin-top:60px;" >
+        <img class="sidebar" src="{{asset('img/sidebar-4.jpg')}}" style="position:fixed; margin-top:60px;" >
         <div class="sidebar-wrapper">
             <br>
             <ul class="nav">

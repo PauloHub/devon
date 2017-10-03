@@ -55,7 +55,7 @@
 
     -->
     <div class="sidebar" data-color="purple" data-image="<?php echo e(asset('img/imagem.jpg')); ?>"   style="position:fixed; margin-top:60px;" >
-        <img class="sidebar" src="img/sidebar-4.jpg" style="position:fixed; margin-top:60px;" >
+        <img class="sidebar" src="<?php echo e(asset('img/sidebar-4.jpg')); ?>" style="position:fixed; margin-top:60px;" >
         <div class="sidebar-wrapper">
             <br>
             <ul class="nav">

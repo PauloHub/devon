@@ -30,4 +30,6 @@ Route::put('/edit_employee/{id}', 'EmployeeController@update'); //metodo http pa
 
 Route::get('/find_cities',  'CityController@find_cities');
 
+Route::get('/register_child', 'ChildController@create', 'CityController@state_city');
+
 

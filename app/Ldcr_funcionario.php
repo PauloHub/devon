@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ldcr_funcionario extends Model
 {
     protected $table = 'ldcr_funcionario';
-	public $timestamps = false;
+    public $timestamps = false;
 
     //Declarando quais inputs do form
     protected $fillable = [

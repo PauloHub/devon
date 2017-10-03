@@ -59,18 +59,20 @@
                                                             <label>Conselho Tutelar</label><br>
                                                                 <select name="COTL_NOME" class="form-control">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="conselho_1">Conselho 1</option>
-                                                                    <option value="conselho_2">Conselho 2</option>
+                                                                    @foreach($conselhos as $conselho)
+                                                                        <option value="{{$conselho->ID}}">{{$conselho->COTL_NOME}}</option>
+                                                                    @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Conselheiro Responsável</label><br>
-                                                                <select name="COTL_NOME" class="form-control">
+                                                                <select name="CONS_NOME" class="form-control">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="conselho_1">Conselheiro 1</option>
-                                                                    <option value="conselho_2">Conselheiro 2</option>
+                                                                    @foreach($conselheiros as $conselheiro)
+                                                                        <option value="{{$conselheiro->ID}}">{{$conselheiro->CONS_NOME}}</option>
+                                                                    @endforeach
                                                             </select>
                                                         </div>
                                                     </div> 
@@ -108,27 +110,29 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_ESTD_ID" class="form-control">
+                                                                <select name="FK_FUNC_ESTD" id="id_estd" class="form-control state_city">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="estado_1">Estado 1</option>
-                                                                    <option value="estado_2">Estado 2</option>
-                                                            </select>
+                                                                    @foreach($stats as $state)
+                                                                        <option value="{{ $state->ESTD_UF }}">{{ $state->ESTD_DESC }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_MUNI_ID" class="form-control">
-                                                                    <option value="">Selecione</option>
-                                                                    <option value="cidade_1">Cidade 1</option>
-                                                                    <option value="cidade_2">Cidade 2</option>
+                                                                <select name="FK_FUNC_CIDADE" id="id_cidade" class="form-control city_state">
+                                                                <option value="">Selecione</option>
+                                                                @foreach($cities as $city)
+                                                                    <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Data de Nascimento</label>
-                                                            <input type="date" class="form-control"  name="CRIA_DTA_NASC">
+                                                            <input type="date" class="form-control"  name="CRIA_DT_NASC">
                                                         </div>    
                                                     </div>
                                                     <div class="col-md-1 input_number">
@@ -163,11 +167,12 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Raça/Cor</label><br>
-                                                                <select name="FK_RACA_ID"  class="form-control col-md-2">
+                                                                 <select name="FK_RACA_ID" id="id_estd" class="form-control state_city">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="Raca 1">Raca 1</option>
-                                                                    <option value="Raca 2">Raca 2</option>
-                                                            </select>
+                                                                    @foreach($racas as $raca)
+                                                                        <option value="{{ $raca->RACA_ID }}">{{ $raca->RACA_DESCRICAO}}</option>
+                                                                    @endforeach
+                                                                </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -179,8 +184,8 @@
                                                             <label>Sexo</label><br/>                                                   
                                                             <div class="row">
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <label class="radio-inline"><input type="radio" name="sexo" value="m" for="Masculino" />Masculino</label>
-                                                                <label class="radio-inline"><input type="radio" name="sexo" value="f" for="Feminino"/>Feminino</label>
+                                                                <label class="radio-inline"><input type="radio" name="CRIA_SEXO" value="M" for="Masculino" />Masculino</label>
+                                                                <label class="radio-inline"><input type="radio" name="CRIA_SEXO" value="F" for="Feminino"/>Feminino</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1302,5 +1307,45 @@
         </div>
     </div>
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(document).on('change', ' .state_city', function(){
+           //console.log("mudou!");
+
+            var estd_uf = $(this).val();
+            //console.log(estd_uf);
+
+            var div = $(this).parents();
+
+            var op=" ";
+
+            $.ajax({
+                type: 'get',
+                url: '{!!URL::to('find_cities')!!}', 
+                data:{'uf':estd_uf},
+                success:function(data){
+                    //console.log('com sucesso!');
+                    console.log(data);
+                    //console.log(data.length);
+
+                    op+='<option value="0" selected disabled>Selecione a cidade</option>';
+                    for(var i=0; i<data.length; i++){
+                        op+='<option value=" '+data[i].CIDADE_DESC+' "> '+data[i].CIDADE_DESC+'</option>';
+                    }     
+
+                    div.find('.city_state').html(" ");
+                    div.find('.city_state').append(op);
+
+                },
+                error:function(){
+
+                }
+            });
+
+        } );
+    } );
+</script>
 
 @endsection
