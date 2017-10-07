@@ -12,6 +12,7 @@ use App\User;
 use App\Ldcr_conselho_tutelar;
 use App\Ldcr_conselheiros_tute;
 use App\Ldcr_raca;
+use App\ldcr_questoes_pia_iten;
 
 
 use Illuminate\Support\Facades\DB;
@@ -45,8 +46,11 @@ class ChildController extends Controller
         $conselheiros = Ldcr_conselheiros_tute::all();
         $conselhos = Ldcr_conselho_tutelar::all();
         $racas = Ldcr_raca::all();
+        //Pega todos os itens da questão onde id da pergunta = 2
+        //$qpis = ldcr_questoes_pia_iten::where('FK_QUESP_ID', 2)->where('QEPI_SIT', '1');
+        $qpis = ldcr_questoes_pia_iten::all();
 
-        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas'));
+        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis'));
         
     }
 

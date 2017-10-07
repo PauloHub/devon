@@ -313,17 +313,20 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Proibição judicial de visitas</label><br>
-                                                                <select name="proib_jud"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
-                                                                    <option value="">Selecione</option>
-                                                                    <option value="proib_1">Sim, definitiva</option>
-                                                                    <option value="proib_2">Opção 2</option>
+                                                            <select name="proib_jud"  class="form-control col-md-2">
+                                                                <option value="">Selecione</option>
+                                                                @foreach($qpis as $qpi)
+                                                                    @if($qpi->FK_QUESP_ID == 2 && $qpi->QEPI_SIT == 1)
+                                                                        <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
+                                                                    @endif
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Situação do poder familiar</label><br>
-                                                                <select name="sit_fam"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
+                                                                <select name="sit_fam"  class="form-control col-md-2">
                                                                     <option value="">Selecione</option>
                                                                     <option value="sit_1">Situação 1</option>
                                                                     <option value="sit_2">Situação 2</option>
