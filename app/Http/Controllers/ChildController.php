@@ -46,10 +46,8 @@ class ChildController extends Controller
         $conselheiros = Ldcr_conselheiros_tute::all();
         $conselhos = Ldcr_conselho_tutelar::all();
         $racas = Ldcr_raca::all();
-        //Pega todos os itens da questão onde id da pergunta = 2
-        //$qpis = ldcr_questoes_pia_iten::where('FK_QUESP_ID', 2)->where('QEPI_SIT', '1');
         $qpis = ldcr_questoes_pia_iten::all();
-
+        $cts = Ldcr_conselho_tutelar::all();
         return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis'));
         
     }

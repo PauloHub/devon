@@ -12,7 +12,7 @@ class Ldcr_questoes_pia_iten extends Model
     //Declarando quais inputs do form
     protected $fillable = [
     	'QEPI_ID',
-    	'FK_QUESP_ID',
+    	'FK_QESP_ID',
     	'QEPI_DESCRICAO',
     	'QEPI_SIT',    
           

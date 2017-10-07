@@ -60,7 +60,7 @@
                                                                 <select name="COTL_ID" class="form-control">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($conselhos as $conselho)
-                                                                        <option value="{{$conselho->ID}}">{{$conselho->COTL_NOME}}</option>
+                                                                        <option value="{{$conselho->COTL_ID}}">{{$conselho->COTL_NOME}}</option>
                                                                     @endforeach
                                                             </select>
                                                         </div>
@@ -71,7 +71,7 @@
                                                                 <select name="CONS_ID" class="form-control">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($conselheiros as $conselheiro)
-                                                                        <option value="{{$conselheiro->ID}}">{{$conselheiro->CONS_NOME}}</option>
+                                                                        <option value="{{$conselheiro->CONS_ID}}">{{$conselheiro->CONS_NOME}}</option>
                                                                     @endforeach
                                                             </select>
                                                         </div>
@@ -208,8 +208,11 @@
                                                         <label>Meio de Chegada</label><br>
                                                             <select name="QESP_ID"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                                 <option value="">Selecione</option>
-                                                                <option value="Chegada 1">Chegada 1</option>
-                                                                <option value="Chegada 2">Chegada 2</option>
+                                                                @foreach($qpis as $qpi)
+                                                                    @if($qpi->FK_QESP_ID == 1 && $qpi->QEPI_SIT == 1)
+                                                                        <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
+                                                                    @endif
+                                                                @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -316,7 +319,7 @@
                                                             <select name="proib_jud"  class="form-control col-md-2">
                                                                 <option value="">Selecione</option>
                                                                 @foreach($qpis as $qpi)
-                                                                    @if($qpi->FK_QUESP_ID == 2 && $qpi->QEPI_SIT == 1)
+                                                                    @if($qpi->FK_QESP_ID == 2 && $qpi->QEPI_SIT == 1)
                                                                         <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
                                                                     @endif
                                                                 @endforeach
@@ -328,8 +331,11 @@
                                                             <label>Situação do poder familiar</label><br>
                                                                 <select name="sit_fam"  class="form-control col-md-2">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="sit_1">Situação 1</option>
-                                                                    <option value="sit_2">Situação 2</option>
+                                                                    @foreach($qpis as $qpi)
+                                                                    @if($qpi->FK_QESP_ID == 3 && $qpi->QEPI_SIT == 1)
+                                                                        <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
+                                                                    @endif
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>

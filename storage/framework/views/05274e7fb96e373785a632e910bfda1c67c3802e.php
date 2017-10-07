@@ -206,8 +206,11 @@
                                                         <label>Meio de Chegada</label><br>
                                                             <select name="QESP_ID"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                                 <option value="">Selecione</option>
-                                                                <option value="Chegada 1">Chegada 1</option>
-                                                                <option value="Chegada 2">Chegada 2</option>
+                                                                <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <?php if($qpi->FK_QESP_ID == 1 && $qpi->QEPI_SIT == 1): ?>
+                                                                        <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -314,7 +317,7 @@
                                                             <select name="proib_jud"  class="form-control col-md-2">
                                                                 <option value="">Selecione</option>
                                                                 <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                    <?php if($qpi->FK_QUESP_ID == 2 && $qpi->QEPI_SIT == 1): ?>
+                                                                    <?php if($qpi->FK_QESP_ID == 2 && $qpi->QEPI_SIT == 1): ?>
                                                                         <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
                                                                     <?php endif; ?>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -326,8 +329,11 @@
                                                             <label>Situação do poder familiar</label><br>
                                                                 <select name="sit_fam"  class="form-control col-md-2">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="sit_1">Situação 1</option>
-                                                                    <option value="sit_2">Situação 2</option>
+                                                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <?php if($qpi->FK_QESP_ID == 3 && $qpi->QEPI_SIT == 1): ?>
+                                                                        <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
+                                                                    <?php endif; ?>
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
                                                     </div>
