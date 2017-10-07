@@ -55,7 +55,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Conselho Tutelar</label><br>
-                                                                <select name="COTL_NOME" class="form-control">
+                                                                <select name="COTL_ID" class="form-control">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselhos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <option value="<?php echo e($conselho->ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
@@ -66,7 +66,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Conselheiro Responsável</label><br>
-                                                                <select name="CONS_NOME" class="form-control">
+                                                                <select name="CONS_ID" class="form-control">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselheiros; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselheiro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <option value="<?php echo e($conselheiro->ID); ?>"><?php echo e($conselheiro->CONS_NOME); ?></option>
@@ -91,24 +91,10 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>Nome da Mãe</label>
-                                                            <input type="text" class="form-control" placeholder="Nome do pai" name="CRIA_MAE">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>Nome do Pai</label>
-                                                            <input type="text" class="form-control" placeholder="Nome da mãe" name="CRIA_PAI">
-                                                        </div>
-                                                    </div>
-
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_FUNC_ESTD" id="id_estd" class="form-control state_city">
+                                                                <select name="FK_ESTD_ID" id="id_estd" class="form-control state_city">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
@@ -119,28 +105,32 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_FUNC_CIDADE" id="id_cidade" class="form-control city_state">
+                                                                <select name="FK_CIDADE_ID" id="id_cidade" class="form-control city_state">
                                                                 <option value="">Selecione</option>
                                                                 <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
+                                                          </div>
                                                         </div>
-                                                    </div>
+                                                    </div> 
+                                                    <div class="row">
+
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Data de Nascimento</label>
-                                                            <input type="date" class="form-control"  name="CRIA_DT_NASC">
+                                                            <input type="date" class="form-control"  name="CRIA_DTA_NASC">
                                                         </div>    
                                                     </div>
                                                     <div class="col-md-1 input_number">
                                                         <div class="form-group">
                                                             <label>Idade</label>
                                                             <input type="number" class="form-control" placeholder="00" name="CRIA_IDADE_EST">                                                
-                                                        </div>    
-                                                    </div> 
+                                                            </div>    
+                                                         </div>
+                                                    </div>  
 
-                                                </div>  
+                                                 
                                                 
                                                 <div class="row">
 
@@ -182,8 +172,8 @@
                                                             <label>Sexo</label><br/>                                                   
                                                             <div class="row">
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                                <label class="radio-inline"><input type="radio" name="CRIA_SEXO" value="M" for="Masculino" />Masculino</label>
-                                                                <label class="radio-inline"><input type="radio" name="CRIA_SEXO" value="F" for="Feminino"/>Feminino</label>
+                                                                <label class="radio-inline"><input type="radio" name="CRIA_SEXO" value="M"/>Masculino</label>
+                                                                <label class="radio-inline"><input type="radio" name="CRIA_SEXO" value="F" />Feminino</label>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -196,25 +186,25 @@
                                              <div class="btn func">3. Situação de Acolhimento</div>                                        
 
                                                 <div class="row"> 
-                                                <div class="col-md-2">
+                                                <div class="col-md-4">
                                                     <div class="form-group">
                                                         
-                                                        <label>Foro Vara da Criança</label><br/>
+                                                        <label>Foro Vara da Infância e Juventude foi comunicado no prazo de 24 horas?</label><br/>
                                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <label class="radio-inline"><input type="radio" name="foro_cri" value="s" for="Sim" />Sim</label>
-                                                        <label class="radio-inline"><input type="radio" name="foro_cri" value="n" for="Nao"/>Nao</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_VARA_INFAN" value="1"/>Sim</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_VARA_INFAN" value="0"/>Nao</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Data Acolhimento</label><br>
-                                                        <input type="date" class="form-control"  name="CRIA_DTA_ACOL"> 
+                                                        <input type="date" class="form-control"  name="ACMT_DTA_ACOLHI"> 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Meio de Chegada</label><br>
-                                                            <select name="CRIA_CHEG"  class="form-control col-md-2">
+                                                            <select name="QESP_ID"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                                 <option value="">Selecione</option>
                                                                 <option value="Chegada 1">Chegada 1</option>
                                                                 <option value="Chegada 2">Chegada 2</option>
@@ -228,8 +218,8 @@
                                                 <div class="col-md-10">
                                                     <div class="form-group">
                                                         <label>O foro/vara da Infância e Juventude confirmou a medida de acolhimento, expediu guia e encaminhou todos os relatórios necessários?</label><br/>
-                                                        <label class="radio-inline"><input type="radio" name="foro_inf" value="s" for="Sim" />Sim</label>
-                                                        <label class="radio-inline"><input type="radio" name="foro_inf" value="n" for="Nao"/>Nao</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_VARA_RELAT" value="1"/>Sim</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_VARA_RELAT" value="0"/>Nao</label>
                                                     </div>
                                                 </div>
 
@@ -240,7 +230,7 @@
                                                 <div class="col-md-10">
                                                     <div class="form-group">
                                                         <label>Sugestões</label><br/>
-                                                        <textarea class="col-md-10" name="sugestoes" id="campo_sugestoes"></textarea>
+                                                        <textarea class="col-md-10" name="ACMT_VARA_OBS" id="campo_sugestoes"></textarea>
                                                     </div>
                                                 </div>
 
@@ -251,8 +241,8 @@
                                                 <div class="col-md-10">
                                                     <div class="form-group">
                                                         <label>Há proximidade entre o serviço de acolhimento e a residência dos pais/responsável legal?</label><br/>
-                                                        <label class="radio-inline"><input type="radio" name="ser_acol" value="s" for="Sim" />Sim</label>
-                                                        <label class="radio-inline"><input type="radio" name="ser_acol" value="n" for="Nao"/>Nao</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_PROX_RESIDENCIA" value="s"/>Sim</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_PROX_RESIDENCIA" value="n"/>Nao</label>
                                                     </div>
                                                 </div> 
 
@@ -263,8 +253,8 @@
                                                 <div class="col-md-10">
                                                     <div class="form-group">
                                                         <label>Acolhimentos anteriores?</label><br/>
-                                                        <label class="radio-inline"><input type="radio" name="acol_ant" value="s" for="Sim" />Sim</label>
-                                                        <label class="radio-inline"><input type="radio" name="acol_ant" value="n" for="Nao"/>Nao</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_ACOLH_ANT" value="1"/>Sim</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_ACOLH_ANT" value="0"/>Nao</label>
                                                     </div>
                                                 </div> 
 
@@ -275,7 +265,7 @@
                                                 <div class="col-md-10">
                                                     <div class="form-group">
                                                         <label>Motivos e tempo de permanência no(s) serviço(s) de acolhimento(s) anterior(es)</label><br/>
-                                                        <textarea class="col-md-10" name="mot_ser_acol" id="campo_mot_ser_acol"></textarea>
+                                                        <textarea class="col-md-10" name="ACMT_MOT_ACOLHM_ANT"></textarea>
                                                     </div>
                                                 </div>
 
@@ -286,7 +276,7 @@
                                                 <div class="col-md-10">
                                                     <div class="form-group">
                                                         <label>Higiene/Sinais de Violência</label><br/>
-                                                        <textarea class="col-md-10" name="sin_vio" id="sin_vio"></textarea>
+                                                        <textarea class="col-md-10" name="ACMT_HIG_VIOLENCIA"></textarea>
                                                     </div>
                                                 </div>
 
@@ -297,7 +287,7 @@
                                                 <div class="col-md-10">
                                                     <div class="form-group">
                                                         <label>Reações e Comportamento</label><br/>
-                                                        <textarea class="col-md-10" name="reacoes" id="reacoes"></textarea>
+                                                        <textarea class="col-md-10" name="ACMT_REA_COMP"></textarea>
                                                     </div>
                                                 </div>
 
@@ -314,14 +304,14 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Número do processo no Foro/Vara da Infância e Juventude</label>
-                                                            <input type="number" class="form-control" placeholder="Nº processo" name="num_proc">
+                                                            <input type="number" class="form-control" placeholder="Nº processo" name="ACMT_VARA_NUM_PROCESS">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <label>Proibição juducial de visitas</label><br>
-                                                                <select name="proib_jud"  class="form-control col-md-2">
+                                                            <label>Proibição judicial de visitas</label><br>
+                                                                <select name="proib_jud"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                                     <option value="">Selecione</option>
                                                                     <option value="proib_1">Sim, definitiva</option>
                                                                     <option value="proib_2">Opção 2</option>
@@ -331,7 +321,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Situação do poder familiar</label><br>
-                                                                <select name="sit_fam"  class="form-control col-md-2">
+                                                                <select name="sit_fam"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                                     <option value="">Selecione</option>
                                                                     <option value="sit_1">Situação 1</option>
                                                                     <option value="sit_2">Situação 2</option>
@@ -342,14 +332,6 @@
                                                 </div>
 
                                                 <div class="row">
-
-                                                    <div class="col-md-10">
-                                                        <div class="form-group">
-                                                            <label>Reações e Comportamento</label><br/>
-                                                            <textarea class="col-md-10" name="reacoes" id="reacoes"></textarea>
-                                                        </div>
-                                                    </div>  
-
                                                 </div>
 
                                                 <div class="row">
@@ -357,8 +339,8 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>A criança e/ou adolescente conta com defensor público/advogado?</label><br/>
-                                                            <label class="radio-inline"><input type="radio" name="def_pub" value="s" for="Sim" />Sim</label>
-                                                            <label class="radio-inline"><input type="radio" name="def_pub" value="n" for="Nao"/>Nao</label>
+                                                            <label class="radio-inline"><input type="radio" name="ACMT_DFPUB" value="1" />Sim</label>
+                                                            <label class="radio-inline"><input type="radio" name="ACMT_DFPUB" value="0"/>Nao</label>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -368,8 +350,8 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>A família conta com defensor público/advogado?</label><br/>
-                                                            <label class="radio-inline"><input type="radio" name="fam_def_pub" value="s" for="Sim" />Sim</label>
-                                                            <label class="radio-inline"><input type="radio" name="fam_def_pub" value="n" for="Nao"/>Nao</label>
+                                                            <label class="radio-inline"><input type="radio" name="ACMT_DFPUB_FAM" value="1" />Sim</label>
+                                                            <label class="radio-inline"><input type="radio" name="ACMT_DFPUB_FAM" value="0"/>Nao</label>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -385,19 +367,19 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Nome da Criança Externa</label>
-                                                            <input type="text" class="form-control" placeholder="Nome da criança externa" name="CRIA_EXT">
+                                                            <input type="text" class="form-control" placeholder="Nome da criança externa" name="CRIA_EXTR_NOME">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
-                                                            <label>Nome do Responsável</label>
-                                                            <input type="text" class="form-control" placeholder="Nome do Responsável" name="CRIA_RESP">
+                                                            <label>Nome da Instituição de Acolhimento</label>
+                                                            <input type="text" class="form-control" placeholder="Nome do Responsável" name="CRIA_EXTR_NOME_INSTI">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Endereço da(s) instituição(ões)</label>
-                                                            <input type="text" class="form-control" placeholder="Endereço da Instituição" name="CRIA_END_INST">
+                                                            <input type="text" class="form-control" placeholder="Endereço da Instituição" name="CRIA_EXTR_END_INSTI">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -407,7 +389,7 @@
                                                     <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Data de Nascimento</label>
-                                                                <input type="date" class="form-control"  name="CRIA_EXT_DTA">
+                                                                <input type="date" class="form-control"  name="CRIA_EXTR_DATA_NASC">
                                                             </div>
                                                     </div>
 
