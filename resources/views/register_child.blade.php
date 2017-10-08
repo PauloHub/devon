@@ -427,11 +427,13 @@
                                                                     <ul>
                                                                         <?php
                                                                         $flag = 0;
-                                                                        $dividir = $count4 % 2 == 0 ? $count4/2 : ($count4/2) + 0.5;
+                                                                        $question = 4;
+                                                                        $pos = $question - 1;
+                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
                                                                         ?>
                                                                          @foreach($qpis as $qpi)            
-                                                                            @if($qpi->FK_QESP_ID == 4 && $qpi->QEPI_SIT == 1)
-                                                                            <?php $flag = $flag + 1; ?>
+                                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
+                                                                                <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
                                                                                     <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
@@ -457,17 +459,27 @@
                                                             <label>Orfandade ou abandono, sem identificação de família extensa ou pessoas significativas da rede de apoio</label> 
                                                             <div class="row">
                                                                 <div class="col-md-5">  
-                                                                    <ul>        
-                                                                        <li style="list-style-type:none;">                                  
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="morte" value="morte"/>Morte de pais e/ou responsáveis</label>
-                                                                        </li>
-                                                                    </ul>    
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <ul>        
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="abandono" value="abandono"/>Abandono pelos pais ou responsáveis</label>
-                                                                        </li>
+                                                                    <ul> 
+                                                                    <?php
+                                                                        $flag = 0;
+                                                                        $question = 5;
+                                                                        $pos = $question - 1;
+                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($qpis as $qpi)            
+                                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
+                                                                                <?php $flag = $flag + 1; ?>
+                                                                                <li style="list-style-type:none;">          
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                </li>
+                                                                                @if($flag == $dividir)
+                                                                                        </ul>    
+                                                                                    </div>  
+                                                                                    <div class="col-md-6">
+                                                                                        <ul>
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
                                                                     </ul>    
                                                                 </div>  
                                                             </div> 
@@ -481,17 +493,27 @@
                                                             <label>Ausência temporária de pais e/ou responsáveis, sem identificação de família extensa ou pessoas significativas da rede social de apoio</label>  
                                                             <div class="row">
                                                                 <div class="col-md-5">  
-                                                                    <ul>        
-                                                                        <li style="list-style-type:none;">            
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="prisao" value="prisao"/>Prisão</label>
-                                                                        </li>
-                                                                    </ul>    
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <ul>        
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="saude" value="saude"/>Internação médica/problemas de saúde</label>
-                                                                        </li>
+                                                                    <ul>
+                                                                        <?php
+                                                                        $flag = 0;
+                                                                        $question = 6;
+                                                                        $pos = $question - 1;
+                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($qpis as $qpi)            
+                                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
+                                                                                <?php $flag = $flag + 1; ?>
+                                                                                <li style="list-style-type:none;">          
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                </li>
+                                                                                @if($flag == $dividir)
+                                                                                        </ul>    
+                                                                                    </div>  
+                                                                                    <div class="col-md-6">
+                                                                                        <ul>
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
                                                                     </ul>    
                                                                 </div>
                                                             </div>
@@ -502,44 +524,30 @@
                                                  <div class="row">
                                                     <div class="col-md-11">
                                                         <div class="form-group">
-                                                            <label>Falta de recursos materias por parte dos pais e/ou responsáveis</label><br>
+                                                            <label>Condições desfavoráveis dos pais e/ou responsáveis para cuidar do(s) dos filho(s)</label><br>
                                                             <div class="row">
                                                                 <div class="col-md-5">
-                                                                    <ul>        
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="cond_hab" value="cond_hab"/>Dependência Química</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="desemp" value="desemp"/>Desemprego</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="design" value="design"/>Alcoolismo</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="renda" value="renda"/>Problemas de saúde física</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="mendicancia" value="mendicancia"/>Mendicância/Situação de rua</label>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <ul>     
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="cond_hab" value="cond_hab"/>Conflitos familiares/relacionamentos violentos</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="desemp" value="desemp"/>Desemprego</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="design" value="design"/>Design Department</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;"
-                                                                        ><label class="checkbox-inline"><input type="checkbox" name="renda" value="renda"/>Renda Insuficiente</label>
-                                                                    </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  ame="mendicancia" value="mendicancia"/>Medicância de rua</label>
-                                                                        </li>
+                                                                    <ul>
+                                                                        <?php
+                                                                        $flag = 0;
+                                                                        $question = 7;
+                                                                        $pos = $question - 1;
+                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($qpis as $qpi)            
+                                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
+                                                                                <?php $flag = $flag + 1; ?>
+                                                                                <li style="list-style-type:none;">          
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                </li>
+                                                                                @if($flag == $dividir)
+                                                                                        </ul>    
+                                                                                    </div>  
+                                                                                    <div class="col-md-6">
+                                                                                        <ul>
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -550,44 +558,30 @@
                                                 <div class="row">
                                                     <div class="col-md-11">
                                                         <div class="form-group">  
-                                                            <label>Falta de recursos materias por parte dos pais e/ou responsáveis</label><br>
+                                                            <label>Situação das crianças e dos adolescentes</label><br>
                                                             <div class="row">
                                                                 <div class="col-md-5">
-                                                                    <ul>                                                
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="perd_fuga" value="perd_fuga"/>Perdido ou em fuga</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="sit_rua" value="sit_rua"/>Em situação de rua/medicância</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="amea_morte" value="amea_morte"/>Ameaçado de morte</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="saude_fisica" value="saude_fisica"/>Problemas de saúde física</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="explo_trab" value="explo_trab"/>Submetido à exploração no trabalho</label>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <ul> 
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="med_rua" value="med_rua"/>Medicância/situação de rua</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="dep_quim" value="dep_quim"/>Dependência Química</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="desemp" value="desemp"/>Desemprego</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="prob_fis" value="prob_fis"/>Problemas de saúde física</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox" name="mendicancia" value="mendicancia"/>Medicância de rua</label>
-                                                                        </li>
+                                                                    <ul>
+                                                                        <?php
+                                                                        $flag = 0;
+                                                                        $question = 9;
+                                                                        $pos = $question - 1;
+                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($qpis as $qpi)            
+                                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
+                                                                                <?php $flag = $flag + 1; ?>
+                                                                                <li style="list-style-type:none;">          
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                </li>
+                                                                                @if($flag == $dividir)
+                                                                                        </ul>    
+                                                                                    </div>  
+                                                                                    <div class="col-md-6">
+                                                                                        <ul>
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
                                                                     </ul>
                                                                 </div>
                                                             </div>
