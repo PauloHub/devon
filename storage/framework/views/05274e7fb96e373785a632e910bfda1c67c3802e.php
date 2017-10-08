@@ -58,7 +58,7 @@
                                                                 <select name="COTL_ID" class="form-control">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselhos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($conselho->ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
+                                                                        <option value="<?php echo e($conselho->COTL_ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
                                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
@@ -69,7 +69,7 @@
                                                                 <select name="CONS_ID" class="form-control">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselheiros; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselheiro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($conselheiro->ID); ?>"><?php echo e($conselheiro->CONS_NOME); ?></option>
+                                                                        <option value="<?php echo e($conselheiro->CONS_ID); ?>"><?php echo e($conselheiro->CONS_NOME); ?></option>
                                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
@@ -129,8 +129,6 @@
                                                             </div>    
                                                          </div>
                                                     </div>  
-
-                                                 
                                                 
                                                 <div class="row">
 
@@ -183,7 +181,7 @@
 
                                     <section id="hide_section" >
                                          <article>
-                                             <div class="btn func">3. Situação de Acolhimento</div>                                        
+                                             <div class="btn func">3. Situação de Acolhimento</div>
 
                                                 <div class="row"> 
                                                 <div class="col-md-4">

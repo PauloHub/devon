@@ -131,8 +131,6 @@
                                                             </div>    
                                                          </div>
                                                     </div>  
-
-                                                 
                                                 
                                                 <div class="row">
 
@@ -185,7 +183,7 @@
 
                                     <section id="hide_section" >
                                          <article>
-                                             <div class="btn func">3. Situação de Acolhimento</div>                                        
+                                             <div class="btn func">3. Situação de Acolhimento</div>
 
                                                 <div class="row"> 
                                                 <div class="col-md-4">

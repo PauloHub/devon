@@ -13,6 +13,7 @@ use App\Ldcr_conselho_tutelar;
 use App\Ldcr_conselheiros_tute;
 use App\Ldcr_raca;
 use App\ldcr_questoes_pia_iten;
+use App\Ldcr_acolhimento;
 
 
 use Illuminate\Support\Facades\DB;
@@ -48,7 +49,8 @@ class ChildController extends Controller
         $racas = Ldcr_raca::all();
         $qpis = ldcr_questoes_pia_iten::all();
         $cts = Ldcr_conselho_tutelar::all();
-        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis'));
+        $acolhimentos = Ldcr_acolhimento::all();
+        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis', 'acolhimentos'));
         
     }
 

@@ -14,7 +14,7 @@ class Ldcr_questoes_pia_iten extends Model
     	'QEPI_ID',
     	'FK_QESP_ID',
     	'QEPI_DESCRICAO',
-    	'QEPI_SIT',    
+    	'QEPI_SIT'    
           
     ];
 }
