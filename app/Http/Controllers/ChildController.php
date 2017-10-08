@@ -50,7 +50,8 @@ class ChildController extends Controller
         $qpis = ldcr_questoes_pia_iten::all();
         $cts = Ldcr_conselho_tutelar::all();
         $acolhimentos = Ldcr_acolhimento::all();
-        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis', 'acolhimentos'));
+        $count4 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 4)->count();
+        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis', 'acolhimentos', 'count4'));
         
     }
 

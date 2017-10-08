@@ -55,7 +55,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Conselho Tutelar</label><br>
-                                                                <select name="COTL_ID" class="form-control">
+                                                                <select class="form-control">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselhos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <option value="<?php echo e($conselho->COTL_ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
@@ -66,6 +66,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Conselheiro Responsável</label><br>
+                                                            <!-- Salvar o FK_CONS_ID na tabela ldcr_acolhimento  -->
                                                                 <select name="CONS_ID" class="form-control">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselheiros; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselheiro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -421,26 +422,41 @@
                                                             <label>Falta de recursos materias por parte dos pais e/ou responsáveis</label>  
                                                             <div class="row">
                                                                 <div class="col-md-5">  
-                                                                    <ul>        
-                                                                        <li style="list-style-type:none;">          
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="cond_hab"/>Condições habitacionais</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="desemp" value="desemp"/>Desemprego</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="design" value="design"/>Design Department</label>
-                                                                        </li>
-                                                                    </ul>    
-                                                                </div>                                                    
-                                                                <div class="col-md-6">
-                                                                    <ul>        
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="renda" value="renda"/>Renda Insuficiente</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="mendicancia" value="mendicancia"/>Mendicância/Situação de rua</label>
-                                                                        </li>
+                                                                    <ul>
+                                                                        <?php
+                                                                         $div1;
+                                                                         $div2;
+                                                                         $flag = 0;
+
+
+                                                                        if($count4 % 2 == 0){
+                                                                            $div1 = $count4/2;
+                                                                            $div2 = $count4/2;
+                                                                        }else{
+                                                                            $div1 = ($count4/2) + 0.5;
+                                                                            $div2 = ($count4/2) - 0.5;
+                                                                        }
+                                                                        ?>
+                                                                         <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                         
+                                                                         <?php if($qpi->FK_QESP_ID == 4 && $qpi->QEPI_SIT == 1): ?>
+                                                                         <?php
+                                                                            $flag = $flag + 1;
+                                                                         ?>
+                                                                                <li style="list-style-type:none;">          
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                                                </li>
+                                                                                <?php if($flag == $div1): ?>
+                                                                                        </ul>    
+                                                                                    </div>                                                    
+                                                                                    <div class="col-md-6">
+                                                                                        <ul>
+                                                                                    
+                                                                                <?php endif; ?>
+                                                                            <?php endif; ?>
+                                                                         
+                                                                            
+                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                     </ul>    
                                                                 </div>  
                                                             </div>
