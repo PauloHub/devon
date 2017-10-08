@@ -14,7 +14,7 @@ use App\Ldcr_conselheiros_tute;
 use App\Ldcr_raca;
 use App\ldcr_questoes_pia_iten;
 use App\Ldcr_acolhimento;
-
+use App\Ldcr_tipo_documento;
 
 use Illuminate\Support\Facades\DB;
 
@@ -66,9 +66,13 @@ class ChildController extends Controller
         $count14 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 14)->count();
         $count15 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 15)->count();
         $count16 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 16)->count();
+
+        $tipo_documentos = ldcr_tipo_documento::all();
+        $count_doc = DB::table('ldcr_tipo_documento')->count();
+
         $apis_array = array($count1,$count2,$count3,$count4,$count5,$count6,$count7,$count8,$count9,$count10,$count11,$count12,$count13,$count14,$count15,$count16);
 
-        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis', 'acolhimentos', 'apis_array'));
+        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis', 'acolhimentos', 'apis_array','tipo_documentos','count_doc'));
         
     }
 

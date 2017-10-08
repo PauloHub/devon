@@ -1,5 +1,31 @@
 <?php $__env->startSection('content'); ?>
 
+<?php 
+    function CheckDynamic($qesp_id){ 
+        $apis_array array = {{$apis_array}};
+        ?>
+        $flag = 0;
+
+        $id_array = $qesp_id - 1;
+        $dividir = <?php echo e($apis_array[$id_array]); ?> % 2 == 0 ? <?php echo e($apis_array[$id_array]); ?>/2 : (<?php echo e($apis_array[$id_array]); ?>/2) + 0.5;
+        
+         <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
+            <?php if($qpi->FK_QESP_ID == $qesp_id && $qpi->QEPI_SIT == 1): ?>
+                <?php $flag = $flag + 1; ?>
+                <li style="list-style-type:none;">          
+                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                </li>
+                <?php if($flag == $dividir): ?>
+                        </ul>    
+                    </div>  
+                    <div class="col-md-6">
+                        <ul>
+                <?php endif; ?>
+            <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    <?php } ?>
+
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
@@ -423,26 +449,7 @@
                                                             <div class="row">
                                                                 <div class="col-md-5">  
                                                                     <ul>
-                                                                        <?php
-                                                                        $flag = 0;
-                                                                        $question = 4;
-                                                                        $pos = $question - 1;
-                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                        ?>
-                                                                         <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                            <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                                                <?php $flag = $flag + 1; ?>
-                                                                                <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                                                </li>
-                                                                                <?php if($flag == $dividir): ?>
-                                                                                        </ul>    
-                                                                                    </div>  
-                                                                                    <div class="col-md-6">
-                                                                                        <ul>
-                                                                                <?php endif; ?>
-                                                                            <?php endif; ?>
-                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                        <?php CheckDynamic(4)?>
                                                                     </ul>    
                                                                 </div>  
                                                             </div>
@@ -601,25 +608,23 @@
                                                             <div class="row">  
                                                                 <div class="col-md-5">
                                                                     <ul>                                                   
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="guia_acol" value="guia_acol"/>Guia de acolhimento conforme Lei. 12.010/2009</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="diag_relat" value="diag_relat"/>Estudo diagnóstico e relatórios</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="amea_morte" value="amea_morte"/>Ameaçado de morte</label>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <ul> 
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="subm_trab" value="subm_trab"/>Submetido à exploração no trabalho</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="mendicancia" value="mendicancia"/>Medicância/situação de rua</label>
-                                                                        </li>
+                                                                        <?php
+                                                                        $flag = 0;
+                                                                        $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
+                                                                        ?>
+                                                                         <?php $__currentLoopData = $tipo_documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
+                                                                            
+                                                                            <?php $flag = $flag + 1; ?>
+                                                                            <li style="list-style-type:none;">          
+                                                                                <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="<?php echo e($tipo_documento->TPDO_ID); ?>"/><?php echo e($tipo_documento->TPDO_DESC); ?></label>
+                                                                            </li>
+                                                                            <?php if($flag == $dividir): ?>
+                                                                                    </ul>    
+                                                                                </div>  
+                                                                                <div class="col-md-6">
+                                                                                    <ul>
+                                                                            <?php endif; ?>
+                                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                     </ul> 
                                                                 </div>
                                                             </div>

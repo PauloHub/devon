@@ -603,25 +603,23 @@
                                                             <div class="row">  
                                                                 <div class="col-md-5">
                                                                     <ul>                                                   
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="guia_acol" value="guia_acol"/>Guia de acolhimento conforme Lei. 12.010/2009</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="diag_relat" value="diag_relat"/>Estudo diagnóstico e relatórios</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="amea_morte" value="amea_morte"/>Ameaçado de morte</label>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <ul> 
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="subm_trab" value="subm_trab"/>Submetido à exploração no trabalho</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline"><input type="checkbox"  name="mendicancia" value="mendicancia"/>Medicância/situação de rua</label>
-                                                                        </li>
+                                                                        <?php
+                                                                        $flag = 0;
+                                                                        $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($tipo_documentos as $tipo_documento)            
+                                                                            
+                                                                            <?php $flag = $flag + 1; ?>
+                                                                            <li style="list-style-type:none;">          
+                                                                                <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
+                                                                            </li>
+                                                                            @if($flag == $dividir)
+                                                                                    </ul>    
+                                                                                </div>  
+                                                                                <div class="col-md-6">
+                                                                                    <ul>
+                                                                            @endif
+                                                                        @endforeach
                                                                     </ul> 
                                                                 </div>
                                                             </div>
