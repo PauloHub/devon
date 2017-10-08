@@ -55,7 +55,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Conselho Tutelar</label><br>
-                                                                <select class="form-control">
+                                                                <select class="form-control advice_counselor">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselhos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <option value="<?php echo e($conselho->COTL_ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
@@ -67,7 +67,7 @@
                                                         <div class="form-group">
                                                             <label>Conselheiro Responsável</label><br>
                                                             <!-- Salvar o FK_CONS_ID na tabela ldcr_acolhimento  -->
-                                                                <select name="CONS_ID" class="form-control">
+                                                                <select name="FK_CONS_ID" class="form-control counselor_advice">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselheiros; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselheiro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <option value="<?php echo e($conselheiro->CONS_ID); ?>"><?php echo e($conselheiro->CONS_NOME); ?></option>
@@ -154,12 +154,12 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Raça/Cor</label><br>
-                                                                 <select name="FK_RACA_ID" id="id_estd" class="form-control state_city">
-                                                                    <option value="">Selecione</option>
-                                                                    <?php $__currentLoopData = $racas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $raca): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($raca->RACA_ID); ?>"><?php echo e($raca->RACA_DESCRICAO); ?></option>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                                </select>
+                                                             <select name="FK_RACA_ID" class="form-control">
+                                                                <option value="">Selecione</option>
+                                                                <?php $__currentLoopData = $racas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $raca): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <option value="<?php echo e($raca->RACA_ID); ?>"><?php echo e($raca->RACA_DESCRICAO); ?></option>
+                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -168,7 +168,7 @@
 
                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label>Sexo</label><br/>                                                   
+                                                            <label>Sexo</label><br/>                           
                                                             <div class="row">
                                                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                                                 <label class="radio-inline"><input type="radio" name="CRIA_SEXO" value="M"/>Masculino</label>
@@ -424,38 +424,23 @@
                                                                 <div class="col-md-5">  
                                                                     <ul>
                                                                         <?php
-                                                                         $div1;
-                                                                         $div2;
                                                                          $flag = 0;
-
-
-                                                                        if($count4 % 2 == 0){
-                                                                            $div1 = $count4/2;
-                                                                            $div2 = $count4/2;
-                                                                        }else{
-                                                                            $div1 = ($count4/2) + 0.5;
-                                                                            $div2 = ($count4/2) - 0.5;
-                                                                        }
+                                                                        $dividir = $count4 % 2 == 0 ? $count4/2 : ($count4/2) + 0.5;
                                                                         ?>
                                                                          <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                          
-                                                                         <?php if($qpi->FK_QESP_ID == 4 && $qpi->QEPI_SIT == 1): ?>
-                                                                         <?php
-                                                                            $flag = $flag + 1;
-                                                                         ?>
+                                                                            <?php if($qpi->FK_QESP_ID == 4 && $qpi->QEPI_SIT == 1): ?>
+                                                                            <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
                                                                                     <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
                                                                                 </li>
-                                                                                <?php if($flag == $div1): ?>
+                                                                                <?php if($flag == $dividir): ?>
                                                                                         </ul>    
-                                                                                    </div>                                                    
+                                                                                    </div>  
                                                                                     <div class="col-md-6">
                                                                                         <ul>
-                                                                                    
                                                                                 <?php endif; ?>
                                                                             <?php endif; ?>
-                                                                         
-                                                                            
                                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                     </ul>    
                                                                 </div>  
@@ -1340,6 +1325,43 @@
 
                     div.find('.city_state').html(" ");
                     div.find('.city_state').append(op);
+
+                },
+                error:function(){
+
+                }
+            });
+
+        } );
+    } );
+
+    $(document).ready(function(){
+        $(document).on('change', ' .advice_counselor', function(){
+           //console.log("mudou!");
+
+            var cons_id = $(this).val();
+            //console.log(estd_uf);
+
+            var div2 = $(this).parents();
+
+            var op=" ";
+
+            $.ajax({
+                type: 'get',
+                url: '<?php echo URL::to('find_counselors'); ?>', 
+                data:{'id':cons_id},
+                success:function(data){
+                    //console.log('com sucesso!');
+                    console.log(data);
+                    //console.log(data.length);
+
+                    op+='<option value="0" selected disabled>Selecione o conselheiro</option>';
+                    for(var i=0; i<data.length; i++){
+                        op+='<option value=" '+data[i].CONS_ID+' "> '+data[i].CONS_NOME+'</option>';
+                    }     
+
+                    div2.find('.counselor_advice').html(" ");
+                    div2.find('.counselor_advice').append(op);
 
                 },
                 error:function(){
