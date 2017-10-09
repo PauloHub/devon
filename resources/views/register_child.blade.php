@@ -11,7 +11,6 @@
       });  
     });
 </script>
-<script> </script>
 
 <div class="wrapper">
     <div class="main-panel">        
@@ -315,7 +314,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Proibição judicial de visitas</label><br>
-                                                            <select name="proib_jud"  class="form-control col-md-2">
+                                                            <select name="FK_QEPI_ID"  class="form-control col-md-2">
                                                                 <option value="">Selecione</option>
                                                                 @foreach($qpis as $qpi)
                                                                     @if($qpi->FK_QESP_ID == 2 && $qpi->QEPI_SIT == 1)
@@ -328,7 +327,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Situação do poder familiar</label><br>
-                                                                <select name="sit_fam"  class="form-control col-md-2">
+                                                                <select name="FK_QEPI_ID"  class="form-control col-md-2">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($qpis as $qpi)
                                                                     @if($qpi->FK_QESP_ID == 3 && $qpi->QEPI_SIT == 1)
@@ -410,6 +409,38 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Número de irmãos acolhidos na mesma instituição</label>
+                                                            <input type="number" class="form-control" placeholder="Nº de irmãos na mesma instituição" name="CRIA_EXTR_MSM_INSTI">
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Número de irmãos acolhidos em outras instituições</label>
+                                                            <input type="number" class="form-control" placeholder="Nº de irmãos em outras instituições" name="CRIA_EXTR_OUTR_INST">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Número de irmãos que residem com outros familiares ou terceiros</label>
+                                                            <input type="number" class="form-control" placeholder="Nº de irmãos com familiares ou terceiros" name="CRIA_EXTR_FAM_TER">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Número de irmãos <br> adotados</label>
+                                                            <input type="number" class="form-control" placeholder="Nº de irmãos adotados" name="CRIA_EXTR_ADOT">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
                                         </article>
                                     </section><br>
 
@@ -435,7 +466,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -470,7 +501,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -504,7 +535,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -538,7 +569,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -572,7 +603,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -608,11 +639,12 @@
                                                                         $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
                                                                         ?>
                                                                          @foreach($tipo_documentos as $tipo_documento)            
-                                                                            
+                                                                            @if($tipo_documento->TPDO_ID != 1 )
                                                                             <?php $flag = $flag + 1; ?>
                                                                             <li style="list-style-type:none;">          
-                                                                                <label class="checkbox-inline"><input type="checkbox"  name="cond_hab" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
+                                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
                                                                             </li>
+                                                                            @endif
                                                                             @if($flag == $dividir)
                                                                                     </ul>    
                                                                                 </div>  
@@ -621,7 +653,7 @@
                                                                             @endif
                                                                         @endforeach
                                                                     </ul> 
-                                                                </div>
+                                                                </div>  
                                                             </div>
                                                         </div>    
                                                     </div>
@@ -634,30 +666,24 @@
                                                             <label>Documentação a ser providenciada</label><br>
                                                             <div class="col-md-5">
                                                                 <ul>                                                
-                                                                    <li style="list-style-type:none;">
-                                                                        <label class="checkbox-inline">
-                                                                            <input type="checkbox"  name="sem_doc" value="sem_doc"/>Não há documentação a ser providenciada</label>
-                                                                    </li>
-                                                                    <li style="list-style-type:none;">
-                                                                        <label class="checkbox-inline">
-                                                                            <input type="checkbox"  name="cert_nasci" value="cert_nasci"/>Certidão de Nascimento</label>
-                                                                    </li>
-                                                                    <li style="list-style-type:none;">
-                                                                        <label class="checkbox-inline">
-                                                                            <input type="checkbox"  name="car_id" value="car_id"/>Carteira de Identidade</label>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <ul> 
-                                                                    <li style="list-style-type:none;">
-                                                                    <label class="checkbox-inline">
-                                                                        <input type="checkbox"  name="subm_trab" value="subm_trab"/>Submetido à exploração no trabalho</label>
-                                                                    </li>
-                                                                    <li style="list-style-type:none;">
-                                                                    <label class="checkbox-inline">
-                                                                        <input type="checkbox"  name="mendicancia" value="mendicancia"/>Medicância/situação de rua</label>
-                                                                    </li>
+                                                                    <?php
+                                                                        $flag = 0;
+                                                                        $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($tipo_documentos as $tipo_documento)            
+                                                                            @if($tipo_documento->TPDO_ID != 2 && $tipo_documento->TPDO_ID != 3 )
+                                                                            <?php $flag = $flag + 1; ?>
+                                                                            <li style="list-style-type:none;">          
+                                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
+                                                                            </li>
+                                                                            @endif
+                                                                            @if($flag == $dividir)
+                                                                                    </ul>    
+                                                                                </div>  
+                                                                                <div class="col-md-6">
+                                                                                    <ul>
+                                                                            @endif
+                                                                        @endforeach
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -675,30 +701,36 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Ano escolar atual</label><br>
-                                                                <select name="CRIA_ESCO"  class="form-control col-md-2">
+                                                                <select name="ACMT_ANO_ESCO"  class="form-control col-md-2">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="creche">Creche</option>
-                                                                    <option value="Ano 2">Ano 2</option>
+                                                                    <option value="Creche">Creche</option>
+                                                                    <option value="Pre-escola">Pré-escola</option>
+                                                                    <option value="Ensino Fundamental">Ensino Fundamental</option>
+                                                                    <option value="Ensino Medio">Ensino Médio</option>
+                                                                    <option value="Nao frequenta">Não frequenta escola/creche</option>
+                                                                    <option value="Sem informacoes">Sem informações</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Frequência</label><br>
-                                                                <select name="CRIA_FREQ"  class="form-control col-md-2">
+                                                                <select name="ACMT_FREQ_ESC"  class="form-control col-md-2">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="satisfatorio">Satisfátorio</option>
-                                                                    <option value="situacao_2">Situação 2</option>
+                                                                    <option value="Satisfatorio">Satisfátoria</option>
+                                                                    <option value="Insatisfatoria">Insatisfatória</option>
+                                                                    <option value="Sem informacao">Sem Informação</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Rendimento Escolar</label><br>
-                                                                <select name="CRIA_REND"  class="form-control col-md-2">
+                                                                <select name="ACMT_REND_ESC"  class="form-control col-md-2">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="creche">Satisfatório</option>
-                                                                    <option value="situacao_2">Situação 2</option>
+                                                                    <option value="Satisfatorio">Satisfátoria</option>
+                                                                    <option value="Insatisfatoria">Insatisfatória</option>
+                                                                    <option value="Sem informacao">Sem Informação</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -709,7 +741,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Como a criança percebe ou vivencia sua relação com a escola?</label><br/>
-                                                            <textarea class="col-md-10" name="rel_escola" id="rel_escola"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_VIV_REL_ESC" ></textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -725,10 +757,11 @@
                                                      <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label>Carteira de vacinação</label><br>
-                                                                            <select name="CRIA_CART_VAC"  class="form-control col-md-2">
+                                                                            <select name="CSAU_CART_VAC "  class="form-control col-md-2">
                                                                                 <option value="">Selecione</option>
-                                                                                <option value="sim_atualizada">Sim, atualizada</option>
-                                                                                <option value="situacao_2">Opção 2</option>
+                                                                                <option value="SA">Sim, atualizada (SA)</option>
+                                                                                <option value="SD">Sim, desatualizada (SD)</option>
+                                                                                <option value="NP">Não possui (NP)</option>
                                                                         </select>
                                                                     </div>
                                                                 </div> 
@@ -738,42 +771,26 @@
                                                             <label>Problemas de saúde física e mental</label><br>
                                                                 <div class="col-md-5">
                                                                     <ul>                                                
-                                                                        <li style="list-style-type:none;">                                          
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="alergias" value="alergias"/>Alergias</label>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="desnt" value="desnt"/>Desnutrição</label>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="amea_morte" value="amea_morte"/>Ameaçado de morte</label>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="dist_ali" value="dist_ali"/>Distúrbios alimentares</label>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="medicancia" value="medicancia"/>Medicância/situação de rua</label>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <ul> 
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="int_ali_med" value="int_ali_med"/>Intolerância alimentar ou medicamentosa</label>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="dist_sono" value="dist_sono"/>Distpurbios de sono</label>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="dist_gas" value="dist_gas"/>Distúrbio gastrintestinais</label>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="prob_saude_fis" value="prob_saude_fis"/>Problemas de saúde física</label>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox" name="parasitoses" value="parasitoses"/>Parasitoses</label>
-                                                                        </li>
+                                                                        <?php
+                                                                        $flag = 0;
+                                                                        $question = 10;
+                                                                        $pos = $question - 1;
+                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($qpis as $qpi)            
+                                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
+                                                                                <?php $flag = $flag + 1; ?>
+                                                                                <li style="list-style-type:none;">          
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                </li>
+                                                                                @if($flag == $dividir)
+                                                                                        </ul>    
+                                                                                    </div>  
+                                                                                    <div class="col-md-6">
+                                                                                        <ul>
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
                                                                     </ul>
                                                                 </div>
                                                             </div>    
@@ -782,12 +799,19 @@
                                                     </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-10">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Especificar o diagnóstico e a data de sua realização</label><br/>
-                                                            <textarea class="col-md-10" name="diag_real" id="diag_real"></textarea>
+                                                            <textarea class="col-md-10" name="CSAU_DIAG_MED"></textarea>
                                                         </div>
-                                                    </div>  
+                                                    </div> 
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Data da Realização</label>
+                                                            <input type="date" class="form-control"  name="CSAU_DTA_DIAG_MED">
+                                                        </div>    
+                                                    </div> 
                                                 </div>
 
 
@@ -797,32 +821,27 @@
                                                             <label>Problemas de saúde física e mental</label><br>
                                                             <div class="col-md-5">
                                                                 <ul>                                                
-                                                                    <li style="list-style-type:none;">                          
-                                                                        <label class="checkbox-inline">
-                                                                            <input type="checkbox" name="alergias" value="alergias"/>Visual</label>
-                                                                    </li>
-                                                                    <li style="list-style-type:none;">
-                                                                        <label class="checkbox-inline">
-                                                                            <input type="checkbox" name="desnt" value="desnt"/>Auditiva</label>
-                                                                        <label class="checkbox-inline">
-                                                                    </li>
-                                                                    <li style="list-style-type:none;">
-                                                                        <label class="checkbox-inline">
-                                                                            <input type="checkbox" name="amea_morte" value="amea_morte"/>Intelectual</label>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <ul> 
-                                                                    <li style="list-style-type:none;">
-                                                                        <label class="checkbox-inline">
-                                                                            <input type="checkbox" name="dist_ali" value="dist_ali"/>Física</label>
-                                                                    </li>
-                                                                    <li style="list-style-type:none;">
-                                                                        <label class="checkbox-inline">
-                                                                            <input type="checkbox" name="medicancia" value="medicancia"/>Nenhuma</label>
-                                                                    </li>
-                                                                </ul>
+                                                                        <?php
+                                                                        $flag = 0;
+                                                                        $question = 17;
+                                                                        $pos = $question - 1;
+                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($qpis as $qpi)            
+                                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
+                                                                                <?php $flag = $flag + 1; ?>
+                                                                                <li style="list-style-type:none;">          
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                </li>
+                                                                                @if($flag == $dividir)
+                                                                                        </ul>    
+                                                                                    </div>  
+                                                                                    <div class="col-md-6">
+                                                                                        <ul>
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </ul>
                                                             </div>
                                                         </div>    
                                                     </div>
@@ -833,7 +852,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Acompanhamentos médicos necessários</label><br/>
-                                                            <textarea class="col-md-10" name="acomp_med" id="acomp_med"></textarea>
+                                                            <textarea class="col-md-10" name="CSAU_ACOP_MED" ></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -842,8 +861,8 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Uso contínuo de medicação?</label><br/>
-                                                            <label class="radio-inline"><input type="radio" name="uso_med" value="s" for="Sim" />Sim</label>
-                                                            <label class="radio-inline"><input type="radio" name="uso_med" value="n" for="Nao"/>Nao</label>
+                                                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="1" />Sim</label>
+                                                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="0" />Nao</label>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -852,7 +871,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Quais?</label><br/>
-                                                            <textarea class="col-md-10" name="quais_med" id="quais_med"></textarea>
+                                                            <textarea class="col-md-10" name="CSAU_USO_MED_ESP"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -867,8 +886,8 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Teve acesso a informações sobre sua história de vida, familiar e motivos de acolhimento; considerando-se o grau de desenvolvimento?</label><br/>
-                                                            <label class="radio-inline"><input type="radio" name="aces_hist" value="s" for="Sim" />Sim</label>
-                                                            <label class="radio-inline"><input type="radio" name="aces_hist" value="n" for="Nao"/>Nao</label>
+                                                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="1"/>Sim</label>
+                                                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="0"/>Nao</label>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -876,8 +895,8 @@
                                                 <div class="row">
                                                     <div class="col-md-10">
                                                         <div class="form-group">
-                                                            <label>Por quê?</label><br/>
-                                                            <textarea class="col-md-10" name="por_que" id="por_que"></textarea>
+                                                            <label>Se não, Por quê?</label><br/>
+                                                            <textarea class="col-md-10" name="ACMT_HIST_FAMI_DES"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -886,8 +905,8 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Emite sua opinião quanto às decisões que dizem respeito à sua vida cotidiana no serviço de acolhimento e à sua situação familiar?</label><br/>
-                                                            <label class="radio-inline"><input type="radio" name="op_vida" value="s" for="Sim" />Sim</label>
-                                                            <label class="radio-inline"><input type="radio" name="op_vida" value="n" for="Nao"/>Nao</label>
+                                                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="1"/>Sim</label>
+                                                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="0"/>Nao</label>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -897,22 +916,43 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Quais?</label><br/>
-                                                            <textarea class="col-md-10" name="quais_op" id="quais_op"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_OPIN_DEC_DES"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
 
-                                                 <div class="row">
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label>Sua opinião reflete sua preferência em:</label><br>
-                                                                <select name="COTL_NOME"  class="form-control col-md-2">
-                                                                    <option value="">Selecione</option>
-                                                                    <option value="retorno_familia">Retornar à família (de origem ou extensa)</option>
-                                                                    <option value="opiniao_2">Opinião 2</option>
-                                                            </select>
+                                                <div class="row">
+                                                    <div class="col-md-11">
+                                                        <div class="form-group">  
+                                                            <label>Sua opinião reflete sua preferência em:</label>  
+                                                            <div class="row">
+                                                                <div class="col-md-5">  
+                                                                    <ul>
+                                                                        <?php
+                                                                        $flag = 0;
+                                                                        $question = 12;
+                                                                        $pos = $question - 1;
+                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($qpis as $qpi)            
+                                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
+                                                                                <?php $flag = $flag + 1; ?>
+                                                                                <li style="list-style-type:none;">          
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                </li>
+                                                                                @if($flag == $dividir)
+                                                                                        </ul>    
+                                                                                    </div>  
+                                                                                    <div class="col-md-6">
+                                                                                        <ul>
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
+                                                                    </ul>    
+                                                                </div>  
+                                                            </div>
                                                         </div>
-                                                    </div>  
+                                                    </div>
                                                 </div>
                                         </article>
                                     </section><br>
@@ -925,7 +965,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Desenvolvimento Físico</label><br/>
-                                                            <textarea class="col-md-10" name="des_fis" id="des_fis"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_DESEN_FISIC"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -934,7 +974,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Desenvolvimento Cognitivo</label><br/>
-                                                            <textarea class="col-md-10" name="des_cog" id="des_cog"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_DESEN_COGNI"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -943,7 +983,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Desenvolvimento Sócio Emocional</label><br/>
-                                                            <textarea class="col-md-10" name="des_soc_emo" id="des_soc_emo"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_DESEN_SOCIO_EMO"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -952,7 +992,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Vida Cotidiana</label><br/>
-                                                            <textarea class="col-md-10" name="vida_cot" id="vida_cot"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_VDA_COT"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -961,7 +1001,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Outras Informações</label><br/>
-                                                            <textarea class="col-md-10" name="outras_info" id="outras_info"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_OUT_INFO"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -976,34 +1016,50 @@
 
                                                     <div class="col-md-4">
                                                         <div class="form-group">
+                                                            <label>Nome da Mãe</label>
+                                                            <input type="text" class="form-control" placeholder="Nome do pai da criança" name="RESP_NOME_MAE">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Nome do Pai</label>
+                                                            <input type="text" class="form-control" placeholder="Nome da mãe da criança" name="RESP_NOME_PAI">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
                                                             <label>Nome do Responsável</label>
-                                                            <input type="text" class="form-control" placeholder="Nome do responsável" name="CRIA_RESP">
+                                                            <input type="text" class="form-control" placeholder="Nome do responsável" name="RESP_NAME">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_ESTD_ID"  class="form-control col-md-2">
+                                                                <select name="FK_ESTD_ID" id="id_estd" class="form-control state_city">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="Estado 1">Estado 1</option>
-                                                                    <option value="Estado 2">Estado 2</option>
-                                                            </select>
+                                                                    @foreach($stats as $state)
+                                                                        <option value="{{ $state->ESTD_ID}}">{{ $state->ESTD_DESC }}</option>
+                                                                    @endforeach
+                                                                </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_MUNI_ID"  class="form-control col-md-2">
-                                                                    <option value="">Selecione</option>
-                                                                    <option value="Cidade 1">Cidade 1</option>
-                                                                    <option value="Cidade 2">Cidade 2</option>
+                                                                <select name="FK_CIDADE_ID" id="id_cidade" class="form-control city_state">
+                                                                <option value="">Selecione</option>
+                                                                @foreach($cities as $city)
+                                                                    <option value="{{ $city->CIDADE_ID }}">{{ $city->CIDADE_DESC }}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Bairro</label>
-                                                            <input type="text" class="form-control" placeholder="Bairro" name="CRIA_RESP_BAI">
+                                                            <input type="text" class="form-control" placeholder="Bairro" name="RESP_BAIRRO">
                                                         </div>
                                                     </div>
 
@@ -1014,28 +1070,28 @@
                                                     <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label>Data de Nascimento</label>
-                                                                <input type="date" class="form-control"  name="CRIA_RESP_NASCI">
+                                                                <input type="date" class="form-control"  name="RESP_DT_NASCI">
                                                             </div>
                                                     </div>
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>RG</label>
-                                                            <input type="number" class="form-control" placeholder="RG" name="CRIA_RESP_RG">
+                                                            <input type="number" class="form-control" placeholder="RG" name="RESP_RG">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>CPF</label>
-                                                            <input type="number" class="form-control" placeholder="CPF" name="CRIA_RESP_CPF">
+                                                            <input type="number" class="form-control" placeholder="CPF" name="RESP_CPF">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Contato</label>
-                                                            <input type="number" class="form-control" placeholder="Contato" name="CRIA_RESP_CONT">
+                                                            <input type="number" class="form-control" placeholder="Contato" name="RESP_TEL">
                                                         </div>
                                                     </div>
 
@@ -1050,16 +1106,12 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-3">
+                                                     <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label>Profissão</label><br>
-                                                                <select name="FK_PROF_ID"  class="form-control col-md-2">
-                                                                    <option value="">Selecione</option>
-                                                                    <option value="profissao_1">Profissão 1</option>
-                                                                    <option value="proffisao_2">Profissão 2</option>
-                                                            </select>
+                                                            <label>Profissão/trabalho</label>
+                                                            <input type="text" class="form-control" placeholder="Profissão/Trabalho" name="RESP_PROF">
                                                         </div>
-                                                    </div> 
+                                                    </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Endereço do trabalho</label>
@@ -1071,8 +1123,9 @@
                                                             <label>Grau de Parenteco</label><br>
                                                                 <select name="FK_GRPA_ID"  class="form-control col-md-2">
                                                                     <option value="">Selecione</option>
-                                                                    <option value="1">Pai</option>
-                                                                    <option value="2">Grau 2</option>
+                                                                    @foreach($graus as $grau)
+                                                                    <option value="{{ $grau->GRPA_ID }}">{{ $grau->GRPA_NOME}}</option>
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
@@ -1082,28 +1135,29 @@
 
                                      <section id="hide_section" >
                                         <article>
-                                            <div class="btn func">13. Orientação Familiar</div>
+                                            <div class="btn func">13. Orientação Familiar - Tipo 1</div>
 
                                                  <div class="row">
                                                     <div class="col-md-11">
                                                         <div class="form-group">  
-                                                            <label>Quais instituições e os serviços que prestaram ou que estão prestando orientação ao grupo familiar?</label><br><br>
-                                                                                                 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="cons_tute" value="cons_tute"/>Conselho Tutelar</label><br>
+                                                            <label>OBS - Identificar em cada instituição ou serviço, o nome e telefone do profissional responsável.  Informe sobre quais as ações já foram executadas, se há continuidade no acompanhamento e a existência de pareceres, relatórios, etc. <br> <br> 
+                                                                Quais instituições e os serviços que prestaram ou que estão prestando orientação ao grupo familiar?<br></label><br><br>
+                                                                                             
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="ORNT_CONS_TUT"/>Conselho Tutelar</label><br>
                                                                 <label>Observação</label>
-                                                                <input type="text" class="form-control"  name="obs_con_tute"> <br>
+                                                                <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS"> <br>
                                                                                             
-                                                                <label class="checkbox-inline"><input type="checkbox" name="del_prot_cria" value="del_prot_cria"/>Delegacia de Proteção à Criança e ao Adolescente - DPCA</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_DPCA" value="ORNT_DPCA"/>Delegacia de Proteção à Criança e ao Adolescente - DPCA</label><br>
                                                                 <label>Observação</label>
-                                                                <input type="text" class="form-control"  name="obs_dpca"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_DPCA_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="del_com" value="del_com"/>Delegacias comuns e especializadas</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_DELEGACIA_COMUM" value="ORNT_DELEGACIA_COMUM"/>Delegacias comuns e especializadas</label><br>
                                                                 <label>Observação</label>
-                                                                <input type="text" class="form-control"  name="obs_del_com"><br>
+                                                                <input type="text" class="form-control"  name="DELEGACIA_COMUM_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="assis_soc" value="assis_soc"/>Assitência Social</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_ASSITENCIA_SOCIAL" value="ORNT_ASSITENCIA_SOCIAL"/>Assitência Social</label><br>
                                                                 <label>Observação</label>
-                                                                <input type="text" class="form-control"  name="obs_assis_soc"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_ASSITENCIA_SOCIAL_OBS"><br>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1111,8 +1165,17 @@
                                                 <div class="row">
                                                     <div class="col-md-10">
                                                         <div class="form-group">
+                                                            <label>Proteção Social Básica</label><br/>
+                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA"></textarea>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
                                                             <label>Proteção Social Especial</label><br/>
-                                                            <textarea class="col-md-10" name="prote_soc_esp" id="prote_soc_esp"></textarea>
+                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -1121,33 +1184,91 @@
                                                     <div class="col-md-11">
                                                         <div class="form-group"> 
                                                                                                  
-                                                                <label class="checkbox-inline"><input type="checkbox" name="out_ser_soc_am" value="cons_tute"/>Outros Serviços de apoio sócio-familiar</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" ORNT_OUTROS_SERVICOS"/>Outros Serviços de apoio sócio-familiar</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ser_soc_fam"> <br>
+                                                                <input type="text" class="form-control"  name="ORNT_OUTROS_SERVICOS_OBS"> <br>
                                                                                             
-                                                                <label class="checkbox-inline"><input type="checkbox" name="out_cont_prob_saude" value="out_cont_prob_saude"/>Saúde</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="ORNT_SAUDE"/>Saúde</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="esp_cont_prob_saude"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_SAUDE_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="out_assist_soc" value="out_assist_soc"/>Assistente Social</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="ORNT_EDUCACAO"/>Educação</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="esp_assist_soc"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="out_educ" value="out_educ"/>Educação</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="ORNT_HABITACAO"/>Habitação</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="esp_educ"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="out_hab" value="out_hab"/>Habitação</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="ORNT_PROFISSIO_TRAB"/>Profissionalização/Trabalho</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="esp_hab"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="out_prof" value="out_prof"/>Profissionalização/Trabalho</label><br>
-                                                                <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="esp_prof"><br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                         </article>
+                                    </section><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="out_out" value="out_out"/>Outros</label><br>
+                                    <section id="hide_section" >
+                                    <article>
+                                    <div class="btn func">13.2 Orientação Familiar - Tipo 2 </div>
+
+                                                 <div class="row">
+                                                    <div class="col-md-11">
+                                                        <div class="form-group">  
+                                                            <label>OBS - Identificar os motivos para ser atendido por cada serviço. Em caso da impossibilidade do atendimento, registrar o impedimento: falta de serviços, falta de vagas, atendimento inadequado, falta de adesão da família, distância dos serviços, dentre outros. <br> <br> 
+                                                                Quais as instituições e os serviços que devem prestar atendimento a criança e/ou adolescente e a família para promover a reintegração familiar? <br></label><br><br>
+                                                                                             
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="ORNT_CONS_TUT"/>Conselho Tutelar</label><br>
+                                                                <label>Observação</label>
+                                                                <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS"> <br>
+                                                                
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
+                                                            <label>Proteção Social Básica</label><br/>
+                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA"></textarea>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-10">
+                                                        <div class="form-group">
+                                                            <label>Proteção Social Especial</label><br/>
+                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL"></textarea>
+                                                        </div>
+                                                    </div>  
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-11">
+                                                        <div class="form-group"> 
+                                                                                                 
+                                                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" ORNT_OUTROS_SERVICOS"/>Outros Serviços de apoio sócio-familiar</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="esp_out"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_OUTROS_SERVICOS_OBS"> <br>
+                                                                                            
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="ORNT_SAUDE"/>Saúde</label><br>
+                                                                <label>Especifique</label>
+                                                                <input type="text" class="form-control"  name="ORNT_SAUDE_OBS"><br>
+
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="ORNT_EDUCACAO"/>Educação</label><br>
+                                                                <label>Especifique</label>
+                                                                <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS"><br>
+
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="ORNT_HABITACAO"/>Habitação</label><br>
+                                                                <label>Especifique</label>
+                                                                <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS"><br>
+
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="ORNT_PROFISSIO_TRAB"/>Profissionalização/Trabalho</label><br>
+                                                                <label>Especifique</label>
+                                                                <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS"><br>
 
                                                         </div>
                                                     </div>
@@ -1164,30 +1285,39 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Renda Familiar</label><br>
-                                                                <select name="rend_fam"  class="form-control col-md-2">
-                                                                    <option value="">Selecione</option>
-                                                                    <option value="salario_min">Salário Mínimo</option>
-                                                                    <option value="salario_2">Salario 2</option>
+                                                                <select name="QESP_ID"  class="form-control col-md-2">
+                                                                     <option value="">Selecione</option>
+                                                                    @foreach($qpis as $qpi)
+                                                                    @if($qpi->FK_QESP_ID == 13 && $qpi->QEPI_SIT == 1)
+                                                                        <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
+                                                                    @endif
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Tipo de Moradia</label><br>
-                                                                <select name="rend_fam"  class="form-control col-md-2">
-                                                                    <option value="">Selecione</option>
-                                                                    <option value="pensao">Pensão</option>
-                                                                    <option value="tipo_2">Tipo 2</option>
+                                                                <select name="QESP_ID"  class="form-control col-md-2">
+                                                                     <option value="">Selecione</option>
+                                                                    @foreach($qpis as $qpi)
+                                                                    @if($qpi->FK_QESP_ID == 14 && $qpi->QEPI_SIT == 1)
+                                                                        <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
+                                                                    @endif
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Situação do Imóvel</label><br>
-                                                                <select name="sit_imo"  class="form-control col-md-2">
-                                                                    <option value="">Selecione</option>
-                                                                    <option value="alugado">Alugado</option>
-                                                                    <option value="situacao_2">Situação 2</option>
+                                                                <<select name="QESP_ID"  class="form-control col-md-2">
+                                                                     <option value="">Selecione</option>
+                                                                    @foreach($qpis as $qpi)
+                                                                    @if($qpi->FK_QESP_ID == 15 && $qpi->QEPI_SIT == 1)
+                                                                        <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
+                                                                    @endif
+                                                                @endforeach
                                                             </select>
                                                         </div>
                                                     </div> 
@@ -1199,7 +1329,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Condição da moradia</label><br/>
-                                                            <textarea class="col-md-10" name="cond_mor" id="cond_mor"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_MORA_CONDICAO"  placeholder="ex: casa de alvenaria ou de madeira, nº de cômodos, higiene, organização, etc."></textarea>
                                                         </div>
                                                     </div>
 
@@ -1209,7 +1339,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Informar endereço, telefone da família extensa, das pessoas significativas da rede social da criança e/ou adolescente e da família</label><br/>
-                                                            <textarea class="col-md-10" name="infos_resp" id="infos_resp"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_INFOR_FAM_EXTENSA"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -1227,27 +1357,26 @@
                                                             <div class="row">
                                                                 <div class="col-md-5">
                                                                     <ul>                                                
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox"  name="rein_fam" value="rein_fam"/>Reintegração Familiar</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox"  name="fam_subs_1" value="fam_subs_1"/>Colocação em família substituta, mediante guarda</label>
-                                                                        </li>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <ul> 
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox"  name="fam_subs_2" value="fam_subs_2"/>Colocação em família substituta (tutela, adoção nacional ou internacional)</label>
-                                                                        </li>
-                                                                        <li style="list-style-type:none;">
-                                                                            <label class="checkbox-inline">
-                                                                                <input type="checkbox"  name="ins_out_ser" value="ins_out_ser"/>Inserção em outro serviço ou modalidade de acolhimento</label>
-                                                                        </li>
+                                                                        <?php
+                                                                        $flag = 0;
+                                                                        $question = 16;
+                                                                        $pos = $question - 1;
+                                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                                                        ?>
+                                                                         @foreach($qpis as $qpi)            
+                                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
+                                                                                <?php $flag = $flag + 1; ?>
+                                                                                <li style="list-style-type:none;">          
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                </li>
+                                                                                @if($flag == $dividir)
+                                                                                        </ul>    
+                                                                                    </div>  
+                                                                                    <div class="col-md-6">
+                                                                                        <ul>
+                                                                                @endif
+                                                                            @endif
+                                                                        @endforeach
                                                                     </ul>
                                                                 </div>
                                                             </div>    
@@ -1261,7 +1390,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Observações</label><br/>
-                                                            <textarea class="col-md-10" name="obs_geral" id="obs_geral"></textarea>
+                                                            <textarea class="col-md-10" name="ACMT_OBS_GERAIS"></textarea>
                                                         </div>
                                                     </div>  
 

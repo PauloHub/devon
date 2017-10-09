@@ -15,6 +15,8 @@ use App\Ldcr_raca;
 use App\ldcr_questoes_pia_iten;
 use App\Ldcr_acolhimento;
 use App\Ldcr_tipo_documento;
+use App\Ldcr_doc_apsen;
+use App\Ldcr_grau_parentesco;
 
 use Illuminate\Support\Facades\DB;
 
@@ -50,6 +52,8 @@ class ChildController extends Controller
         $qpis = ldcr_questoes_pia_iten::all();
         $cts = Ldcr_conselho_tutelar::all();
         $acolhimentos = Ldcr_acolhimento::all();
+        $graus = Ldcr_grau_parentesco::all();
+
         $count1 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 1)->count();
         $count2 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 2)->count();
         $count3 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 3)->count();
@@ -66,13 +70,14 @@ class ChildController extends Controller
         $count14 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 14)->count();
         $count15 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 15)->count();
         $count16 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 16)->count();
+        $count17 = DB::table('ldcr_questoes_pia_iten')->where('FK_QESP_ID', 17)->count();
 
         $tipo_documentos = ldcr_tipo_documento::all();
         $count_doc = DB::table('ldcr_tipo_documento')->count();
 
-        $apis_array = array($count1,$count2,$count3,$count4,$count5,$count6,$count7,$count8,$count9,$count10,$count11,$count12,$count13,$count14,$count15,$count16);
+        $apis_array = array($count1,$count2,$count3,$count4,$count5,$count6,$count7,$count8,$count9,$count10,$count11,$count12,$count13,$count14,$count15,$count16,$count17);
 
-        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis', 'acolhimentos', 'apis_array','tipo_documentos','count_doc'));
+        return view('register_child', compact('cities','stats', 'conselheiros', 'conselhos', 'racas', 'qpis', 'acolhimentos', 'apis_array','tipo_documentos','count_doc', 'graus'));
         
     }
 
