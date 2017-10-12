@@ -90,7 +90,7 @@ class ChildController extends Controller
     //Save
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

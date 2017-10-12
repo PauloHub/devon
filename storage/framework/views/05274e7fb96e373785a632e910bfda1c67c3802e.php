@@ -43,7 +43,8 @@
 
                                 <!-- aqui entra as views -->
 
-                                <form method="POST">
+                                <form action="<?php echo e(url('/register_child')); ?>" method="POST">
+                                <?php echo e(csrf_field()); ?>
 
                                     <section id="hide_section" >
                                         <article>
@@ -57,7 +58,7 @@
                                                                 <select class="form-control advice_counselor">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselhos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($conselho->COTL_ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
+                                                                        <option value="<?php echo e($conselho->ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
                                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
@@ -69,7 +70,7 @@
                                                                 <select name="FK_CONS_ID" class="form-control counselor_advice">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $conselheiros; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselheiro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($conselheiro->CONS_ID); ?>"><?php echo e($conselheiro->CONS_NOME); ?></option>
+                                                                        <option value="<?php echo e($conselheiro->ID); ?>"><?php echo e($conselheiro->CONS_NOME); ?></option>
                                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
@@ -1035,10 +1036,10 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_ESTD_ID" id="id_estd" class="form-control state_city">
+                                                                <select name="FK_ESTD" id="id_estd" class="form-control state_city_resp">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                        <option value="<?php echo e($state->ESTD_ID); ?>"><?php echo e($state->ESTD_DESC); ?></option>
+                                                                        <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
                                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                                 </select>
                                                         </div>
@@ -1046,10 +1047,10 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_CIDADE_ID" id="id_cidade" class="form-control city_state">
+                                                                <select name="FK_CIDADE" id="id_cidade" class="form-control city_state_resp">
                                                                 <option value="">Selecione</option>
                                                                 <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                                    <option value="<?php echo e($city->CIDADE_ID); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
+                                                                    <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                         </div>
@@ -1309,7 +1310,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Situação do Imóvel</label><br>
-                                                                <<select name="QESP_ID"  class="form-control col-md-2">
+                                                                <select name="QESP_ID"  class="form-control col-md-2">
                                                                      <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <?php if($qpi->FK_QESP_ID == 15 && $qpi->QEPI_SIT == 1): ?>
@@ -1455,16 +1456,53 @@
         } );
     } );
 
-    $(document).ready(function(){
-        $(document).on('change', ' .advice_counselor', function(){
+     $(document).ready(function(){
+        $(document).on('change', ' .state_city_resp', function(){
            //console.log("mudou!");
 
-            var cons_id = $(this).val();
+            var estd_uf = $(this).val();
             //console.log(estd_uf);
+
+            var div = $(this).parents();
+
+            var op=" ";
+
+            $.ajax({
+                type: 'get',
+                url: '<?php echo URL::to('find_cities'); ?>', 
+                data:{'uf':estd_uf},
+                success:function(data){
+                    //console.log('com sucesso!');
+                    console.log(data);
+                    //console.log(data.length);
+
+                    op+='<option value="0" selected disabled>Selecione a cidade</option>';
+                    for(var i=0; i<data.length; i++){
+                        op+='<option value=" '+data[i].CIDADE_DESC+' "> '+data[i].CIDADE_DESC+'</option>';
+                    }     
+
+                    div.find('.city_state_resp').html(" ");
+                    div.find('.city_state_resp').append(op);
+
+                },
+                error:function(){
+
+                }
+            });
+
+        } );
+    } );
+
+    $(document).ready(function(){
+        $(document).on('change', ' .advice_counselor', function(){
+           console.log("mudou!");
+
+            var cons_id = $(this).val();
+            console.log(cons_id);
 
             var div2 = $(this).parents();
 
-            var op=" ";
+            var op2=" ";
 
             $.ajax({
                 type: 'get',
@@ -1475,13 +1513,13 @@
                     console.log(data);
                     //console.log(data.length);
 
-                    op+='<option value="0" selected disabled>Selecione o conselheiro</option>';
+                    op2+='<option value="0" selected disabled>Selecione o conselheiro</option>';
                     for(var i=0; i<data.length; i++){
-                        op+='<option value=" '+data[i].CONS_ID+' "> '+data[i].CONS_NOME+'</option>';
+                        op2+='<option value=" '+data[i].ID+' "> '+data[i].CONS_NOME+'</option>';
                     }     
 
                     div2.find('.counselor_advice').html(" ");
-                    div2.find('.counselor_advice').append(op);
+                    div2.find('.counselor_advice').append(op2);
 
                 },
                 error:function(){
