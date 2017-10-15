@@ -39,7 +39,7 @@ class EmployeeController extends Controller
     {
        
         $employee = $request->all();
-        Ldcr_funcionario::create($employee);
+        Ldcr_funcionario::create($employee);       
 
         return back()->with(['success' => 'Funcionário cadastrado com sucesso!']);
 

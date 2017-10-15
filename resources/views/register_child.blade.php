@@ -96,7 +96,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_ESTD_ID" id="id_estd" class="form-control state_city">
+                                                                <select name="FK_CRIA_ESTD" id="id_estd" class="form-control state_city">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($stats as $state)
                                                                         <option value="{{ $state->ESTD_UF }}">{{ $state->ESTD_DESC }}</option>
@@ -107,7 +107,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_CIDADE_ID" id="id_cidade" class="form-control city_state">
+                                                                <select name="FK_CRIA_CIDADE" id="id_cidade" class="form-control city_state">
                                                                 <option value="">Selecione</option>
                                                                 @foreach($cities as $city)
                                                                     <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
@@ -204,7 +204,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Meio de Chegada</label><br>
-                                                            <select name="QESP_ID"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
+                                                            <select name="FK_QEPI_ID"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                                 <option value="">Selecione</option>
                                                                 @foreach($qpis as $qpi)
                                                                     @if($qpi->FK_QESP_ID == 1 && $qpi->QEPI_SIT == 1)
@@ -1037,7 +1037,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_ESTD" id="id_estd" class="form-control state_city_resp">
+                                                                <select name="FK_RESP_ESTD" id="id_estd" class="form-control state_city_resp">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($stats as $state)
                                                                         <option value="{{ $state->ESTD_UF}}">{{ $state->ESTD_DESC }}</option>
@@ -1048,7 +1048,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_CIDADE" id="id_cidade" class="form-control city_state_resp">
+                                                                <select name="FK_RESP_CIDADE" id="id_cidade" class="form-control city_state_resp">
                                                                 <option value="">Selecione</option>
                                                                 @foreach($cities as $city)
                                                                     <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
@@ -1155,9 +1155,9 @@
                                                                 <label>Observação</label>
                                                                 <input type="text" class="form-control"  name="DELEGACIA_COMUM_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_ASSITENCIA_SOCIAL" value="ORNT_ASSITENCIA_SOCIAL"/>Assitência Social</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_ASSITENCIA_SOCIAL" value="ORNT_ASSISTENCIA_SOCIAL"/>Assitência Social</label><br>
                                                                 <label>Observação</label>
-                                                                <input type="text" class="form-control"  name="ORNT_ASSITENCIA_SOCIAL_OBS"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_ASSISTENCIA_SOCIAL_OBS"><br>
                                                         </div>
                                                     </div>
                                                 </div>

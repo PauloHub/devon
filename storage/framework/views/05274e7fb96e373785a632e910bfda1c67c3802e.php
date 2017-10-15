@@ -95,7 +95,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_ESTD_ID" id="id_estd" class="form-control state_city">
+                                                                <select name="FK_CRIA_ESTD" id="id_estd" class="form-control state_city">
                                                                     <option value="">Selecione</option>
                                                                     <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                         <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
@@ -106,7 +106,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_CIDADE_ID" id="id_cidade" class="form-control city_state">
+                                                                <select name="FK_CRIA_CIDADE" id="id_cidade" class="form-control city_state">
                                                                 <option value="">Selecione</option>
                                                                 <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
@@ -203,7 +203,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Meio de Chegada</label><br>
-                                                            <select name="QESP_ID"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
+                                                            <select name="FK_QEPI_ID"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                                 <option value="">Selecione</option>
                                                                 <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                     <?php if($qpi->FK_QESP_ID == 1 && $qpi->QEPI_SIT == 1): ?>

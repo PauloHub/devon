@@ -13,8 +13,8 @@ class Ldcr_crianca extends Model
 
     	'CRIA_ID';
     	'CRIA_NOME',
-    	'FK_CIDADE',
-    	'FK_ESTD',
+    	'FK_CRIA_CIDADE',
+    	'FK_CRIA_ESTD',
     	'CRIA_DTA_NASCI',
     	'CRIA_CERT_NUM',
     	'CRIA_CERT_LIVR',
