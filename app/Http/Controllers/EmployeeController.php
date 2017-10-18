@@ -53,6 +53,7 @@ class EmployeeController extends Controller
         $employee = Ldcr_funcionario::findOrFail($id);
         $stats = Ldcr_estado::all();
         $cities = Ldcr_cidade::all();
+        
         return view('show_employee', compact('employee','cities','stats', 'users'));
     }
 

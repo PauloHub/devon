@@ -13,7 +13,7 @@ class Ldcr_cria_externa extends Model
 
     	'CRIA_EXTR_ID',
     	'FK_CRIA_ID',
-    	'CRIA_EXTR_SIT';
+    	'CRIA_EXTR_SIT',
     	'CRIA_EXTR_NOME',
     	'CRIA_EXTR_DATA_NASC',
     	'CRIA_EXTR_END_INTI',

@@ -87,7 +87,7 @@ class CounselorController extends Controller
 
     public function find_counselors(Request $request){
 
-        $cons = Ldcr_conselheiros_tute::select('CONS_NOME')->where('FK_COTL_ID', $request->id)->orderBy('CONS_NOME', 'asc')->get();
+        $cons = Ldcr_conselheiros_tute::select('CONS_ID','CONS_NOME')->where('FK_COTL_ID', $request->id)->orderBy('CONS_NOME', 'asc')->get();
         //$state_cities = Ldcr_cidade::select('CIDADE_DESC', 'CIDADE_ID', 'FK_ESTD_UF')->where('FK_ESTD_UF', $request->uf)->take(100)->get(); se quiser limitar a qt de resultados
         // $request->id é o id da escolha na opção do select
         return response()->json($cons);

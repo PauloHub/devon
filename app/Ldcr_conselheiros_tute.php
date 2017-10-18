@@ -11,7 +11,7 @@ class Ldcr_conselheiros_tute extends Model
 
     protected $fillable = [
 
-    	'ID',
+    	'CONS_ID',
     	'CONS_NOME',
     	'FK_COTL_ID'
     ];

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Ldcr_crianca;
 use App\Ldcr_funcionario;
 use App\Ldcr_cidade;
 use App\Ldcr_estado;
@@ -116,7 +117,7 @@ class ChildController extends Controller
         $acolhimento->ACMT_VARA_NUM_PROCESS = $request->get('ACMT_VARA_NUM_PROCESS');
         $acolhimento->ACMT_DFPUB = $request->get('ACMT_DFPUB');
         $acolhimento->ACMT_DFPUB_FAM = $request->get('ACMT_DFPUB_FAM'); 
-        $acolihmento->ACMT_ANO_ESCO = $request->get('ACMT_ANO_ESCO');
+        $acolhimento->ACMT_ANO_ESCO = $request->get('ACMT_ANO_ESCO');
         $acolhimento->ACMT_FREQ_ESC = $request->get('ACMT_FREQ_ESC');
         $acolhimento->ACMT_REND_ESC = $request->get('ACMT_REND_ESC');
         $acolhimento->ACMT_VIV_REL_ESC = $request->get('ACMT_VIV_REL_ESC');
@@ -129,12 +130,15 @@ class ChildController extends Controller
         $acolhimento->ACMT_DESEN_SOCIO_EMO = $request->get('ACMT_DESEN_SOCIO_EMO');
         $acolhimento->ACMT_VDA_COT = $request->get('ACMT_VDA_COT');
         $acolhimento->ACMT_OUT_INFO = $request->get('ACMT_OUT_INFO');
+        $acolhimento->ACMT_MORA_CONDICAO = $request->get('ACMT_MORA_CONDICAO');
+        $acolhimento->ACMT_INFOR_FAM_EXTENSA = $request->get('ACMT_INFOR_FAM_EXTENSA');
+        $acolhimento->ACMT_OBS_GERAIS = $request->get('ACMT_OBS_GERAIS');
         
         $crianca->CRIA_NOME = $request->get('CRIA_NOME');
         $crianca->FK_CRIA_ESTD = $request->get('FK_CRIA_ESTD');
-        $crianca->FK_CRIA_CIDADE = $request->get('FK_CRIA_ESTD');
+        $crianca->FK_CRIA_CIDADE = $request->get('FK_CRIA_CIDADE');
         $crianca->CRIA_DTA_NASC = $request->get('CRIA_DTA_NASC');
-        $crianca->CRIA_IDADE_ESTD = $request->get('CRIA_IDADE_ESTD');
+        $crianca->CRIA_IDADE_EST = $request->get('CRIA_IDADE_EST');
         $crianca->CRIA_CERT_NUM = $request->get('CRIA_CERT_NUM');
         $crianca->CRIA_CERT_LIVR = $request->get('CRIA_CERT_LIVR');
         $crianca->CRIA_CERT_FOLH = $request->get('CRIA_CERT_FOLH');
@@ -147,7 +151,7 @@ class ChildController extends Controller
         $cria_extr->CRIA_EXTR_DATA_NASC = $request->get('CRIA_EXTR_DATA_NASC');
         $cria_extr->CRIA_EXTR_FAM_CONT = $request->get('CRIA_EXTR_FAM_CONT');
         $cria_extr->CRIA_EXTR_MSM_INSTI = $request->get('CRIA_EXTR_MSM_INSTI');
-        $cria_extr->CRIA_EXTR_OUTR_INSTI = $request->get('CRIA_EXTR_OUTR_INSTI');
+        $cria_extr->CRIA_EXTR_OUTR_INST = $request->get('CRIA_EXTR_OUTR_INST');
         $cria_extr->CRIA_EXTR_FAM_TER = $request->get('CRIA_EXTR_FAM_TER');
         $cria_extr->CRIA_EXTR_ADOT = $request->get('CRIA_EXTR_ADOT');
 
@@ -160,9 +164,10 @@ class ChildController extends Controller
 
         $responsavel->RESP_NOME_MAE = $request->get('RESP_NOME_MAE');
         $responsavel->RESP_NOME_PAI = $request->get('RESP_NOME_PAI');
-        $responsavel->RESP_NAME = $request->get('RESP_NAME');
+        $responsavel->RESP_NOME = $request->get('RESP_NOME');
         $responsavel->FK_RESP_ESTD = $request->get('FK_RESP_ESTD');
         $responsavel->FK_RESP_CIDADE = $request->get('FK_RESP_CIDADE');
+        $responsavel->RESP_END_CSA = $request->get('RESP_END_CSA');
         $responsavel->RESP_BAIRRO = $request->get('RESP_BAIRRO');
         $responsavel->RESP_DT_NASCI = $request->get('RESP_DT_NASCI');
         $responsavel->RESP_RG = $request->get('RESP_RG');
@@ -173,23 +178,73 @@ class ChildController extends Controller
         $responsavel->RESP_END_TRAB = $request->get('RESP_END_TRAB');
         $responsavel->FK_GRPA_ID = $request->get('FK_GRPA_ID');
 
+        $orientacao->ORNT_CONS_TUT = $request->get('ORNT_CONS_TUT');
         $orientacao->ORNT_CONS_TUT_OBS = $request->get('ORNT_CONS_TUT_OBS');
+        $orientacao->ORNT_DPCA = $request->get('ORNT_DPCA');
         $orientacao->ORNT_DPCA_OBS = $request->get('ORNT_DPCA_OBS');
+        $orientacao->ORNT_DELEGACIA_COMUM = $request->get('ORNT_DELEGACIA_COMUM');
         $orientacao->ORNT_DELEGACIA_COMUM_OBS = $request->get('ORNT_DELEGACIA_COMUM_OBS');
+        $orientacao->ORNT_ASSISTENCIA_SOCIAL = $request->get('ORNT_ASSISTENCIA_SOCIAL');
         $orientacao->ORNT_ASSISTENCIA_SOCIAL_OBS = $request->get('ORNT_ASSISTENCIA_SOCIAL_OBS');
         $orientacao->ORNT_PROTECAO_SOCIAL_BASICA = $request->get('ORNT_PROTECAO_SOCIAL_BASICA');
         $orientacao->ORNT_PROTECAO_SOCIAL_ESPECIAL = $request->get('ORNT_PROTECAO_SOCIAL_ESPECIAL');
+        $orientacao->ORNT_OUTROS_SERVICOS = $request->get('ORNT_OUTROS_SERVICOS');
         $orientacao->ORNT_OUTROS_SERVICOS_OBS = $request->get('ORNT_OUTROS_SERVICOS_OBS');
+        $orientacao->ORNT_SAUDE = $request->get('ORNT_SAUDE');
         $orientacao->ORNT_SAUDE_OBS = $request->get('ORNT_SAUDE_OBS');
+        $orientacao->ORNT_EDUCACAO = $request->get('ORNT_EDUCACAO');
         $orientacao->ORNT_EDUCACAO_OBS = $request->get('ORNT_EDUCACAO_OBS');
+        $orientacao->ORNT_HABITACAO = $request->get('ORNT_HABITACAO');
         $orientacao->ORNT_HABITACAO_OBS = $request->get('ORNT_HABITACAO_OBS');
+        $orientacao->ORNT_PROFISSIO_TRAB = $request->get('ORNT_PROFISSIO_TRAB');
         $orientacao->ORNT_PROFISSIO_TRAB_OBS = $request->get('ORNT_PROFISSIO_TRAB_OBS');
 
+        $orientacao->ORNT_CONS_TUT_T2 = $request->get('ORNT_CONS_TUT_T2');
+        $orientacao->ORNT_CONS_TUT_OBS_T2 = $request->get('ORNT_CONS_TUT_OBS_T2');
+        $orientacao->ORNT_PROTECAO_SOCIAL_BASICA_T2 = $request->get('ORNT_PROTECAO_SOCIAL_BASICA_T2');
+        $orientacao->ORNT_PROTECAO_SOCIAL_ESPECIAL_T2 = $request->get('ORNT_PROTECAO_SOCIAL_ESPECIAL_T2');
+        $orientacao->ORNT_OUTROS_SERVICOS_T2 = $request->get('ORNT_OUTROS_SERVICOS_T2');
+        $orientacao->ORNT_OUTROS_SERVICOS_OBS_T2 = $request->get('ORNT_OUTROS_SERVICOS_OBS_T2');
+        $orientacao->ORNT_SAUDE_T2 = $request->get('ORNT_SAUDE_T2');
+        $orientacao->ORNT_SAUDE_OBS_T2 = $request->get('ORNT_SAUDE_OBS_T2');
+        $orientacao->ORNT_EDUCACAO_T2 = $request->get('ORNT_EDUCACAO_T2');
+        $orientacao->ORNT_EDUCACAO_OBS_T2 = $request->get('ORNT_EDUCACAO_OBS_T2');
+        $orientacao->ORNT_HABITACAO_T2 = $request->get('ORNT_HABITACAO_T2');
+        $orientacao->ORNT_HABITACAO_OBS_T2 = $request->get('ORNT_HABITACAO_OBS_T2');
+        $orientacao->ORNT_PROFISSIO_TRAB_T2 = $request->get('ORNT_PROFISSIO_TRAB_T2');
+        $orientacao->ORNT_PROFISSIO_TRAB_OBS_T2 = $request->get('ORNT_PROFISSIO_TRAB_OBS_T2');
+
+        $crianca->save();
+        $lastID_crianca = $crianca->id;
+
+        $acolhimento->FK_CRIA_ID = $lastID_crianca;
+        $acolhimento->save();
+        $lastID_acmt = $acolhimento->id;
+
+
+        $cria_extr->FK_CRIA_ID = $lastID_crianca;
+        $cria_extr->save();
+
+        $saude->FK_ACMT_ID = $lastID_acmt;
+        $saude->save();
+
+        $responsavel->save();
+
+        $orientacao->FK_CRIA_ID = $lastID_crianca;
+        $orientacao->save();
+
+        
+        
 
         $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');
 
+        foreach($acmt_qpi->FK_QEPI_ID as $qepi_id){
+                $qesp_id = DB::table('ldcr_questoes_pia_iten')->select('FK_QESP_ID')->where('QEPI_ID', '=', $qepi_id);
+                DB::table('ldcr_acmt_questoes_pia_iten')->insert(['FK_QEPI_ID' => $qepi_id], ['FK_ACMT_ID' => $lastID_acmt], ['FK_QESP_ID' => $qespi_id]);
 
+        }
 
+        return redirect('register_child')->with(['success' => 'Criança editado com sucesso!']);    
 
     }
 

@@ -71,7 +71,7 @@
                                                                 <select name="FK_CONS_ID" class="form-control counselor_advice">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($conselheiros as $conselheiro)
-                                                                        <option value="{{$conselheiro->ID}}">{{$conselheiro->CONS_NOME}}</option>
+                                                                        <option value="{{$conselheiro->CONS_ID}}">{{$conselheiro->CONS_NOME}}</option>
                                                                     @endforeach
                                                             </select>
                                                         </div>
@@ -204,7 +204,7 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Meio de Chegada</label><br>
-                                                            <select name="FK_QEPI_ID"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
+                                                            <select name="FK_QEPI_ID[]"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                                 <option value="">Selecione</option>
                                                                 @foreach($qpis as $qpi)
                                                                     @if($qpi->FK_QESP_ID == 1 && $qpi->QEPI_SIT == 1)
@@ -244,8 +244,8 @@
                                                 <div class="col-md-10">
                                                     <div class="form-group">
                                                         <label>Há proximidade entre o serviço de acolhimento e a residência dos pais/responsável legal?</label><br/>
-                                                        <label class="radio-inline"><input type="radio" name="ACMT_PROX_RESIDENCIA" value="s"/>Sim</label>
-                                                        <label class="radio-inline"><input type="radio" name="ACMT_PROX_RESIDENCIA" value="n"/>Nao</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_PROX_RESIDENCIA" value="1"/>Sim</label>
+                                                        <label class="radio-inline"><input type="radio" name="ACMT_PROX_RESIDENCIA" value="0"/>Nao</label>
                                                     </div>
                                                 </div> 
 
@@ -314,7 +314,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Proibição judicial de visitas</label><br>
-                                                            <select name="FK_QEPI_ID"  class="form-control col-md-2">
+                                                            <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                                 <option value="">Selecione</option>
                                                                 @foreach($qpis as $qpi)
                                                                     @if($qpi->FK_QESP_ID == 2 && $qpi->QEPI_SIT == 1)
@@ -327,7 +327,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Situação do poder familiar</label><br>
-                                                                <select name="FK_QEPI_ID"  class="form-control col-md-2">
+                                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($qpis as $qpi)
                                                                     @if($qpi->FK_QESP_ID == 3 && $qpi->QEPI_SIT == 1)
@@ -466,7 +466,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -501,7 +501,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -535,7 +535,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -569,7 +569,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -603,7 +603,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -642,7 +642,7 @@
                                                                             @if($tipo_documento->TPDO_ID != 1 )
                                                                             <?php $flag = $flag + 1; ?>
                                                                             <li style="list-style-type:none;">          
-                                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
+                                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
                                                                             </li>
                                                                             @endif
                                                                             @if($flag == $dividir)
@@ -674,7 +674,7 @@
                                                                             @if($tipo_documento->TPDO_ID != 2 && $tipo_documento->TPDO_ID != 3 )
                                                                             <?php $flag = $flag + 1; ?>
                                                                             <li style="list-style-type:none;">          
-                                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
+                                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
                                                                             </li>
                                                                             @endif
                                                                             @if($flag == $dividir)
@@ -757,7 +757,7 @@
                                                      <div class="col-md-2">
                                                                     <div class="form-group">
                                                                         <label>Carteira de vacinação</label><br>
-                                                                            <select name="CSAU_CART_VAC "  class="form-control col-md-2">
+                                                                            <select name="CSAU_CART_VAC"  class="form-control col-md-2">
                                                                                 <option value="">Selecione</option>
                                                                                 <option value="SA">Sim, atualizada (SA)</option>
                                                                                 <option value="SD">Sim, desatualizada (SD)</option>
@@ -781,7 +781,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -831,7 +831,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -938,7 +938,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -1031,7 +1031,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Nome do Responsável</label>
-                                                            <input type="text" class="form-control" placeholder="Nome do responsável" name="RESP_NAME">
+                                                            <input type="text" class="form-control" placeholder="Nome do responsável" name="RESP_NOME">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
@@ -1056,7 +1056,15 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+
+                                                     <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Endereço</label>
+                                                            <input type="text" class="form-control" placeholder="Endereço" name="RESP_END_CSA">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Bairro</label>
                                                             <input type="text" class="form-control" placeholder="Bairro" name="RESP_BAIRRO">
@@ -1143,19 +1151,19 @@
                                                             <label>OBS - Identificar em cada instituição ou serviço, o nome e telefone do profissional responsável.  Informe sobre quais as ações já foram executadas, se há continuidade no acompanhamento e a existência de pareceres, relatórios, etc. <br> <br> 
                                                                 Quais instituições e os serviços que prestaram ou que estão prestando orientação ao grupo familiar?<br></label><br><br>
                                                                                              
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="ORNT_CONS_TUT"/>Conselho Tutelar</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="1"/>Conselho Tutelar</label><br>
                                                                 <label>Observação</label>
                                                                 <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS"> <br>
                                                                                             
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_DPCA" value="ORNT_DPCA"/>Delegacia de Proteção à Criança e ao Adolescente - DPCA</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_DPCA" value="1"/>Delegacia de Proteção à Criança e ao Adolescente - DPCA</label><br>
                                                                 <label>Observação</label>
                                                                 <input type="text" class="form-control"  name="ORNT_DPCA_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_DELEGACIA_COMUM" value="ORNT_DELEGACIA_COMUM"/>Delegacias comuns e especializadas</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_DELEGACIA_COMUM" value="1"/>Delegacias comuns e especializadas</label><br>
                                                                 <label>Observação</label>
                                                                 <input type="text" class="form-control"  name="DELEGACIA_COMUM_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_ASSITENCIA_SOCIAL" value="ORNT_ASSISTENCIA_SOCIAL"/>Assitência Social</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_ASSITENCIA_SOCIAL" value="1"/>Assitência Social</label><br>
                                                                 <label>Observação</label>
                                                                 <input type="text" class="form-control"  name="ORNT_ASSISTENCIA_SOCIAL_OBS"><br>
                                                         </div>
@@ -1184,23 +1192,23 @@
                                                     <div class="col-md-11">
                                                         <div class="form-group"> 
                                                                                                  
-                                                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" ORNT_OUTROS_SERVICOS"/>Outros Serviços de apoio sócio-familiar</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" 1"/>Outros Serviços de apoio sócio-familiar</label><br>
                                                                 <label>Especifique</label>
                                                                 <input type="text" class="form-control"  name="ORNT_OUTROS_SERVICOS_OBS"> <br>
                                                                                             
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="ORNT_SAUDE"/>Saúde</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="1"/>Saúde</label><br>
                                                                 <label>Especifique</label>
                                                                 <input type="text" class="form-control"  name="ORNT_SAUDE_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="ORNT_EDUCACAO"/>Educação</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="1"/>Educação</label><br>
                                                                 <label>Especifique</label>
                                                                 <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="ORNT_HABITACAO"/>Habitação</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="1"/>Habitação</label><br>
                                                                 <label>Especifique</label>
                                                                 <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="ORNT_PROFISSIO_TRAB"/>Profissionalização/Trabalho</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="1"/>Profissionalização/Trabalho</label><br>
                                                                 <label>Especifique</label>
                                                                 <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS"><br>
 
@@ -1220,9 +1228,9 @@
                                                             <label>OBS - Identificar os motivos para ser atendido por cada serviço. Em caso da impossibilidade do atendimento, registrar o impedimento: falta de serviços, falta de vagas, atendimento inadequado, falta de adesão da família, distância dos serviços, dentre outros. <br> <br> 
                                                                 Quais as instituições e os serviços que devem prestar atendimento a criança e/ou adolescente e a família para promover a reintegração familiar? <br></label><br><br>
                                                                                              
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="ORNT_CONS_TUT"/>Conselho Tutelar</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT_T2" value="1"/>Conselho Tutelar</label><br>
                                                                 <label>Observação</label>
-                                                                <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS"> <br>
+                                                                <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS_T2"> <br>
                                                                 
                                                         </div>
                                                     </div>
@@ -1232,7 +1240,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Proteção Social Básica</label><br/>
-                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA"></textarea>
+                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA_T2"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -1241,7 +1249,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Proteção Social Especial</label><br/>
-                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL"></textarea>
+                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL_T2"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -1250,25 +1258,25 @@
                                                     <div class="col-md-11">
                                                         <div class="form-group"> 
                                                                                                  
-                                                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" ORNT_OUTROS_SERVICOS"/>Outros Serviços de apoio sócio-familiar</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS_T2" value=" 1"/>Outros Serviços de apoio sócio-familiar</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ORNT_OUTROS_SERVICOS_OBS"> <br>
+                                                                <input type="text" class="form-control"  name="1"> <br>
                                                                                             
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="ORNT_SAUDE"/>Saúde</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE_T2" value="1"/>Saúde</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ORNT_SAUDE_OBS"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_SAUDE_OBS_T2"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="ORNT_EDUCACAO"/>Educação</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO_T2" value="1"/>Educação</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS_T2"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="ORNT_HABITACAO"/>Habitação</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO_T2" value="1"/>Habitação</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS_T2"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="ORNT_PROFISSIO_TRAB"/>Profissionalização/Trabalho</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB_T2" value="1"/>Profissionalização/Trabalho</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS_T2"><br>
 
                                                         </div>
                                                     </div>
@@ -1285,7 +1293,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Renda Familiar</label><br>
-                                                                <select name="QESP_ID"  class="form-control col-md-2">
+                                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                                      <option value="">Selecione</option>
                                                                     @foreach($qpis as $qpi)
                                                                     @if($qpi->FK_QESP_ID == 13 && $qpi->QEPI_SIT == 1)
@@ -1298,7 +1306,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Tipo de Moradia</label><br>
-                                                                <select name="QESP_ID"  class="form-control col-md-2">
+                                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                                      <option value="">Selecione</option>
                                                                     @foreach($qpis as $qpi)
                                                                     @if($qpi->FK_QESP_ID == 14 && $qpi->QEPI_SIT == 1)
@@ -1311,7 +1319,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Situação do Imóvel</label><br>
-                                                                <select name="QESP_ID"  class="form-control col-md-2">
+                                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                                      <option value="">Selecione</option>
                                                                     @foreach($qpis as $qpi)
                                                                     @if($qpi->FK_QESP_ID == 15 && $qpi->QEPI_SIT == 1)
@@ -1367,7 +1375,7 @@
                                                                             @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                                 <?php $flag = $flag + 1; ?>
                                                                                 <li style="list-style-type:none;">          
-                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                                 </li>
                                                                                 @if($flag == $dividir)
                                                                                         </ul>    
@@ -1496,10 +1504,10 @@
 
     $(document).ready(function(){
         $(document).on('change', ' .advice_counselor', function(){
-           console.log("mudou!");
+           //console.log("mudou!");
 
             var cons_id = $(this).val();
-            console.log(cons_id);
+            //console.log(cons_id);
 
             var div2 = $(this).parents();
 
@@ -1511,12 +1519,12 @@
                 data:{'id':cons_id},
                 success:function(data){
                     //console.log('com sucesso!');
-                    console.log(data);
+                    //console.log(data);
                     //console.log(data.length);
 
                     op2+='<option value="0" selected disabled>Selecione o conselheiro</option>';
                     for(var i=0; i<data.length; i++){
-                        op2+='<option value=" '+data[i].ID+' "> '+data[i].CONS_NOME+'</option>';
+                        op2+='<option value=" '+data[i].CONS_ID+' "> '+data[i].CONS_NOME+'</option>';
                     }     
 
                     div2.find('.counselor_advice').html(" ");
