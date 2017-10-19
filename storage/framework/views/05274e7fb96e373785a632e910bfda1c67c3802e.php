@@ -1227,9 +1227,9 @@
                                                             <label>OBS - Identificar os motivos para ser atendido por cada serviço. Em caso da impossibilidade do atendimento, registrar o impedimento: falta de serviços, falta de vagas, atendimento inadequado, falta de adesão da família, distância dos serviços, dentre outros. <br> <br> 
                                                                 Quais as instituições e os serviços que devem prestar atendimento a criança e/ou adolescente e a família para promover a reintegração familiar? <br></label><br><br>
                                                                                              
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT_T2" value="1"/>Conselho Tutelar</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="1"/>Conselho Tutelar</label><br>
                                                                 <label>Observação</label>
-                                                                <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS_T2"> <br>
+                                                                <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS"> <br>
                                                                 
                                                         </div>
                                                     </div>
@@ -1239,7 +1239,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Proteção Social Básica</label><br/>
-                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA_T2"></textarea>
+                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -1248,7 +1248,7 @@
                                                     <div class="col-md-10">
                                                         <div class="form-group">
                                                             <label>Proteção Social Especial</label><br/>
-                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL_T2"></textarea>
+                                                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL"></textarea>
                                                         </div>
                                                     </div>  
                                                 </div>
@@ -1257,25 +1257,25 @@
                                                     <div class="col-md-11">
                                                         <div class="form-group"> 
                                                                                                  
-                                                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS_T2" value=" 1"/>Outros Serviços de apoio sócio-familiar</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" 1"/>Outros Serviços de apoio sócio-familiar</label><br>
                                                                 <label>Especifique</label>
                                                                 <input type="text" class="form-control"  name="1"> <br>
                                                                                             
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE_T2" value="1"/>Saúde</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="1"/>Saúde</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ORNT_SAUDE_OBS_T2"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_SAUDE_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO_T2" value="1"/>Educação</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="1"/>Educação</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS_T2"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO_T2" value="1"/>Habitação</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="1"/>Habitação</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS_T2"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS"><br>
 
-                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB_T2" value="1"/>Profissionalização/Trabalho</label><br>
+                                                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="1"/>Profissionalização/Trabalho</label><br>
                                                                 <label>Especifique</label>
-                                                                <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS_T2"><br>
+                                                                <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS"><br>
 
                                                         </div>
                                                     </div>
