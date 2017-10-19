@@ -13,7 +13,7 @@ use App\User;
 use App\Ldcr_conselho_tutelar;
 use App\Ldcr_conselheiros_tute;
 use App\Ldcr_raca;
-use App\ldcr_questoes_pia_iten;
+use App\Ldcr_questoes_pia_iten;
 use App\Ldcr_acolhimento;
 use App\Ldcr_tipo_documento;
 use App\Ldcr_doc_apsen;
@@ -233,14 +233,21 @@ class ChildController extends Controller
         $orientacao->FK_CRIA_ID = $lastID_crianca;
         $orientacao->save();
 
-        
-        
-
         $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');
 
         foreach($acmt_qpi->FK_QEPI_ID as $qepi_id){
-                $qesp_id = DB::table('ldcr_questoes_pia_iten')->select('FK_QESP_ID')->where('QEPI_ID', '=', $qepi_id);
-                DB::table('ldcr_acmt_questoes_pia_iten')->insert(['FK_QEPI_ID' => $qepi_id], ['FK_ACMT_ID' => $lastID_acmt], ['FK_QESP_ID' => $qespi_id]);
+                $qpia = new Ldcr_acmt_questoes_pia_iten();
+
+                //$qesp_id = DB::select("SELECT FK_QESP_ID FROM ldcr_questoes_pia_iten where QEPI_ID = '$qepi_id' ");
+                $qesp_id = DB::table('ldcr_questoes_pia_iten')->select('FK_QESP_ID')->where('QEPI_ID', '=', $qepi_id)->get();
+                foreach($qesp_id as $qesp){
+                    $qesp_id = $qesp->FK_QESP_ID;
+                }
+                $qpia->FK_ACMT_ID = $lastID_acmt;
+                $qpia->FK_QEPI_ID = $qepi_id;
+                $qpia->FK_QESP_ID = $qesp_id;
+                
+                $qpia->save();
 
         }
 
