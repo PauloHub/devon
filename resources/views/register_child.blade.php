@@ -2,6 +2,7 @@
 @extends('layouts.menu')
 @section('content')
 
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
@@ -1011,33 +1012,36 @@
                                      <section id="hide_section" >
                                         <article>
                                             <div class="btn func">12. Identificações dos Pais ou Responsáveis</div>
-
-                                                <div class="row">
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>Nome da Mãe</label>
-                                                            <input type="text" class="form-control" placeholder="Nome do pai da criança" name="RESP_NOME_MAE">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-4">
-                                                        <div class="form-group">
-                                                            <label>Nome do Pai</label>
-                                                            <input type="text" class="form-control" placeholder="Nome da mãe da criança" name="RESP_NOME_PAI">
-                                                        </div>
-                                                    </div>
-
+                                            <div id="divResponsavelBase">
+                                                
+                                                <div class="row">         
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Nome do Responsável</label>
-                                                            <input type="text" class="form-control" placeholder="Nome do responsável" name="RESP_NOME">
+                                                            <input type="text" class="form-control" placeholder="Nome do responsável" name="RESP_NOME[]">
                                                         </div>
                                                     </div>
+
+                                                     <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Grau de Parenteco</label><br>
+                                                                <select name="FK_GRPA_ID[]"  class="form-control col-md-2">
+                                                                    <option value="">Selecione</option>
+                                                                    @foreach($graus as $grau)
+                                                                    <option value="{{ $grau->GRPA_ID }}">{{ $grau->GRPA_NOME}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                    <div class="row"> 
+
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_RESP_ESTD" id="id_estd" class="form-control state_city_resp">
+                                                                <select name="FK_RESP_ESTD[]" id="id_estd" class="form-control state_city_resp">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($stats as $state)
                                                                         <option value="{{ $state->ESTD_UF}}">{{ $state->ESTD_DESC }}</option>
@@ -1048,7 +1052,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_RESP_CIDADE" id="id_cidade" class="form-control city_state_resp">
+                                                                <select name="FK_RESP_CIDADE[]" id="id_cidade" class="form-control city_state_resp">
                                                                 <option value="">Selecione</option>
                                                                 @foreach($cities as $city)
                                                                     <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
@@ -1060,14 +1064,14 @@
                                                      <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Endereço</label>
-                                                            <input type="text" class="form-control" placeholder="Endereço" name="RESP_END_CSA">
+                                                            <input type="text" class="form-control" placeholder="Endereço" name="RESP_END_CSA[]">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Bairro</label>
-                                                            <input type="text" class="form-control" placeholder="Bairro" name="RESP_BAIRRO">
+                                                            <input type="text" class="form-control" placeholder="Bairro" name="RESP_BAIRRO[]">
                                                         </div>
                                                     </div>
 
@@ -1078,28 +1082,28 @@
                                                     <div class="col-md-2">
                                                             <div class="form-group">
                                                                 <label>Data de Nascimento</label>
-                                                                <input type="date" class="form-control"  name="RESP_DT_NASCI">
+                                                                <input type="date" class="form-control"  name="RESP_DT_NASCI[]">
                                                             </div>
                                                     </div>
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>RG</label>
-                                                            <input type="number" class="form-control" placeholder="RG" name="RESP_RG">
+                                                            <input type="number" class="form-control" placeholder="RG" name="RESP_RG[]">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>CPF</label>
-                                                            <input type="number" class="form-control" placeholder="CPF" name="RESP_CPF">
+                                                            <input type="number" class="form-control" placeholder="CPF" name="RESP_CPF[]">
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Contato</label>
-                                                            <input type="number" class="form-control" placeholder="Contato" name="RESP_TEL">
+                                                            <input type="number" class="form-control" placeholder="Contato" name="RESP_TEL[]">
                                                         </div>
                                                     </div>
 
@@ -1110,34 +1114,30 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Ponto de Referência</label>
-                                                            <input type="text" class="form-control" placeholder="Ponto de referência" name="RESP_PONT_REF">
+                                                            <input type="text" class="form-control" placeholder="Ponto de referência" name="RESP_PONT_REF[]">
                                                         </div>
                                                     </div>
 
                                                      <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Profissão/trabalho</label>
-                                                            <input type="text" class="form-control" placeholder="Profissão/Trabalho" name="RESP_PROF">
+                                                            <input type="text" class="form-control" placeholder="Profissão/Trabalho" name="RESP_PROF[]">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Endereço do trabalho</label>
-                                                            <input type="text" class="form-control" placeholder="Endereço do Trarbalho" name="RESP_END_TRAB">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <label>Grau de Parenteco</label><br>
-                                                                <select name="FK_GRPA_ID"  class="form-control col-md-2">
-                                                                    <option value="">Selecione</option>
-                                                                    @foreach($graus as $grau)
-                                                                    <option value="{{ $grau->GRPA_ID }}">{{ $grau->GRPA_NOME}}</option>
-                                                                @endforeach
-                                                            </select>
+                                                            <input type="text" class="form-control" placeholder="Endereço do Trarbalho" name="RESP_END_TRAB[]">
                                                         </div>
                                                     </div>
                                                 </div>  
+
+                                            </div>
+
+                                                <div id="divResponsavelList">
+                                                 </div>
+                                            
+                                                 <input type="button" value="+" onclick="responsavelList.insert()" />
                                         </article>
                                     </section><br>
 
@@ -1540,4 +1540,150 @@
     } );
 </script>
 
+<div id="divResponsavelBase" style="display:none;">
+                                <div class="row">                                                   
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Nome do Responsável</label>
+                                                            <input type="text" class="form-control" placeholder="Nome do responsável" name="RESP_NOME[]">
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Grau de Parenteco</label><br>
+                                                                <select name="FK_GRPA_ID[]"  class="form-control col-md-2">
+                                                                    <option value="">Selecione</option>
+                                                                    @foreach($graus as $grau)
+                                                                    <option value="{{ $grau->GRPA_ID }}">{{ $grau->GRPA_NOME}}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                    <div class="row"> 
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Estado</label><br>
+                                                                <select name="FK_RESP_ESTD[]" id="id_estd" class="form-control state_city_resp">
+                                                                    <option value="">Selecione</option>
+                                                                    @foreach($stats as $state)
+                                                                        <option value="{{ $state->ESTD_UF}}">{{ $state->ESTD_DESC }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Cidade</label><br>
+                                                                <select name="FK_RESP_CIDADE[]" id="id_cidade" class="form-control city_state_resp">
+                                                                <option value="">Selecione</option>
+                                                                @foreach($cities as $city)
+                                                                    <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Endereço</label>
+                                                            <input type="text" class="form-control" placeholder="Endereço" name="RESP_END_CSA[]">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Bairro</label>
+                                                            <input type="text" class="form-control" placeholder="Bairro" name="RESP_BAIRRO[]">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="row">
+
+                                                    <div class="col-md-2">
+                                                            <div class="form-group">
+                                                                <label>Data de Nascimento</label>
+                                                                <input type="date" class="form-control"  name="RESP_DT_NASCI[]">
+                                                            </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>RG</label>
+                                                            <input type="number" class="form-control" placeholder="RG" name="RESP_RG[]">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>CPF</label>
+                                                            <input type="number" class="form-control" placeholder="CPF" name="RESP_CPF[]">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>Contato</label>
+                                                            <input type="number" class="form-control" placeholder="Contato" name="RESP_TEL[]">
+                                                        </div>
+                                                    </div>
+
+                                                </div>                                    
+
+                                                <div class="row">
+
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label>Ponto de Referência</label>
+                                                            <input type="text" class="form-control" placeholder="Ponto de referência" name="RESP_PONT_REF[]">
+                                                        </div>
+                                                    </div>
+
+                                                     <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label>Profissão/trabalho</label>
+                                                            <input type="text" class="form-control" placeholder="Profissão/Trabalho" name="RESP_PROF[]">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label>Endereço do trabalho</label>
+                                                            <input type="text" class="form-control" placeholder="Endereço do Trarbalho" name="RESP_END_TRAB[]">
+                                                        </div>
+                                                    </div>
+                                                   
+                                                </div>
+                                                <input type="button" value="+" onClick="respList.insert()" />
+                                            </div>
+
+<script>
+    responsavelList = {
+    'init': function()
+    {
+        this.divResponsavelList = document.getElementById('divResponsavelList');
+        this.divResponsavelBase = document.getElementById('divResponsavelBase');
+    },
+    
+    'insert': function()
+    {
+        var newDiv = this.divResponsavelBase.cloneNode(true);
+        newDiv.style.display = " ";
+        console.log('newDiv => ', newDiv);
+        this.divResponsavelList.appendChild(newDiv);
+    },
+    
+    'remove': function(el)
+    {
+        el.parentNode.removeChild(el);
+    }
+};
+responsavelList.init();
+</script>
 @endsection

@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+      <script type="text/javascript" src="<?php echo e(URL::asset('js/dyform_resp.js')); ?>"></script>
+    <script src="/assets/js/dyform_resp.js"></script>
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
