@@ -426,7 +426,7 @@
                                                  </div>
                                             
                                                <div class="row">
-                                                 <input type="button" value="+" onclick="cria_extrList.insert()" />
+                                                 <input type="button" value="+"  class="btn btn-info "  style="margin-left:15px" onclick="cria_extrList.insert()" />
                                              </div>
 
                                                 <!--<div class="row">
@@ -1153,7 +1153,7 @@
                                                  </div>
                                             
                                                <div class="row">
-                                                 <input type="button" value="+" onclick="responsavelList.insert()" />
+                                                 <input type="button" class="btn btn-info "  style="margin-left:15px" value="+" onclick="responsavelList.insert()" />
                                              </div>
                                         </article>
                                     </section><br>
@@ -1557,7 +1557,7 @@
     } );
 </script>
 
-<div id="divResponsavelBase" style="display:none;">
+<div id="divResponsavelBase" style="display:none; margin-left:15px">
        <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
                                 <div class="row">      
                                                     <div class="col-md-4">
@@ -1709,7 +1709,7 @@ responsavelList.init();
 
 <!-- form dinamico da criança externa -->
 
-<div id="div_cria_extrBase" style="display:none;">
+<div id="div_cria_extrBase" style="display:none; margin-left: 10px;">
        <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
  <div class="row">
 
