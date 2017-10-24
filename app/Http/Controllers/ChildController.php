@@ -150,20 +150,7 @@ class ChildController extends Controller
 
         $acolhimento->FK_CRIA_ID = $lastID_crianca;
         $acolhimento->save();
-        $lastID_acmt = $acolhimento->id;    
-
-        $cria_extr->CRIA_EXTR_NOME = $request->get('CRIA_EXTR_NOME');
-        $cria_extr->CRIA_EXTR_NOME_INSTI = $request->get('CRIA_EXTR_NOME_INSTI');
-        $cria_extr->CRIA_EXTR_END_INSTI = $request->get('CRIA_EXTR_END_INSTI');
-        $cria_extr->CRIA_EXTR_DATA_NASC = $request->get('CRIA_EXTR_DATA_NASC');
-        $cria_extr->CRIA_EXTR_FAM_CONT = $request->get('CRIA_EXTR_FAM_CONT');
-        $cria_extr->CRIA_EXTR_MSM_INSTI = $request->get('CRIA_EXTR_MSM_INSTI');
-        $cria_extr->CRIA_EXTR_OUTR_INST = $request->get('CRIA_EXTR_OUTR_INST');
-        $cria_extr->CRIA_EXTR_FAM_TER = $request->get('CRIA_EXTR_FAM_TER');
-        $cria_extr->CRIA_EXTR_ADOT = $request->get('CRIA_EXTR_ADOT');
-
-        $cria_extr->FK_CRIA_ID = $lastID_crianca;
-        $cria_extr->save();
+        $lastID_acmt = $acolhimento->id;  
 
         $saude->CSAU_CART_VAC = $request->get('CSAU_CART_VAC');
         $saude->CSAU_DIAG_MED = $request->get('CSAU_DIAG_MED');
@@ -174,24 +161,6 @@ class ChildController extends Controller
 
         $saude->FK_ACMT_ID = $lastID_acmt;
         $saude->save();
-
-        $responsavel->RESP_NOME_MAE = $request->get('RESP_NOME_MAE');
-        $responsavel->RESP_NOME_PAI = $request->get('RESP_NOME_PAI');
-        $responsavel->RESP_NOME = $request->get('RESP_NOME');
-        $responsavel->FK_RESP_ESTD = $request->get('FK_RESP_ESTD');
-        $responsavel->FK_RESP_CIDADE = $request->get('FK_RESP_CIDADE');
-        $responsavel->RESP_END_CSA = $request->get('RESP_END_CSA');
-        $responsavel->RESP_BAIRRO = $request->get('RESP_BAIRRO');
-        $responsavel->RESP_DT_NASCI = $request->get('RESP_DT_NASCI');
-        $responsavel->RESP_RG = $request->get('RESP_RG');
-        $responsavel->RESP_CPF = $request->get('RESP_CPF');
-        $responsavel->RESP_TEL = $request->get('RESP_TEL');
-        $responsavel->RESP_PONT_REF = $request->get('RESP_PONT_REF');
-        $responsavel->RESP_PROF = $request->get('RESP_PROF');
-        $responsavel->RESP_END_TRAB = $request->get('RESP_END_TRAB');
-        $responsavel->FK_GRPA_ID = $request->get('FK_GRPA_ID');
-
-        $responsavel->save();
 
         $orientacao->ORNT_TIPO = 1;
         $orientacao->ORNT_CONS_TUT = $request->get('ORNT_CONS_TUT');
@@ -237,9 +206,53 @@ class ChildController extends Controller
 
         $orientacao->FK_CRIA_ID = $lastID_crianca;
         $orientacao->save();
+
+        $result = count($request->get('CRIA_EXTR_NOME'));
+
+        for($i =0; $i< $result ; $i++){
+
+            $cria_extr = new ldcr_cria_externa();
+            $cria_extr->FK_CRIA_ID = $lastID_crianca;
+
+            $cria_extr->CRIA_EXTR_NOME = $request->CRIA_EXTR_NOME[$i];
+            $cria_extr->CRIA_EXTR_FAM_NOME = $request->CRIA_EXTR_FAM_NOME[$i];
+            $cria_extr->CRIA_EXTR_NOME_INSTI = $request->CRIA_EXTR_NOME_INSTI[$i];
+            $cria_extr->CRIA_EXTR_END_INSTI = $request->CRIA_EXTR_END_INSTI[$i];
+            $cria_extr->CRIA_EXTR_DATA_NASC = $request->CRIA_EXTR_DATA_NASC[$i];
+            $cria_extr->CRIA_EXTR_FAM_CONT = $request->CRIA_EXTR_FAM_CONT[$i];
+            $cria_extr->CRIA_EXTR_MSM_INSTI = $request->CRIA_EXTR_MSM_INSTI[$i];
+            $cria_extr->CRIA_EXTR_OUTR_INST = $request->CRIA_EXTR_OUTR_INST[$i];
+            $cria_extr->CRIA_EXTR_FAM_TER = $request->CRIA_EXTR_FAM_TER[$i];
+            $cria_extr->CRIA_EXTR_ADOT = $request->CRIA_EXTR_ADOT[$i];
+
+            $cria_extr->save();
+
+     }
         
 
-        $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');
+        $result = count($request->get('RESP_NOME'));
+      
+       for ($i =0; $i< $result ; $i++ ){
+             $responsavel = new ldcr_responsaveis();
+
+            $responsavel->RESP_NOME = $request->RESP_NOME[$i];
+            $responsavel->FK_RESP_ESTD = $request->FK_RESP_ESTD[$i];
+            $responsavel->FK_RESP_CIDADE = $request->FK_RESP_CIDADE[$i];
+            $responsavel->RESP_END_CSA = $request->RESP_END_CSA[$i];
+            $responsavel->RESP_BAIRRO = $request->RESP_BAIRRO[$i];
+            $responsavel->RESP_DT_NASCI = $request->RESP_DT_NASCI[$i];
+            $responsavel->RESP_RG = $request->RESP_RG[$i];
+            $responsavel->RESP_CPF = $request->RESP_CPF[$i];
+            $responsavel->RESP_TEL = $request->RESP_TEL[$i];
+            $responsavel->RESP_PONT_REF = $request->RESP_PONT_REF[$i];
+            $responsavel->RESP_PROF = $request->RESP_PROF[$i];
+            $responsavel->RESP_END_TRAB = $request->RESP_END_TRAB[$i];
+            $responsavel->FK_GRPA_ID = $request->FK_GRPA_ID[$i];
+
+            $responsavel->save();
+       }
+
+         $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');       
 
         foreach($acmt_qpi->FK_QEPI_ID as $qepi_id){
                 $qpia = new Ldcr_acmt_questoes_pia_iten();

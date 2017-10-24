@@ -97,7 +97,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_CRIA_ESTD" id="id_estd" class="form-control state_city">
+                                                                <select name="FK_CRIA_ESTD" id="state_city" class="form-control state_city ">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($stats as $state)
                                                                         <option value="{{ $state->ESTD_UF }}">{{ $state->ESTD_DESC }}</option>
@@ -108,7 +108,7 @@
                                                     <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label>Cidade</label><br>
-                                                                <select name="FK_CRIA_CIDADE" id="id_cidade" class="form-control city_state">
+                                                                <select name="FK_CRIA_CIDADE" id="city_state" class="form-control city_state ">
                                                                 <option value="">Selecione</option>
                                                                 @foreach($cities as $city)
                                                                     <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
@@ -377,19 +377,30 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Nome da Criança Externa</label>
-                                                            <input type="text" class="form-control" placeholder="Nome da criança externa" name="CRIA_EXTR_NOME">
+                                                            <input type="text" class="form-control" placeholder="Nome da criança externa" name="CRIA_EXTR_NOME[]">
                                                         </div>
                                                     </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label>Nome do Responsável</label>
+                                                            <input type="text" class="form-control" placeholder="Nome da criança externa" name="CRIA_EXTR_FAM_NOME[]">
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                    <div class="row">
+
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Nome da Instituição de Acolhimento</label>
-                                                            <input type="text" class="form-control" placeholder="Nome do Responsável" name="CRIA_EXTR_NOME_INSTI">
+                                                            <input type="text" class="form-control" placeholder="Nome do Responsável" name="CRIA_EXTR_NOME_INSTI[]">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Endereço da(s) instituição(ões)</label>
-                                                            <input type="text" class="form-control" placeholder="Endereço da Instituição" name="CRIA_EXTR_END_INSTI">
+                                                            <input type="text" class="form-control" placeholder="Endereço da Instituição" name="CRIA_EXTR_END_INSTI[]">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -399,19 +410,26 @@
                                                     <div class="col-md-3">
                                                             <div class="form-group">
                                                                 <label>Data de Nascimento</label>
-                                                                <input type="date" class="form-control"  name="CRIA_EXTR_DATA_NASC">
+                                                                <input type="date" class="form-control"  name="CRIA_EXTR_DATA_NASC[]">
                                                             </div>
                                                     </div>
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Contato</label>
-                                                            <input type="number" class="form-control" placeholder="Contato" name="CRIA_EXTR_FAM_CONT">
+                                                            <input type="number" class="form-control" placeholder="Contato" name="CRIA_EXTR_FAM_CONT[]">
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div class="row">
+                                                 <div class="row" id="div_cria_extrList">
+                                                 </div>
+                                            
+                                               <div class="row">
+                                                 <input type="button" value="+" onclick="cria_extrList.insert()" />
+                                             </div>
+
+                                                <!--<div class="row">
 
                                                     <div class="col-md-2">
                                                         <div class="form-group">
@@ -441,7 +459,7 @@
                                                         </div>
                                                     </div>
 
-                                                </div>
+                                                </div>-->
                                         </article>
                                     </section><br>
 
@@ -1011,8 +1029,7 @@
 
                                      <section id="hide_section" >
                                         <article>
-                                            <div class="btn func">12. Identificações dos Pais ou Responsáveis</div>
-                                            <div id="divResponsavelBase">
+                                            <div class="btn func">12. Identificações dos Pais ou Responsáveis</div>                                            
                                                 
                                                 <div class="row">         
                                                     <div class="col-md-4">
@@ -1041,7 +1058,7 @@
                                                     <div class="col-md-2">
                                                         <div class="form-group">
                                                             <label>Estado</label><br>
-                                                                <select name="FK_RESP_ESTD[]" id="id_estd" class="form-control state_city_resp">
+                                                                <select name="FK_RESP_ESTD[]" id="state_city_resp" class="form-control state_city_resp">
                                                                     <option value="">Selecione</option>
                                                                     @foreach($stats as $state)
                                                                         <option value="{{ $state->ESTD_UF}}">{{ $state->ESTD_DESC }}</option>
@@ -1132,12 +1149,12 @@
                                                     </div>
                                                 </div>  
 
-                                            </div>
-
-                                                <div id="divResponsavelList">
+                                                <div class="row" id="divResponsavelList">
                                                  </div>
                                             
+                                               <div class="row">
                                                  <input type="button" value="+" onclick="responsavelList.insert()" />
+                                             </div>
                                         </article>
                                     </section><br>
 
@@ -1482,7 +1499,7 @@
                 data:{'uf':estd_uf},
                 success:function(data){
                     //console.log('com sucesso!');
-                    console.log(data);
+                    //console.log(data);
                     //console.log(data.length);
 
                     op+='<option value="0" selected disabled>Selecione a cidade</option>';
@@ -1541,8 +1558,8 @@
 </script>
 
 <div id="divResponsavelBase" style="display:none;">
-                                <div class="row">                                                   
-
+       <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
+                                <div class="row">      
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label>Nome do Responsável</label>
@@ -1660,9 +1677,10 @@
                                                     </div>
                                                    
                                                 </div>
-                                                <input type="button" value="+" onClick="respList.insert()" />
+                                                <input type="button" value="Remover" onclick="responsavelList.remove(this.parentNode)" /><br><br>
                                             </div>
 
+<!-- form dinamico dos responsaveis da criança -->
 <script>
     responsavelList = {
     'init': function()
@@ -1673,8 +1691,10 @@
     
     'insert': function()
     {
+        responsavelList.init();
         var newDiv = this.divResponsavelBase.cloneNode(true);
-        newDiv.style.display = " ";
+        newDiv.style.display = '';
+
         console.log('newDiv => ', newDiv);
         this.divResponsavelList.appendChild(newDiv);
     },
@@ -1685,5 +1705,92 @@
     }
 };
 responsavelList.init();
+</script>
+
+<!-- form dinamico da criança externa -->
+
+<div id="div_cria_extrBase" style="display:none;">
+       <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
+ <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Nome da Criança Externa</label>
+                    <input type="text" class="form-control" placeholder="Nome da criança externa" name="CRIA_EXTR_NOME[]">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Nome do Responsável</label>
+                    <input type="text" class="form-control" placeholder="Nome da criança externa" name="CRIA_EXTR_FAM_NOME[]">
+                </div>
+            </div>
+
+        </div>
+            <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Nome da Instituição de Acolhimento</label>
+                    <input type="text" class="form-control" placeholder="Nome do Responsável" name="CRIA_EXTR_NOME_INSTI[]">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Endereço da(s) instituição(ões)</label>
+                    <input type="text" class="form-control" placeholder="Endereço da Instituição" name="CRIA_EXTR_END_INSTI[]">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Data de Nascimento</label>
+                        <input type="date" class="form-control"  name="CRIA_EXTR_DATA_NASC[]">
+                    </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Contato</label>
+                    <input type="number" class="form-control" placeholder="Contato" name="CRIA_EXTR_FAM_CONT[]">
+                </div>
+            </div>
+        </div>
+        <input type="button" value="Remover" onclick="cria_extrList.remove(this.parentNode)" /><br><br>
+</div>
+
+
+      
+
+
+<!-- form dinamico da criança externa -->
+<script>
+    cria_extrList = {
+    'init': function()
+    {
+        this.div_cria_extrList = document.getElementById('div_cria_extrList');
+        this.div_cria_extrBase = document.getElementById('div_cria_extrBase');
+    },
+    
+    'insert': function()
+    {
+        cria_extrList.init();
+        var newDiv = this.div_cria_extrBase.cloneNode(true);
+        newDiv.style.display = '';
+
+        console.log('newDiv => ', newDiv);
+        this.div_cria_extrList.appendChild(newDiv);
+    },
+    
+    'remove': function(el)
+    {
+        el.parentNode.removeChild(el);
+    }
+};
+cria_extrList.init();
 </script>
 @endsection

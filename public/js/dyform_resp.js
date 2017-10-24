@@ -1,4 +1,4 @@
-responsavelList = {
+    responsavelList = {
     'init': function()
     {
         this.divResponsavelList = document.getElementById('divResponsavelList');
@@ -7,8 +7,9 @@ responsavelList = {
     
     'insert': function()
     {
+        responsavelList.init();
         var newDiv = this.divResponsavelBase.cloneNode(true);
-        newDiv.style.display = ' ';
+        newDiv.style.display = '';
         console.log('newDiv => ', newDiv);
         this.divResponsavelList.appendChild(newDiv);
     },
