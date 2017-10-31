@@ -96,6 +96,7 @@ class ChildController extends Controller
     //Save
     public function store(Request $request)
     {
+        //criação das estancias que serão inseridas no banco
         $crianca = new Ldcr_crianca();
         $acolhimento = new Ldcr_acolhimento();
         $acmt_qpi = new Ldcr_acmt_questoes_pia_iten();
@@ -103,7 +104,9 @@ class ChildController extends Controller
         $saude = new ldcr_cria_saude();
         $responsavel = new ldcr_responsaveis();
         $orientacao = new ldcr_orientacao();
+        $doc_apsen = new Ldcr_doc_apsen();
 
+        //inserindo na tabela de criança
         $crianca->CRIA_NOME = $request->get('CRIA_NOME');
         $crianca->FK_CRIA_ESTD = $request->get('FK_CRIA_ESTD');
         $crianca->FK_CRIA_CIDADE = $request->get('FK_CRIA_CIDADE');
@@ -118,6 +121,7 @@ class ChildController extends Controller
         $crianca->save();
         $lastID_crianca = $crianca->id;
 
+        //inserindo na tabela de acolhimento
         $acolhimento->FK_CONS_ID = $request->get('FK_CONS_ID');
         $acolhimento->ACMT_VARA_INFAN = $request->get('ACMT_VARA_INFAN');
         $acolhimento->ACMT_DTA_ACOLHI = $request->get('ACMT_DTA_ACOLHI');
@@ -152,6 +156,7 @@ class ChildController extends Controller
         $acolhimento->save();
         $lastID_acmt = $acolhimento->id;  
 
+        //inserindo na tabela de saúde
         $saude->CSAU_CART_VAC = $request->get('CSAU_CART_VAC');
         $saude->CSAU_DIAG_MED = $request->get('CSAU_DIAG_MED');
         $saude->CSAU_DTA_DIAG_MED = $request->get('CSAU_DTA_DIAG_MED');
@@ -162,6 +167,7 @@ class ChildController extends Controller
         $saude->FK_ACMT_ID = $lastID_acmt;
         $saude->save();
 
+        //inserindo na tabela de orientação, tipo 1 e 2
         $orientacao->ORNT_TIPO = 1;
         $orientacao->ORNT_CONS_TUT = $request->get('ORNT_CONS_TUT');
         $orientacao->ORNT_CONS_TUT_OBS = $request->get('ORNT_CONS_TUT_OBS');
@@ -207,6 +213,7 @@ class ChildController extends Controller
         $orientacao->FK_CRIA_ID = $lastID_crianca;
         $orientacao->save();
 
+        //inserindo na tabela de criança externa após pegar a quantidade de crianças que foram inseridas nos forms dinâmicos
         $result = count($request->get('CRIA_EXTR_NOME'));
 
         for($i =0; $i< $result ; $i++){
@@ -229,7 +236,7 @@ class ChildController extends Controller
 
      }
         
-
+        //inserindo na tabela de responsáveis após pegar a quantidade de responsáveis que foram inseridos nos forms dinâmicos
         $result = count($request->get('RESP_NOME'));
       
        for ($i =0; $i< $result ; $i++ ){
@@ -252,8 +259,10 @@ class ChildController extends Controller
             $responsavel->save();
        }
 
+        //pegando o array de todas as questões que foram inseridas nos checkbox's
          $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');       
 
+         //inserindo na tabela de questões do pia
         foreach($acmt_qpi->FK_QEPI_ID as $qepi_id){
                 $qpia = new Ldcr_acmt_questoes_pia_iten();
 
@@ -269,6 +278,21 @@ class ChildController extends Controller
                 $qpia->save();
 
         }
+
+        //pegando o array de todos documentos que foram inseridos nos checkbox's
+        $doc_apsen->FK_TPDO_ID = $request->get('FK_TPDO_ID');
+
+        //inserindo na tabela de doc apsen
+        foreach($doc_apsen->FK_TPDO_ID as $doc){
+                $doc = new Ldcr_doc_apsen();
+                $doc->FK_ACMT_ID = $lastID_acmt;
+                $doc->FK_TPDO_ID = $doc;
+                $doc->SIT_DOC_APRESEN =  "T";
+
+                $doc->save();
+
+        }
+
 
         return redirect('register_child')->with(['success' => 'Criança editado com sucesso!']);    
 
