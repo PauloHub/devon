@@ -1585,7 +1585,7 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Estado</label><br>
-            <select name="FK_RESP_ESTD[]"  class="form-control">
+            <select name="FK_RESP_ESTD[]" id="state_city_resp" class="form-control state_city_resp">
                 <option value="">Selecione</option>
                 <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
@@ -1596,7 +1596,7 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Cidade</label><br>
-            <select name="FK_RESP_CIDADE[]"  class="form-control">
+            <select name="FK_RESP_CIDADE[]" id="id_cidade" class="form-control city_state_resp">
                 <option value="">Selecione</option>
                 <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
