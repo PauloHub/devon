@@ -34,4 +34,6 @@ Route::get('/find_counselors',  'CounselorController@find_counselors');
 Route::get('/register_child', 'ChildController@create', 'CityController@state_city');
 Route::post('/register_child', 'ChildController@store');
 
+Route::get('/list_child', 'ChildController@list');
+
 

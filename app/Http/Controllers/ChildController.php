@@ -346,4 +346,10 @@ class ChildController extends Controller
     {
         //
     }
+
+    public function list()
+    {
+        $childs = Ldcr_crianca::all();
+        return view('list_child', compact('childs'));
+    }
 }

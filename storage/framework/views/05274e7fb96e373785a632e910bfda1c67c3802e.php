@@ -34,12 +34,12 @@
                                     </div>
                                     <ul>
                                         <li style="list-style-type:none; text-align: right; margin-right: 8%;">
-                                            <a href="#" class="btn btn-primary btn-lg">
-                                                <span class="glyphicon glyphicon-list"></span> Listar Crianças</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                            <a href="<?php echo e(url('/list_child')); ?>" class="btn btn-primary btn-lg">
+                                            <span class="glyphicon glyphicon-list"></span> Listar Crianças</a>
+                                        </li>
+                                    </ul>
                                 </div>
+                            </div>
                                 <div class="content">
 
                                     <!-- aqui entra as views -->
@@ -1585,7 +1585,7 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Estado</label><br>
-            <select name="FK_RESP_ESTD[]" id="state_city_resp" class="form-control state_city_resp">
+            <select name="FK_RESP_ESTD[]" class="form-control">
                 <option value="">Selecione</option>
                 <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
@@ -1596,7 +1596,7 @@
     <div class="col-md-2">
         <div class="form-group">
             <label>Cidade</label><br>
-            <select name="FK_RESP_CIDADE[]" id="id_cidade" class="form-control city_state_resp">
+            <select name="FK_RESP_CIDADE[]" class="form-control">
                 <option value="">Selecione</option>
                 <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
@@ -1761,9 +1761,6 @@
 </div>
 <input type="button" value="Remover" onclick="cria_extrList.remove(this.parentNode)" /><br><br>
 </div>
-
-
-
 
 
 <!-- form dinamico da criança externa -->

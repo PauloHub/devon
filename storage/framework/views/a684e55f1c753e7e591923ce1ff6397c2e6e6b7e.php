@@ -13,14 +13,13 @@
                                     <div class="col-md-5">
                                         <ul>
                                             <li style="list-style-type:none;">
-                                                <h4 class="title">Lista de Funcionários</h4>
+                                                <h4 class="title">Lista de Crianças</h4>
                                             </li>
                                             <li style="list-style-type:none;">
-                                                <p class="category">Lista de Funcionários Cadastrados no Sistema</p>
+                                                <p class="category">Lista de Crianças Cadastradas no Sistema</p>
                                             </li>
                                         </ul>
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
                             </div>
                             <div class="content">
@@ -42,13 +41,12 @@
                                             </tr>
                                         </thead>
                                             
-                                         <?php $__currentLoopData = $employees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $employee): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>                                                    
-                                            <tbody>
-                                               
-                                                 <td><?php echo e($employee->ID); ?></td>
-                                                 <td style="padding-left:2%; width: 70%";><?php echo e($employee->FUNC_NOME); ?></td>
-                                                 <td><a href="<?php echo e(url('/show_employee', $employee->ID)); ?>" > <i class="fa fa-eye" aria-hidden="true" style="margin-left:19%;"></i></a></td>
-                                                 <td><a href="<?php echo e(url('/edit_employee', $employee->ID)); ?>" > <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-left:19%;"></i></a></td>
+                                         <?php $__currentLoopData = $childs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>                                                    
+                                            <tbody>                                               
+                                                 <td><?php echo e($child->ID); ?></td>
+                                                 <td style="padding-left:2%; width: 70%";><?php echo e($child->CRIA_NOME); ?></td>
+                                                 <td><a href="<?php echo e(url('/show_child', $child->ID)); ?>" > <i class="fa fa-eye" aria-hidden="true" style="margin-left:19%;"></i></a></td>
+                                                 <td><a href="<?php echo e(url('/edit_child', $child->ID)); ?>" > <i class="fa fa-pencil-square-o" aria-hidden="true" style="margin-left:19%;"></i></a></td>
                                             </tr>
                                             </tbody>
                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

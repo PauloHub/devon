@@ -15,10 +15,10 @@
                                     <div class="col-md-5">
                                         <ul>
                                             <li style="list-style-type:none;">
-                                                <h4 class="title">Ficha de Cadastro</h4>
+                                                <h4 class="title">Lista de Funcionários</h4>
                                             </li>
                                             <li style="list-style-type:none;">
-                                                <p class="category">Ficha de Cadastro de Funcionários no Sistema</p>
+                                                <p class="category">Lista de Funcionários Cadastrados no Sistema</p>
                                             </li>
                                         </ul>
                                     </div>

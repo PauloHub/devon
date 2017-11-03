@@ -16,11 +16,11 @@ class Ldcr_crianca extends Model
     	'FK_CRIA_CIDADE',
     	'FK_CRIA_ESTD',
     	'CRIA_DTA_NASC',
-            'CRIA_IDADE_EST',
+        'CRIA_IDADE_EST',
     	'CRIA_CERT_NUM',
     	'CRIA_CERT_LIVR',
     	'CRIA_CERT_FOLH',
-             'FK_RACA_ID',
+        'FK_RACA_ID',
     	'CRIA_SEXO',
     	'CRIA_SIT'
     ];
