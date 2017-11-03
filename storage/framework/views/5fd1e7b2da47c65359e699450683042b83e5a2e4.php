@@ -77,8 +77,9 @@
                     </a>
                 </li>
                 <?php
+                //Verificando qual é o link atual para deixar o menu selecionado referente a onde esta
                     $link = $_SERVER ['REQUEST_URI'];
-                    if($link == '/devon/public/register_child' or $link == '/register_child'){
+                    if($link == '/devon/public/register_child' or $link == '/register_child' or $link == '/devon/public/list_child' or $link == '/list_child'){
                         echo "<li class='active'>";
                     }else{
                         echo "<li>";
