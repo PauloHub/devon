@@ -283,10 +283,10 @@ class ChildController extends Controller
         $doc_apsen->FK_TPDO_ID = $request->get('FK_TPDO_ID');
 
         //inserindo na tabela de doc apsen
-        foreach($doc_apsen->FK_TPDO_ID as $doc){
+        foreach($doc_apsen->FK_TPDO_ID as $doct){
                 $doc = new Ldcr_doc_apsen();
                 $doc->FK_ACMT_ID = $lastID_acmt;
-                $doc->FK_TPDO_ID = $doc;
+                $doc->FK_TPDO_ID = $doct;
                 $doc->SIT_DOC_APRESEN =  "T";
 
                 $doc->save();

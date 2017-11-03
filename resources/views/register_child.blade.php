@@ -658,7 +658,7 @@
                                                                     $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
                                                                     ?>
                                                                     @foreach($tipo_documentos as $tipo_documento)            
-                                                                    @if($tipo_documento->TPDO_ID != 1 )
+                                                                    @if($tipo_documento->TPDO_ID <= 10 )
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
                                                                         <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
@@ -690,7 +690,7 @@
                                                                 $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
                                                                 ?>
                                                                 @foreach($tipo_documentos as $tipo_documento)            
-                                                                @if($tipo_documento->TPDO_ID != 2 && $tipo_documento->TPDO_ID != 3 )
+                                                                @if($tipo_documento->TPDO_ID > 10)
                                                                 <?php $flag = $flag + 1; ?>
                                                                 <li style="list-style-type:none;">          
                                                                     <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>

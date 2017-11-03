@@ -657,7 +657,7 @@
                                                                     $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
                                                                     ?>
                                                                     <?php $__currentLoopData = $tipo_documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                    <?php if($tipo_documento->TPDO_ID != 1 ): ?>
+                                                                    <?php if($tipo_documento->TPDO_ID <= 10 ): ?>
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
                                                                         <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento->TPDO_ID); ?>"/><?php echo e($tipo_documento->TPDO_DESC); ?></label>
@@ -689,7 +689,7 @@
                                                                 $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
                                                                 ?>
                                                                 <?php $__currentLoopData = $tipo_documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                <?php if($tipo_documento->TPDO_ID != 2 && $tipo_documento->TPDO_ID != 3 ): ?>
+                                                                <?php if($tipo_documento->TPDO_ID > 10): ?>
                                                                 <?php $flag = $flag + 1; ?>
                                                                 <li style="list-style-type:none;">          
                                                                     <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento->TPDO_ID); ?>"/><?php echo e($tipo_documento->TPDO_DESC); ?></label>
