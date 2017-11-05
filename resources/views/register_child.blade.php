@@ -43,8 +43,10 @@
                                 </div>
                             </div>
                                 <div class="content">
-
-                                    <!-- aqui entra as views -->
+                                    @if(session('success'))
+                                        <p class="alert-success" align="center">
+                                        {{session('success')}} </p>
+                                    @endif
 
                                     <form action="{{ url('/register_child') }}" method="POST">
                                         {{csrf_field()}}

@@ -28,7 +28,7 @@
                             <div class="content">
 
                                 @if(session('success'))
-                                    <p class="alert-success">
+                                    <p class="alert-success" align="center">
                                     {{session('success')}} </p>
                                 @endif
 

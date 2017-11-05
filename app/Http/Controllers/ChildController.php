@@ -307,7 +307,15 @@ class ChildController extends Controller
     //Show one
     public function show($id)
     {
-        //
+        $crianca = new Ldcr_crianca();
+        $acolhimento = new Ldcr_acolhimento();
+        $acmt_qpi = new Ldcr_acmt_questoes_pia_iten();
+        $cria_extr = new ldcr_cria_externa();
+        $saude = new ldcr_cria_saude();
+        $responsavel = new ldcr_responsaveis();
+        $orientacao = new ldcr_orientacao();
+        $doc_apsen = new Ldcr_doc_apsen();
+        
     }
 
     /**

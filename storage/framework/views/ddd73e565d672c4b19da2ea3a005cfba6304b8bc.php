@@ -31,7 +31,7 @@
                             <div class="content">
 
                                 <?php if(session('success')): ?>
-                                    <p class="alert-success">
+                                    <p class="alert-success" align="center">
                                     <?php echo e(session('success')); ?> </p>
                                 <?php endif; ?>
 

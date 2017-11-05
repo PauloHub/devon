@@ -79,7 +79,10 @@
                 <?php
                 //Verificando qual é o link atual para deixar o menu selecionado referente a onde esta
                     $link = $_SERVER ['REQUEST_URI'];
-                    if($link == '/devon/public/register_child' or $link == '/register_child' or $link == '/devon/public/list_child' or $link == '/list_child'){
+                    if(
+                        $link == '/devon/public/register_child' or $link == '/register_child'
+                        or $link == '/devon/public/list_child' or $link == '/list_child'
+                    ){
                         echo "<li class='active'>";
                     }else{
                         echo "<li>";
@@ -90,14 +93,26 @@
                         <p>Crianças</p>
                     </a>
                 </li>
-                <li>
-                    <a href="doadores.php">
+                <?php
+                    $link = $_SERVER ['REQUEST_URI'];
+                    if(
+                        $link == '/devon/public/register_donor' or $link == '/register_donor'
+                        or $link == '/devon/public/list_donor' or $link == '/list_donor'
+                        or $link == '/devon/public/show_donor/' or $link == '/show_donor'
+                        or $link == '/devon/public/edit_donor/' or $link == '/edit_donor'
+                    ){
+                        echo "<li class='active'>";
+                    }else{
+                        echo "<li>";
+                    }
+                ?>
+                    <a href="<?php echo e(url('register_donor')); ?>">
                         <i class="glyphicon glyphicon-gift"></i>
                         <p>Doadores</p>
                     </a>
                 </li>
                 <li>
-                    <a href="doacoes.php">
+                    <a href="<?php echo e(url('register_donation')); ?>">
                         <i class="glyphicon glyphicon-piggy-bank"></i>
                         <p>Doações</p>
                     </a>
@@ -110,7 +125,10 @@
                 </li>
                 <?php
                     $link = $_SERVER ['REQUEST_URI'];
-                    if($link == '/devon/public/register_employee' or $link == '/register_employee'){
+                    if(
+                        $link == '/devon/public/register_employee' or $link == '/register_employee'
+                        or $link == '/devon/public/list_employee' or $link == '/list_employee'
+                    ){
                         echo "<li class='active'>";
                     }else{
                         echo "<li>";
