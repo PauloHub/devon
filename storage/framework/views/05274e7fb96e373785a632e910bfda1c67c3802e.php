@@ -41,8 +41,10 @@
                                 </div>
                             </div>
                                 <div class="content">
-
-                                    <!-- aqui entra as views -->
+                                    <?php if(session('success')): ?>
+                                        <p class="alert-success" align="center">
+                                        <?php echo e(session('success')); ?> </p>
+                                    <?php endif; ?>
 
                                     <form action="<?php echo e(url('/register_child')); ?>" method="POST">
                                         <?php echo e(csrf_field()); ?>

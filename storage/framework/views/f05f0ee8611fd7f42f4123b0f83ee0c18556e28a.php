@@ -97,7 +97,7 @@
                                             <select name="FK_DOAD_ESTD" id="id_estd" class="form-control state_city" required>
                                                 <option value="">Selecione</option>
                                                 <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <option value="<?php echo e($state->ESTD_ID); ?>"><?php echo e($state->ESTD_DESC); ?></option>
+                                                    <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </select>
                                         </div>
@@ -111,7 +111,7 @@
                                                 <select name="FK_DOAD_CIDADE" id="id_cidade" class="form-control city_state" required>
                                                     <option value="">Selecione</option>
                                                     <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($city->CIDADE_ID); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
+                                                        <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
                                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </select>
                                             </div>
@@ -160,8 +160,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-    $(document).ready(DOADtion(){
-        $(document).on('change', ' .state_city', DOADtion(){
+     $(document).ready(function(){
+        $(document).on('change', ' .state_city', function(){
            //console.log("mudou!");
 
             var estd_uf = $(this).val();
@@ -175,7 +175,7 @@
                 type: 'get',
                 url: '<?php echo URL::to('find_cities'); ?>', 
                 data:{'uf':estd_uf},
-                success:DOADtion(data){
+                success:function(data){
                     //console.log('com sucesso!');
                     console.log(data);
                     //console.log(data.length);
@@ -189,7 +189,7 @@
                     div.find('.city_state').append(op);
 
                 },
-                error:DOADtion(){
+                error:function(){
 
                 }
             });
