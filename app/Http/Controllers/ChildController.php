@@ -23,6 +23,7 @@ use App\ldcr_cria_externa;
 use App\ldcr_cria_saude;
 use App\ldcr_responsaveis;
 use App\ldcr_orientacao;
+use App\Ldcr_crianca_resp;
 
 use Illuminate\Support\Facades\DB;
 
@@ -104,7 +105,7 @@ class ChildController extends Controller
         $saude = new ldcr_cria_saude();
         $responsavel = new ldcr_responsaveis();
         $orientacao = new ldcr_orientacao();
-        $doc_apsen = new Ldcr_doc_apsen();
+        $doc_apsen = new Ldcr_doc_apsen();                
 
         //inserindo na tabela de criança
         $crianca->CRIA_NOME = $request->get('CRIA_NOME');
@@ -257,6 +258,14 @@ class ChildController extends Controller
             $responsavel->FK_GRPA_ID = $request->FK_GRPA_ID[$i];
 
             $responsavel->save();
+            $lastID_resp = DB::table('ldcr_responsaveis')->select('RESP_ID')->where('RESP_CPF', '=',  $responsavel->RESP_CPF)->get();
+            foreach($lastID_resp as $resp_id){
+                $lastID_resp = $resp_id->RESP_ID;
+            }
+            $cria_resp = new Ldcr_crianca_resp();
+            $cria_resp->FK_CRIA_ID = $lastID_crianca;
+            $cria_resp->FK_RESP_ID = $lastID_resp;
+            $cria_resp->save();
        }
 
         //pegando o array de todas as questões que foram inseridas nos checkbox's
@@ -293,7 +302,6 @@ class ChildController extends Controller
 
         }
 
-
         return redirect('register_child')->with(['success' => 'Criança editado com sucesso!']);    
 
     }
@@ -307,15 +315,23 @@ class ChildController extends Controller
     //Show one
     public function show($id)
     {
-        $crianca = new Ldcr_crianca();
-        $acolhimento = new Ldcr_acolhimento();
-        $acmt_qpi = new Ldcr_acmt_questoes_pia_iten();
-        $cria_extr = new ldcr_cria_externa();
-        $saude = new ldcr_cria_saude();
-        $responsavel = new ldcr_responsaveis();
-        $orientacao = new ldcr_orientacao();
-        $doc_apsen = new Ldcr_doc_apsen();
+        $crianca = Ldcr_crianca::findOrFail($id);
+       
+        $acolhimento = DB::table('ldcr_acolhimento')->select()->where('FK_CRIA_ID', '=', $id)->get();
+        $acolhimento_id = DB::table('ldcr_acolhimento')->select('ACMT_ID')->where('FK_CRIA_ID', '=', $id)->get();
+        foreach($acolhimento_id as $id_acmt){
+            $acolhimento_id = $id_acmt->ACMT_ID;
+        }
         
+        $acmt_qpi = DB::table('ldcr_acmt_questoes_pia_iten')->select()->where('FK_ACMT_ID', '=', $acolhimento_id)->get();
+        $cria_extr = DB::table('ldcr_cria_externa')->select()->where('FK_CRIA_ID', '=', $id)->get();
+        $saude = DB::table('ldcr_cria_saude')->select()->where('FK_ACMT_ID', '=', $acolhimento_id)->get();        
+        $cria_resp = DB::table('ldcr_crianca_resp')->select()->where('FK_CRIA_ID', '=', $id)->get();
+        $responsavel = DB::table('ldcr_responsaveis')->get();
+        $orientacao = DB::table('ldcr_orientacao')->select()->where('FK_CRIA_ID', '=', $id)->get();
+        $doc_apsen = DB::table('ldcr_doc_apsen')->select()->where('FK_ACMT_ID', '=', $acolhimento_id)->get();
+
+        return view('show_child', compact('crianca','acolhimento','acmt_qpi','cria_extr','saude','responsavel','orientacao','doc_apsen'));
     }
 
     /**

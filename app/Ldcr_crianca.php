@@ -11,7 +11,7 @@ class Ldcr_crianca extends Model
 
     protected $fillable = [
 
-    	'CRIA_ID',
+    	'ID',
     	'CRIA_NOME',
     	'FK_CRIA_CIDADE',
     	'FK_CRIA_ESTD',

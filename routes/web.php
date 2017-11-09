@@ -22,6 +22,7 @@ Route::get('/register_child', 'ChildController@create');
 Route::get('/register_child', 'ChildController@create', 'CityController@state_city');
 Route::post('/register_child', 'ChildController@store');
 Route::get('/list_child', 'ChildController@list');
+Route::get('/show_child/{id}', 'ChildController@show');
 
 Route::get('/register_donor', 'DonorController@create');
 Route::post('/register_donor', 'DonorController@store');

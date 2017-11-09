@@ -12,6 +12,7 @@ class Ldcr_responsaveis extends Model
     protected $fillable = [
 
     	'RESP_ID',
+        'FK_CRIA_ID',
     	'RESP_NOME',
     	'RESP_NOME_MAE',
     	'RESP_NOME_PAI',
@@ -20,7 +21,7 @@ class Ldcr_responsaveis extends Model
     	'RESP_END_CSA',
     	'RESP_RG',
     	'RESP_CPF',
-             'RESP_END_CSA',
+        'RESP_END_CSA',
     	'RESP_BAIRRO',
     	'RESP_CIDADE',
     	'RESP_TEL',
