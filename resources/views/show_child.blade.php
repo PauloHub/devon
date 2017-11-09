@@ -61,9 +61,9 @@
                                                         <label>Conselho Tutelar</label><br>
                                                         <select class="form-control advice_counselor">
                                                             <option value="">Selecione</option>
-                                                            @foreach($conselhos as $conselho)
-                                                            <option value="{{$conselho->ID}}">{{$conselho->COTL_NOME}}</option>
-                                                            @endforeach
+                                                            
+                                                           
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
@@ -73,9 +73,9 @@
                                                         <!-- Salvar o FK_CONS_ID na tabela ldcr_acolhimento  -->
                                                         <select name="FK_CONS_ID" class="form-control counselor_advice">
                                                             <option value="">Selecione</option>
-                                                            @foreach($conselheiros as $conselheiro)
-                                                            <option value="{{$conselheiro->CONS_ID}}">{{$conselheiro->CONS_NOME}}</option>
-                                                            @endforeach
+                                                            
+                                                            
+                                                            
                                                         </select>
                                                     </div>
                                                 </div> 
@@ -101,9 +101,7 @@
                                                     <label>Estado</label><br>
                                                     <select name="FK_CRIA_ESTD" id="state_city" class="form-control state_city ">
                                                         <option value="">Selecione</option>
-                                                        @foreach($stats as $state)
-                                                        <option value="{{ $state->ESTD_UF }}">{{ $state->ESTD_DESC }}</option>
-                                                        @endforeach
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -112,9 +110,7 @@
                                                     <label>Cidade</label><br>
                                                     <select name="FK_CRIA_CIDADE" id="city_state" class="form-control city_state ">
                                                         <option value="">Selecione</option>
-                                                        @foreach($cities as $city)
-                                                        <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
-                                                        @endforeach
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -160,9 +156,7 @@
                                                     <label>Raça/Cor</label><br>
                                                     <select name="FK_RACA_ID" class="form-control">
                                                         <option value="">Selecione</option>
-                                                        @foreach($racas as $raca)
-                                                        <option value="{{ $raca->RACA_ID }}">{{ $raca->RACA_DESCRICAO}}</option>
-                                                        @endforeach
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -209,11 +203,7 @@
                                                 <label>Meio de Chegada</label><br>
                                                 <select name="FK_QEPI_ID[]"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                     <option value="">Selecione</option>
-                                                    @foreach($qpis as $qpi)
-                                                    @if($qpi->FK_QESP_ID == 1 && $qpi->QEPI_SIT == 1)
-                                                    <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
-                                                    @endif
-                                                    @endforeach
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -319,11 +309,7 @@
                                                 <label>Proibição judicial de visitas</label><br>
                                                 <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                     <option value="">Selecione</option>
-                                                    @foreach($qpis as $qpi)
-                                                    @if($qpi->FK_QESP_ID == 2 && $qpi->QEPI_SIT == 1)
-                                                    <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
-                                                    @endif
-                                                    @endforeach
+                                                   
                                                 </select>
                                             </div>
                                         </div>
@@ -332,11 +318,7 @@
                                                 <label>Situação do poder familiar</label><br>
                                                 <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                     <option value="">Selecione</option>
-                                                    @foreach($qpis as $qpi)
-                                                    @if($qpi->FK_QESP_ID == 3 && $qpi->QEPI_SIT == 1)
-                                                    <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
-                                                    @endif
-                                                    @endforeach
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -477,26 +459,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">  
                                                                 <ul>
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 4;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    @foreach($qpis as $qpi)            
-                                                                    @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
-                                                                    </li>
-                                                                    @if($flag == $dividir)
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    @endif
-                                                                    @endif
-                                                                    @endforeach
+                                                                    
                                                                 </ul>    
                                                             </div>  
                                                         </div>
@@ -512,26 +475,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">  
                                                                 <ul> 
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 5;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    @foreach($qpis as $qpi)            
-                                                                    @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
-                                                                    </li>
-                                                                    @if($flag == $dividir)
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    @endif
-                                                                    @endif
-                                                                    @endforeach
+                                                                    
                                                                 </ul>    
                                                             </div>  
                                                         </div> 
@@ -546,26 +490,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">  
                                                                 <ul>
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 6;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    @foreach($qpis as $qpi)            
-                                                                    @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
-                                                                    </li>
-                                                                    @if($flag == $dividir)
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    @endif
-                                                                    @endif
-                                                                    @endforeach
+                                                                   
                                                                 </ul>    
                                                             </div>
                                                         </div>
@@ -580,26 +505,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <ul>
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 7;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    @foreach($qpis as $qpi)            
-                                                                    @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
-                                                                    </li>
-                                                                    @if($flag == $dividir)
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    @endif
-                                                                    @endif
-                                                                    @endforeach
+                                                                    
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -614,26 +520,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <ul>
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 9;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    @foreach($qpis as $qpi)            
-                                                                    @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
-                                                                    </li>
-                                                                    @if($flag == $dividir)
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    @endif
-                                                                    @endif
-                                                                    @endforeach
+                                                                    
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -655,24 +542,7 @@
                                                         <div class="row">  
                                                             <div class="col-md-5">
                                                                 <ul>                                                   
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
-                                                                    ?>
-                                                                    @foreach($tipo_documentos as $tipo_documento)            
-                                                                    @if($tipo_documento->TPDO_ID <= 10 )
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
-                                                                    </li>
-                                                                    @endif
-                                                                    @if($flag == $dividir)
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    @endif
-                                                                    @endforeach
+                                                                    
                                                                 </ul> 
                                                             </div>  
                                                         </div>
@@ -687,24 +557,7 @@
                                                         <label>Documentação a ser providenciada</label><br>
                                                         <div class="col-md-5">
                                                             <ul>                                                
-                                                                <?php
-                                                                $flag = 0;
-                                                                $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
-                                                                ?>
-                                                                @foreach($tipo_documentos as $tipo_documento)            
-                                                                @if($tipo_documento->TPDO_ID > 10)
-                                                                <?php $flag = $flag + 1; ?>
-                                                                <li style="list-style-type:none;">          
-                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
-                                                                </li>
-                                                                @endif
-                                                                @if($flag == $dividir)
-                                                            </ul>    
-                                                        </div>  
-                                                        <div class="col-md-6">
-                                                            <ul>
-                                                                @endif
-                                                                @endforeach
+                                                               
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -792,26 +645,7 @@
                                                     <label>Problemas de saúde física e mental</label><br>
                                                     <div class="col-md-5">
                                                         <ul>                                                
-                                                            <?php
-                                                            $flag = 0;
-                                                            $question = 10;
-                                                            $pos = $question - 1;
-                                                            $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                            ?>
-                                                            @foreach($qpis as $qpi)            
-                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
-                                                            <?php $flag = $flag + 1; ?>
-                                                            <li style="list-style-type:none;">          
-                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
-                                                            </li>
-                                                            @if($flag == $dividir)
-                                                        </ul>    
-                                                    </div>  
-                                                    <div class="col-md-6">
-                                                        <ul>
-                                                            @endif
-                                                            @endif
-                                                            @endforeach
+                                                           
                                                         </ul>
                                                     </div>
                                                 </div>    
@@ -842,26 +676,7 @@
                                                     <label>Problemas de saúde física e mental</label><br>
                                                     <div class="col-md-5">
                                                         <ul>                                                
-                                                            <?php
-                                                            $flag = 0;
-                                                            $question = 17;
-                                                            $pos = $question - 1;
-                                                            $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                            ?>
-                                                            @foreach($qpis as $qpi)            
-                                                            @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
-                                                            <?php $flag = $flag + 1; ?>
-                                                            <li style="list-style-type:none;">          
-                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
-                                                            </li>
-                                                            @if($flag == $dividir)
-                                                        </ul>    
-                                                    </div>  
-                                                    <div class="col-md-6">
-                                                        <ul>
-                                                            @endif
-                                                            @endif
-                                                            @endforeach
+                                                            
                                                         </ul>
                                                     </div>
                                                 </div>    
@@ -949,26 +764,7 @@
                                                     <div class="row">
                                                         <div class="col-md-5">  
                                                             <ul>
-                                                                <?php
-                                                                $flag = 0;
-                                                                $question = 12;
-                                                                $pos = $question - 1;
-                                                                $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                ?>
-                                                                @foreach($qpis as $qpi)            
-                                                                @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
-                                                                <?php $flag = $flag + 1; ?>
-                                                                <li style="list-style-type:none;">          
-                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
-                                                                </li>
-                                                                @if($flag == $dividir)
-                                                            </ul>    
-                                                        </div>  
-                                                        <div class="col-md-6">
-                                                            <ul>
-                                                                @endif
-                                                                @endif
-                                                                @endforeach
+                                                                
                                                             </ul>    
                                                         </div>  
                                                     </div>
@@ -1046,9 +842,7 @@
                                                     <label>Grau de Parenteco</label><br>
                                                     <select name="FK_GRPA_ID[]"  class="form-control col-md-2">
                                                         <option value="">Selecione</option>
-                                                        @foreach($graus as $grau)
-                                                        <option value="{{ $grau->GRPA_ID }}">{{ $grau->GRPA_NOME}}</option>
-                                                        @endforeach
+                                                       
                                                     </select>
                                                 </div>
                                             </div>
@@ -1062,9 +856,7 @@
                                                     <label>Estado</label><br>
                                                     <select name="FK_RESP_ESTD[]" id="state_city_resp" class="form-control state_city_resp">
                                                         <option value="">Selecione</option>
-                                                        @foreach($stats as $state)
-                                                        <option value="{{ $state->ESTD_UF}}">{{ $state->ESTD_DESC }}</option>
-                                                        @endforeach
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -1073,9 +865,7 @@
                                                     <label>Cidade</label><br>
                                                     <select name="FK_RESP_CIDADE[]" id="id_cidade" class="form-control city_state_resp">
                                                         <option value="">Selecione</option>
-                                                        @foreach($cities as $city)
-                                                        <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
-                                                        @endforeach
+                                                       
                                                     </select>
                                                 </div>
                                             </div>
@@ -1314,11 +1104,7 @@
                                                         <label>Renda Familiar</label><br>
                                                         <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                            <option value="">Selecione</option>
-                                                           @foreach($qpis as $qpi)
-                                                           @if($qpi->FK_QESP_ID == 13 && $qpi->QEPI_SIT == 1)
-                                                           <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
-                                                           @endif
-                                                           @endforeach
+                                                           
                                                        </select>
                                                    </div>
                                                </div>
@@ -1327,11 +1113,7 @@
                                                     <label>Tipo de Moradia</label><br>
                                                     <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                        <option value="">Selecione</option>
-                                                       @foreach($qpis as $qpi)
-                                                       @if($qpi->FK_QESP_ID == 14 && $qpi->QEPI_SIT == 1)
-                                                       <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
-                                                       @endif
-                                                       @endforeach
+                                                      
                                                    </select>
                                                </div>
                                            </div>
@@ -1340,11 +1122,7 @@
                                                 <label>Situação do Imóvel</label><br>
                                                 <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                    <option value="">Selecione</option>
-                                                   @foreach($qpis as $qpi)
-                                                   @if($qpi->FK_QESP_ID == 15 && $qpi->QEPI_SIT == 1)
-                                                   <option value="{{ $qpi->QEPI_ID }}">{{ $qpi->QEPI_DESCRICAO }}</option>
-                                                   @endif
-                                                   @endforeach
+                                                   
                                                </select>
                                            </div>
                                        </div> 
@@ -1384,26 +1162,7 @@
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <ul>                                                
-                                                        <?php
-                                                        $flag = 0;
-                                                        $question = 16;
-                                                        $pos = $question - 1;
-                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                        ?>
-                                                        @foreach($qpis as $qpi)            
-                                                        @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
-                                                        <?php $flag = $flag + 1; ?>
-                                                        <li style="list-style-type:none;">          
-                                                            <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
-                                                        </li>
-                                                        @if($flag == $dividir)
-                                                    </ul>    
-                                                </div>  
-                                                <div class="col-md-6">
-                                                    <ul>
-                                                        @endif
-                                                        @endif
-                                                        @endforeach
+                                                        
                                                     </ul>
                                                 </div>
                                             </div>    
@@ -1574,9 +1333,7 @@
             <label>Grau de Parenteco</label><br>
             <select name="FK_GRPA_ID[]"  class="form-control col-md-2">
                 <option value="">Selecione</option>
-                @foreach($graus as $grau)
-                <option value="{{ $grau->GRPA_ID }}">{{ $grau->GRPA_NOME}}</option>
-                @endforeach
+                
             </select>
         </div>
     </div>
@@ -1590,9 +1347,7 @@
             <label>Estado</label><br>
             <select name="FK_RESP_ESTD[]" class="form-control">
                 <option value="">Selecione</option>
-                @foreach($stats as $state)
-                <option value="{{ $state->ESTD_UF}}">{{ $state->ESTD_DESC }}</option>
-                @endforeach
+               
             </select>
         </div>
     </div>
@@ -1601,9 +1356,7 @@
             <label>Cidade</label><br>
             <select name="FK_RESP_CIDADE[]" class="form-control">
                 <option value="">Selecione</option>
-                @foreach($cities as $city)
-                <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
-                @endforeach
+                
             </select>
         </div>
     </div>

@@ -60,9 +60,9 @@
                                                         <label>Conselho Tutelar</label><br>
                                                         <select class="form-control advice_counselor">
                                                             <option value="">Selecione</option>
-                                                            <?php $__currentLoopData = $conselhos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($conselho->ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            
+                                                           
+                                                            
                                                         </select>
                                                     </div>
                                                 </div>
@@ -72,9 +72,9 @@
                                                         <!-- Salvar o FK_CONS_ID na tabela ldcr_acolhimento  -->
                                                         <select name="FK_CONS_ID" class="form-control counselor_advice">
                                                             <option value="">Selecione</option>
-                                                            <?php $__currentLoopData = $conselheiros; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselheiro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($conselheiro->CONS_ID); ?>"><?php echo e($conselheiro->CONS_NOME); ?></option>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            
+                                                            
+                                                            
                                                         </select>
                                                     </div>
                                                 </div> 
@@ -100,9 +100,7 @@
                                                     <label>Estado</label><br>
                                                     <select name="FK_CRIA_ESTD" id="state_city" class="form-control state_city ">
                                                         <option value="">Selecione</option>
-                                                        <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -111,9 +109,7 @@
                                                     <label>Cidade</label><br>
                                                     <select name="FK_CRIA_CIDADE" id="city_state" class="form-control city_state ">
                                                         <option value="">Selecione</option>
-                                                        <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -159,9 +155,7 @@
                                                     <label>Raça/Cor</label><br>
                                                     <select name="FK_RACA_ID" class="form-control">
                                                         <option value="">Selecione</option>
-                                                        <?php $__currentLoopData = $racas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $raca): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($raca->RACA_ID); ?>"><?php echo e($raca->RACA_DESCRICAO); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -208,11 +202,7 @@
                                                 <label>Meio de Chegada</label><br>
                                                 <select name="FK_QEPI_ID[]"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                     <option value="">Selecione</option>
-                                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php if($qpi->FK_QESP_ID == 1 && $qpi->QEPI_SIT == 1): ?>
-                                                    <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
-                                                    <?php endif; ?>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -318,11 +308,7 @@
                                                 <label>Proibição judicial de visitas</label><br>
                                                 <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                     <option value="">Selecione</option>
-                                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php if($qpi->FK_QESP_ID == 2 && $qpi->QEPI_SIT == 1): ?>
-                                                    <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
-                                                    <?php endif; ?>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                   
                                                 </select>
                                             </div>
                                         </div>
@@ -331,11 +317,7 @@
                                                 <label>Situação do poder familiar</label><br>
                                                 <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                     <option value="">Selecione</option>
-                                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                    <?php if($qpi->FK_QESP_ID == 3 && $qpi->QEPI_SIT == 1): ?>
-                                                    <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
-                                                    <?php endif; ?>
-                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                    
                                                 </select>
                                             </div>
                                         </div>
@@ -476,26 +458,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">  
                                                                 <ul>
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 4;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                                    </li>
-                                                                    <?php if($flag == $dividir): ?>
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    <?php endif; ?>
-                                                                    <?php endif; ?>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    
                                                                 </ul>    
                                                             </div>  
                                                         </div>
@@ -511,26 +474,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">  
                                                                 <ul> 
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 5;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                                    </li>
-                                                                    <?php if($flag == $dividir): ?>
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    <?php endif; ?>
-                                                                    <?php endif; ?>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    
                                                                 </ul>    
                                                             </div>  
                                                         </div> 
@@ -545,26 +489,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">  
                                                                 <ul>
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 6;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                                    </li>
-                                                                    <?php if($flag == $dividir): ?>
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    <?php endif; ?>
-                                                                    <?php endif; ?>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                   
                                                                 </ul>    
                                                             </div>
                                                         </div>
@@ -579,26 +504,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <ul>
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 7;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                                    </li>
-                                                                    <?php if($flag == $dividir): ?>
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    <?php endif; ?>
-                                                                    <?php endif; ?>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -613,26 +519,7 @@
                                                         <div class="row">
                                                             <div class="col-md-5">
                                                                 <ul>
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $question = 9;
-                                                                    $pos = $question - 1;
-                                                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                    ?>
-                                                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                                    </li>
-                                                                    <?php if($flag == $dividir): ?>
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    <?php endif; ?>
-                                                                    <?php endif; ?>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -654,24 +541,7 @@
                                                         <div class="row">  
                                                             <div class="col-md-5">
                                                                 <ul>                                                   
-                                                                    <?php
-                                                                    $flag = 0;
-                                                                    $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
-                                                                    ?>
-                                                                    <?php $__currentLoopData = $tipo_documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                    <?php if($tipo_documento->TPDO_ID <= 10 ): ?>
-                                                                    <?php $flag = $flag + 1; ?>
-                                                                    <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento->TPDO_ID); ?>"/><?php echo e($tipo_documento->TPDO_DESC); ?></label>
-                                                                    </li>
-                                                                    <?php endif; ?>
-                                                                    <?php if($flag == $dividir): ?>
-                                                                </ul>    
-                                                            </div>  
-                                                            <div class="col-md-6">
-                                                                <ul>
-                                                                    <?php endif; ?>
-                                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                    
                                                                 </ul> 
                                                             </div>  
                                                         </div>
@@ -686,24 +556,7 @@
                                                         <label>Documentação a ser providenciada</label><br>
                                                         <div class="col-md-5">
                                                             <ul>                                                
-                                                                <?php
-                                                                $flag = 0;
-                                                                $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
-                                                                ?>
-                                                                <?php $__currentLoopData = $tipo_documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documento): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                <?php if($tipo_documento->TPDO_ID > 10): ?>
-                                                                <?php $flag = $flag + 1; ?>
-                                                                <li style="list-style-type:none;">          
-                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento->TPDO_ID); ?>"/><?php echo e($tipo_documento->TPDO_DESC); ?></label>
-                                                                </li>
-                                                                <?php endif; ?>
-                                                                <?php if($flag == $dividir): ?>
-                                                            </ul>    
-                                                        </div>  
-                                                        <div class="col-md-6">
-                                                            <ul>
-                                                                <?php endif; ?>
-                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                               
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -791,26 +644,7 @@
                                                     <label>Problemas de saúde física e mental</label><br>
                                                     <div class="col-md-5">
                                                         <ul>                                                
-                                                            <?php
-                                                            $flag = 0;
-                                                            $question = 10;
-                                                            $pos = $question - 1;
-                                                            $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                            ?>
-                                                            <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                            <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                            <?php $flag = $flag + 1; ?>
-                                                            <li style="list-style-type:none;">          
-                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                            </li>
-                                                            <?php if($flag == $dividir): ?>
-                                                        </ul>    
-                                                    </div>  
-                                                    <div class="col-md-6">
-                                                        <ul>
-                                                            <?php endif; ?>
-                                                            <?php endif; ?>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                           
                                                         </ul>
                                                     </div>
                                                 </div>    
@@ -841,26 +675,7 @@
                                                     <label>Problemas de saúde física e mental</label><br>
                                                     <div class="col-md-5">
                                                         <ul>                                                
-                                                            <?php
-                                                            $flag = 0;
-                                                            $question = 17;
-                                                            $pos = $question - 1;
-                                                            $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                            ?>
-                                                            <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                            <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                            <?php $flag = $flag + 1; ?>
-                                                            <li style="list-style-type:none;">          
-                                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                            </li>
-                                                            <?php if($flag == $dividir): ?>
-                                                        </ul>    
-                                                    </div>  
-                                                    <div class="col-md-6">
-                                                        <ul>
-                                                            <?php endif; ?>
-                                                            <?php endif; ?>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                            
                                                         </ul>
                                                     </div>
                                                 </div>    
@@ -948,26 +763,7 @@
                                                     <div class="row">
                                                         <div class="col-md-5">  
                                                             <ul>
-                                                                <?php
-                                                                $flag = 0;
-                                                                $question = 12;
-                                                                $pos = $question - 1;
-                                                                $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                                ?>
-                                                                <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                                <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                                <?php $flag = $flag + 1; ?>
-                                                                <li style="list-style-type:none;">          
-                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                                </li>
-                                                                <?php if($flag == $dividir): ?>
-                                                            </ul>    
-                                                        </div>  
-                                                        <div class="col-md-6">
-                                                            <ul>
-                                                                <?php endif; ?>
-                                                                <?php endif; ?>
-                                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                                
                                                             </ul>    
                                                         </div>  
                                                     </div>
@@ -1045,9 +841,7 @@
                                                     <label>Grau de Parenteco</label><br>
                                                     <select name="FK_GRPA_ID[]"  class="form-control col-md-2">
                                                         <option value="">Selecione</option>
-                                                        <?php $__currentLoopData = $graus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grau): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($grau->GRPA_ID); ?>"><?php echo e($grau->GRPA_NOME); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                       
                                                     </select>
                                                 </div>
                                             </div>
@@ -1061,9 +855,7 @@
                                                     <label>Estado</label><br>
                                                     <select name="FK_RESP_ESTD[]" id="state_city_resp" class="form-control state_city_resp">
                                                         <option value="">Selecione</option>
-                                                        <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        
                                                     </select>
                                                 </div>
                                             </div>
@@ -1072,9 +864,7 @@
                                                     <label>Cidade</label><br>
                                                     <select name="FK_RESP_CIDADE[]" id="id_cidade" class="form-control city_state_resp">
                                                         <option value="">Selecione</option>
-                                                        <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                        <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                       
                                                     </select>
                                                 </div>
                                             </div>
@@ -1313,11 +1103,7 @@
                                                         <label>Renda Familiar</label><br>
                                                         <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                            <option value="">Selecione</option>
-                                                           <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                           <?php if($qpi->FK_QESP_ID == 13 && $qpi->QEPI_SIT == 1): ?>
-                                                           <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
-                                                           <?php endif; ?>
-                                                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                           
                                                        </select>
                                                    </div>
                                                </div>
@@ -1326,11 +1112,7 @@
                                                     <label>Tipo de Moradia</label><br>
                                                     <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                        <option value="">Selecione</option>
-                                                       <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                       <?php if($qpi->FK_QESP_ID == 14 && $qpi->QEPI_SIT == 1): ?>
-                                                       <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
-                                                       <?php endif; ?>
-                                                       <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                      
                                                    </select>
                                                </div>
                                            </div>
@@ -1339,11 +1121,7 @@
                                                 <label>Situação do Imóvel</label><br>
                                                 <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
                                                    <option value="">Selecione</option>
-                                                   <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                   <?php if($qpi->FK_QESP_ID == 15 && $qpi->QEPI_SIT == 1): ?>
-                                                   <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
-                                                   <?php endif; ?>
-                                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                   
                                                </select>
                                            </div>
                                        </div> 
@@ -1383,26 +1161,7 @@
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <ul>                                                
-                                                        <?php
-                                                        $flag = 0;
-                                                        $question = 16;
-                                                        $pos = $question - 1;
-                                                        $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                                        ?>
-                                                        <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>            
-                                                        <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                                        <?php $flag = $flag + 1; ?>
-                                                        <li style="list-style-type:none;">          
-                                                            <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                                        </li>
-                                                        <?php if($flag == $dividir): ?>
-                                                    </ul>    
-                                                </div>  
-                                                <div class="col-md-6">
-                                                    <ul>
-                                                        <?php endif; ?>
-                                                        <?php endif; ?>
-                                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        
                                                     </ul>
                                                 </div>
                                             </div>    
@@ -1573,9 +1332,7 @@
             <label>Grau de Parenteco</label><br>
             <select name="FK_GRPA_ID[]"  class="form-control col-md-2">
                 <option value="">Selecione</option>
-                <?php $__currentLoopData = $graus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grau): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <option value="<?php echo e($grau->GRPA_ID); ?>"><?php echo e($grau->GRPA_NOME); ?></option>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                
             </select>
         </div>
     </div>
@@ -1589,9 +1346,7 @@
             <label>Estado</label><br>
             <select name="FK_RESP_ESTD[]" class="form-control">
                 <option value="">Selecione</option>
-                <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+               
             </select>
         </div>
     </div>
@@ -1600,9 +1355,7 @@
             <label>Cidade</label><br>
             <select name="FK_RESP_CIDADE[]" class="form-control">
                 <option value="">Selecione</option>
-                <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                
             </select>
         </div>
     </div>

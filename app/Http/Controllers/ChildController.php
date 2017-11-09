@@ -315,6 +315,9 @@ class ChildController extends Controller
     //Show one
     public function show($id)
     {
+
+        $cities = Ldcr_cidade::all();
+        $stats = Ldcr_estado::all();
         $crianca = Ldcr_crianca::findOrFail($id);
        
         $acolhimento = DB::table('ldcr_acolhimento')->select()->where('FK_CRIA_ID', '=', $id)->get();
