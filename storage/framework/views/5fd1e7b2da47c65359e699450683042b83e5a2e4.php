@@ -24,6 +24,7 @@
 
     <!-- Styles -->
     <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
+    <link href="<?php echo e(asset('css/style2.css')); ?>" rel="stylesheet">
 
     <!-- Bootstrap core CSS     -->
     <link href="<?php echo e(asset('css/bootstrap.min.css')); ?>" rel="stylesheet" />

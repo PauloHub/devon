@@ -318,6 +318,7 @@ class ChildController extends Controller
 
         $cities = Ldcr_cidade::all();
         $stats = Ldcr_estado::all();
+        $racas = Ldcr_raca::all();
         $crianca = Ldcr_crianca::findOrFail($id);
        
         $acolhimento = DB::table('ldcr_acolhimento')->select()->where('FK_CRIA_ID', '=', $id)->get();
@@ -334,7 +335,7 @@ class ChildController extends Controller
         $orientacao = DB::table('ldcr_orientacao')->select()->where('FK_CRIA_ID', '=', $id)->get();
         $doc_apsen = DB::table('ldcr_doc_apsen')->select()->where('FK_ACMT_ID', '=', $acolhimento_id)->get();
 
-        return view('show_child', compact('crianca','acolhimento','acmt_qpi','cria_extr','saude','responsavel','orientacao','doc_apsen'));
+        return view('show_child', compact('crianca','acolhimento','acmt_qpi','cria_extr','saude','responsavel','orientacao','doc_apsen', 'racas'));
     }
 
     /**
