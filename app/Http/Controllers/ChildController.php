@@ -19,10 +19,10 @@ use App\Ldcr_tipo_documento;
 use App\Ldcr_doc_apsen;
 use App\Ldcr_grau_parentesco;
 use App\Ldcr_acmt_questoes_pia_iten;
-use App\ldcr_cria_externa;
-use App\ldcr_cria_saude;
-use App\ldcr_responsaveis;
-use App\ldcr_orientacao;
+use App\Ldcr_cria_externa;
+use App\Ldcr_cria_saude;
+use App\Ldcr_responsaveis;
+use App\Ldcr_orientacao;
 use App\Ldcr_crianca_resp;
 
 use Illuminate\Support\Facades\DB;
@@ -101,10 +101,10 @@ class ChildController extends Controller
         $crianca = new Ldcr_crianca();
         $acolhimento = new Ldcr_acolhimento();
         $acmt_qpi = new Ldcr_acmt_questoes_pia_iten();
-        $cria_extr = new ldcr_cria_externa();
-        $saude = new ldcr_cria_saude();
-        $responsavel = new ldcr_responsaveis();
-        $orientacao = new ldcr_orientacao();
+        $cria_extr = new Ldcr_cria_externa();
+        $saude = new Ldcr_cria_saude();
+        $responsavel = new Ldcr_responsaveis();
+        $orientacao = new Ldcr_orientacao();
         $doc_apsen = new Ldcr_doc_apsen();                
 
         //inserindo na tabela de criança
@@ -241,7 +241,7 @@ class ChildController extends Controller
         $result = count($request->get('RESP_NOME'));
       
        for ($i =0; $i< $result ; $i++ ){
-             $responsavel = new ldcr_responsaveis();
+             $responsavel = new Ldcr_responsaveis();
 
             $responsavel->RESP_NOME = $request->RESP_NOME[$i];
             $responsavel->FK_RESP_ESTD = $request->FK_RESP_ESTD[$i];
@@ -321,19 +321,16 @@ class ChildController extends Controller
         $racas = Ldcr_raca::all();
         $crianca = Ldcr_crianca::findOrFail($id);
        
-        $acolhimento = DB::table('ldcr_acolhimento')->select()->where('FK_CRIA_ID', '=', $id)->get();
-        $acolhimento_id = DB::table('ldcr_acolhimento')->select('ACMT_ID')->where('FK_CRIA_ID', '=', $id)->get();
-        foreach($acolhimento_id as $id_acmt){
-            $acolhimento_id = $id_acmt->ACMT_ID;
-        }
+        $acolhimento = DB::table('ldcr_acolhimento')->select()->where('FK_CRIA_ID', '=', $id)->get();       
+        foreach($acolhimento as $acmt){}
         
-        $acmt_qpi = DB::table('ldcr_acmt_questoes_pia_iten')->select()->where('FK_ACMT_ID', '=', $acolhimento_id)->get();
+        $acmt_qpi = DB::table('ldcr_acmt_questoes_pia_iten')->select()->where('FK_ACMT_ID', '=', $acmt->ACMT_ID)->get();
         $cria_extr = DB::table('ldcr_cria_externa')->select()->where('FK_CRIA_ID', '=', $id)->get();
-        $saude = DB::table('ldcr_cria_saude')->select()->where('FK_ACMT_ID', '=', $acolhimento_id)->get();        
+        $saude = DB::table('ldcr_cria_saude')->select()->where('FK_ACMT_ID', '=', $acmt->ACMT_ID)->get();        
         $cria_resp = DB::table('ldcr_crianca_resp')->select()->where('FK_CRIA_ID', '=', $id)->get();
         $responsavel = DB::table('ldcr_responsaveis')->get();
         $orientacao = DB::table('ldcr_orientacao')->select()->where('FK_CRIA_ID', '=', $id)->get();
-        $doc_apsen = DB::table('ldcr_doc_apsen')->select()->where('FK_ACMT_ID', '=', $acolhimento_id)->get();
+        $doc_apsen = DB::table('ldcr_doc_apsen')->select()->where('FK_ACMT_ID', '=', $acmt->ACMT_ID)->get();
 
         //pegando nome do conselho
         $nome_conselho = DB::table('ldcr_conselho_tutelar')->select('COTL_NOME')
@@ -347,10 +344,15 @@ class ChildController extends Controller
             ->join('ldcr_acolhimento', 'ldcr_acolhimento.FK_CONS_ID', '=', 'ldcr_conselheiros_tute.CONS_ID')
             ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get();
             foreach($nome_conselheiro as $nome_cons){ $nome_conselheiro = $nome_cons->CONS_NOME;}
-        
+
+        //pegando a raça da criança
+            $raca_crianca = DB::table('ldcr_raca')->select('RACA_DESCRICAO')
+                ->join('ldcr_crianca', 'ldcr_raca.RACA_ID', '=', 'ldcr_crianca.FK_RACA_ID')
+                ->where('ldcr_crianca.ID', '=', $crianca->ID)->get();
+            foreach($raca_crianca as $raca_cria){ $raca_crianca = $raca_cria->RACA_DESCRICAO;}
        
 
-        return view('show_child', compact('crianca','acolhimento','acmt_qpi','cria_extr','saude','responsavel','orientacao','doc_apsen', 'racas', 'nome_conselho','nome_conselheiro'));
+        return view('show_child', compact('crianca','acmt','acmt_qpi','cria_extr','saude','responsavel','orientacao','doc_apsen', 'racas', 'nome_conselho','nome_conselheiro', 'raca_crianca'));
     }
 
     /**
