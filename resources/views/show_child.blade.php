@@ -3,6 +3,16 @@
 @section('content')
 
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+    $(function(){
+      $('section#hide_section article div.btn').click(function(){
+        $(this).siblings('div.row').slideToggle();        
+    });  
+  });
+</script>
+
 <div class="wrapper">
     <div class="main-panel">        
         <nav class="navbar navbar-default navbar-fixed">         
@@ -27,74 +37,66 @@
                                     <ul>
                                         <li style="list-style-type:none; text-align: right; margin-right: 8%;">
                                             <a href="{{ url('/list_child') }}" class="btn btn-primary btn-lg">
-                                                <span class="glyphicon glyphicon-list"></span> Listar Crianças</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                            <span class="glyphicon glyphicon-list"></span> Listar Crianças</a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                
-                                <div class="table-position">
-                                    <table class="table table-bordered">
-                                        <tr>
-                                            <th class="col-md-2">Nome da Criança</th>
-                                            <td>{{$crianca->CRIA_NOME}}</td>
+                            </div>
+                                <div class="content">
+                                    @if(session('success'))
+                                        <p class="alert-success" align="center">
+                                        {{session('success')}} </p>
+                                    @endif
 
-                                        </tr>
-                                        <tr>
-                                            <th class="col-md-3">Data de Nascimento</th>
-                                            <td>{{date('d/m/Y', strtotime($crianca->CRIA_DTA_NASC))}}</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <th>Estado</th>
-                                            <td>{{$crianca->FK_CRIA_ESTD}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Cidade</th>
-                                            <td>{{$crianca->FK_CRIA_CIDADE}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Certidão de Nascimento</th>
-                                            <td>{{$crianca->CRIA_CERT_NUM}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Livro</th>
-                                            <td>{{$crianca->CRIA_CERT_LIVR}}</td>
-                                        </tr> 
-                                        <tr>
-                                            <th>Folha</th>
-                                            <td>{{$crianca->CRIA_CERT_FOLH}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Raça</th>
-                                            @foreach($racas as $raca)
-                                                    @if($raca->RACA_ID == $crianca->FK_RACA_ID)
-                                                        <td>{{$raca->RACA_DESCRICAO}}</td>
-                                                     @endif
-                                             @endforeach
-                                        </tr>
-                                        <tr>
-                                            <th>Sexo</th>
-                                            <td><?= $crianca->CRIA_SEXO = ($crianca->CRIA_SEXO == 'M' ? 'Masculino' : 'Feminino'); ?> </td>
-                                        </tr>
+                                    <form action="{{ url('/register_child') }}" method="POST">
+                                        {{csrf_field()}}
+                                        <section id="hide_section" >
+                                            <article>
+                                               <div class="btn func">1. Equipe Técnica Responsável pelo Acolhimento</div>
 
+                                               <div class="row">
 
-                                    </table>
-                                </div>
+                                               <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Conselho Tutelar</label><br>
+                                                        <select class="form-control advice_counselor" disabled>
+                                                            <option value="">{{$nome_conselho}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Conselheiro Responsável</label><br>
+                                                        <select name="FK_CONS_ID" class="form-control counselor_advice" disabled>
+                                                            <option value="">{{$nome_conselheiro}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </article>
+                                    </section><br>
 
-                                <div class="row">
-                                    <br><br>
-                                    <div align="center" >
-                                        <input style="margin-left:auto:; width: 150px;" type="button" name="" value="Voltar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
-                                    </div>
-                                    <br>
-                                </div>
-                            </div> 
-                        </div>                
-                    </div>
+                                    
+                        <div class="row">
+
+                            <br><br>
+                            <div align="center" >
+                                <button type="submit" class="btn btn-info btn-fill">Cadastrar Criança</button>
+                                <input style="margin-left:10%; width: 150px;" type="button" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
+                            </div>
+                            <br>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </div>
+            </div> 
+        </div>                
     </div>
+</div>
+</div>
+</div>
+</div>
 
-    @endsection
+
+
+
+@endsection

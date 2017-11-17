@@ -335,7 +335,22 @@ class ChildController extends Controller
         $orientacao = DB::table('ldcr_orientacao')->select()->where('FK_CRIA_ID', '=', $id)->get();
         $doc_apsen = DB::table('ldcr_doc_apsen')->select()->where('FK_ACMT_ID', '=', $acolhimento_id)->get();
 
-        return view('show_child', compact('crianca','acolhimento','acmt_qpi','cria_extr','saude','responsavel','orientacao','doc_apsen', 'racas'));
+        //pegando nome do conselho
+        $nome_conselho = DB::table('ldcr_conselho_tutelar')->select('COTL_NOME')
+            ->join('ldcr_conselheiros_tute', 'ldcr_conselho_tutelar.id', '=', 'ldcr_conselheiros_tute.FK_COTL_ID')
+            ->join('ldcr_acolhimento', 'ldcr_conselheiros_tute.CONS_ID', '=', 'ldcr_acolhimento.FK_CONS_ID')
+            ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get(); 
+             foreach($nome_conselho as $nome_cons){ $nome_conselho = $nome_cons->COTL_NOME;}
+
+        //pegando nome do conselheiro
+        $nome_conselheiro = DB::table('ldcr_conselheiros_tute')->select('CONS_NOME')
+            ->join('ldcr_acolhimento', 'ldcr_acolhimento.FK_CONS_ID', '=', 'ldcr_conselheiros_tute.CONS_ID')
+            ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get();
+            foreach($nome_conselheiro as $nome_cons){ $nome_conselheiro = $nome_cons->CONS_NOME;}
+        
+       
+
+        return view('show_child', compact('crianca','acolhimento','acmt_qpi','cria_extr','saude','responsavel','orientacao','doc_apsen', 'racas', 'nome_conselho','nome_conselheiro'));
     }
 
     /**
