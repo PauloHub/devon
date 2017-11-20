@@ -176,8 +176,7 @@
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 
-                                                <label>Foro Vara da Infância e Juventude foi comunicado no prazo de 24 horas?</label><br/>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <label>Foro Vara da Infância e Juventude foi comunicado no prazo de 24 horas?</label><br/>                                                
                                                 <?php $acmt->ACMT_VARA_INFAN = ($acmt->ACMT_VARA_INFAN == '1' ? 'Sim' : 'Não'); ?>
                                                 <label class="radio-inline"><input type="radio" name="ACMT_VARA_INFAN" value="1" checked disabled /><?php echo e($acmt->ACMT_VARA_INFAN); ?></label>
                                             </div>
@@ -191,10 +190,8 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Meio de Chegada</label><br>
-                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
-                                                    <option value="">Selecione</option>
-                                                    
-                                                    <option value=""></option> 
+                                                <select name=""  class="form-control col-md-2" disabled>                                                    
+                                                    <option value=""><?php echo e($meio_de_chegada->QEPI_DESCRICAO); ?></option> 
                                                 </select>
                                             </div>
                                         </div>
@@ -205,8 +202,8 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 <label>O foro/vara da Infância e Juventude confirmou a medida de acolhimento, expediu guia e encaminhou todos os relatórios necessários?</label><br/>
-                                                <label class="radio-inline"><input type="radio" name="ACMT_VARA_RELAT" value="1"/>Sim</label>
-                                                <label class="radio-inline"><input type="radio" name="ACMT_VARA_RELAT" value="0"/>Nao</label>
+                                                <?php $acmt->ACMT_VARA_RELAT = ($acmt->ACMT_VARA_RELAT == '1' ? 'Sim' : 'Não'); ?>
+                                                <label class="radio-inline"><input type="radio" name="ACMT_VARA_RELAT" value="1" checked disabled /><?php echo e($acmt->ACMT_VARA_RELAT); ?></label>
                                             </div>
                                         </div>
 
@@ -217,7 +214,7 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 <label>Sugestões</label><br/>
-                                                <textarea class="col-md-10" name="ACMT_VARA_OBS" id="campo_sugestoes"></textarea>
+                                                <textarea class="col-md-10" name="ACMT_VARA_OBS" id="campo_sugestoes" disabled><?php echo e($acmt->ACMT_VARA_OBS); ?></textarea>
                                             </div>
                                         </div>
 
@@ -228,8 +225,8 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 <label>Há proximidade entre o serviço de acolhimento e a residência dos pais/responsável legal?</label><br/>
-                                                <label class="radio-inline"><input type="radio" name="ACMT_PROX_RESIDENCIA" value="1"/>Sim</label>
-                                                <label class="radio-inline"><input type="radio" name="ACMT_PROX_RESIDENCIA" value="0"/>Nao</label>
+                                                <?php $acmt->ACMT_PROX_RESIDENCIA = ($acmt->ACMT_PROX_RESIDENCIA == '1' ? 'Sim' : 'Não'); ?>
+                                                <label class="radio-inline"><input type="radio" name="ACMT_PROX_RESIDENCIA" value="1"/><?php echo e($acmt->ACMT_PROX_RESIDENCIA); ?></label>
                                             </div>
                                         </div> 
 
@@ -240,8 +237,8 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 <label>Acolhimentos anteriores?</label><br/>
-                                                <label class="radio-inline"><input type="radio" name="ACMT_ACOLH_ANT" value="1"/>Sim</label>
-                                                <label class="radio-inline"><input type="radio" name="ACMT_ACOLH_ANT" value="0"/>Nao</label>
+                                                <?php $acmt->ACMT_ACOLH_ANT = ($acmt->ACMT_ACOLH_ANT == '1' ? 'Sim' : 'Não'); ?>
+                                                <label class="radio-inline"><input type="radio" name="ACMT_ACOLH_ANT" value="1"/><?php echo e($acmt->ACMT_ACOLH_ANT); ?></label>
                                             </div>
                                         </div> 
 
@@ -252,7 +249,7 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 <label>Motivos e tempo de permanência no(s) serviço(s) de acolhimento(s) anterior(es)</label><br/>
-                                                <textarea class="col-md-10" name="ACMT_MOT_ACOLHM_ANT"></textarea>
+                                                <textarea class="col-md-10" name="ACMT_MOT_ACOLHM_ANT" disabled><?php echo e($acmt->ACMT_MOT_ACOLHM_ANT); ?></textarea>
                                             </div>
                                         </div>
 
@@ -263,7 +260,7 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 <label>Higiene/Sinais de Violência</label><br/>
-                                                <textarea class="col-md-10" name="ACMT_HIG_VIOLENCIA"></textarea>
+                                                <textarea class="col-md-10" name="ACMT_HIG_VIOLENCIA" disabled><?php echo e($acmt->ACMT_HIG_VIOLENCIA); ?></textarea>
                                             </div>
                                         </div>
 
@@ -274,13 +271,133 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 <label>Reações e Comportamento</label><br/>
-                                                <textarea class="col-md-10" name="ACMT_REA_COMP"></textarea>
+                                                <textarea class="col-md-10" name="ACMT_REA_COMP" disabled><?php echo e($acmt->ACMT_REA_COMP); ?></textarea>
                                             </div>
                                         </div>
 
                                     </div>
                                 </article>
                             </section><br>
+
+                            <section id="hide_section" >
+                                <article>
+                                    <div class="btn func">4. Situação Jurídica</div>   
+
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Número do processo no Foro/Vara da Infância e Juventude</label>
+                                                <input type="number" class="form-control" placeholder="Nº processo" name="ACMT_VARA_NUM_PROCESS" value="<?php echo e($acmt->ACMT_VARA_NUM_PROCESS); ?>" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label>Proibição judicial de visitas</label><br>
+                                                <select name=""  class="form-control col-md-2" disabled>
+                                                    <option value=""><?php echo e($proibicao_judicial->QEPI_DESCRICAO); ?></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Situação do poder familiar</label><br>
+                                                <select name=""  class="form-control col-md-2" disabled>
+                                                    <option value=""><?php echo e($situacao_poder_familiar->QEPI_DESCRICAO); ?></option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <label>A criança e/ou adolescente conta com defensor público/advogado?</label><br/>
+                                                <?php $acmt->ACMT_DFPUB = ($acmt->ACMT_DFPUB == '1' ? 'Sim' : 'Não'); ?>
+                                                <label class="radio-inline"><input type="radio" name="ACMT_DFPUB" value="1" /><?php echo e($acmt->ACMT_DFPUB); ?></label>
+                                            </div>
+                                        </div>  
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-10">
+                                            <div class="form-group">
+                                                <label>A família conta com defensor público/advogado?</label><br/>
+                                                <?php $acmt->ACMT_DFPUB_FAM = ($acmt->ACMT_DFPUB_FAM == '1' ? 'Sim' : 'Não'); ?>
+                                                <label class="radio-inline"><input type="radio" name="ACMT_DFPUB_FAM" value="1" /><?php echo e($acmt->ACMT_DFPUB_FAM); ?></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </section><br>
+
+                            <section id="hide_section" >
+                                <article>
+                                   <div class="btn func">5. Grupo de irmãos</div>                            
+
+                                   <?php for($i=0; $i<$qt_cria_ext; $i++): ?>
+                                           <div class="row">
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Nome da Criança Externa: <?php echo e($i+1); ?></label>
+                                                    <input type="text" class="form-control" value="<?php echo e($criancas_externas[$i]->CRIA_EXTR_NOME); ?>" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Nome do Responsável</label>
+                                                    <input type="text" class="form-control" value="<?php echo e($criancas_externas[$i]->CRIA_EXTR_FAM_NOME); ?>" disabled>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Nome da Instituição de Acolhimento</label>
+                                                    <input type="text" class="form-control" value="<?php echo e($criancas_externas[$i]->CRIA_EXTR_NOME_INSTI); ?>" disabled>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Endereço da(s) instituição(ões)</label>
+                                                    <input type="text" class="form-control" value="<?php echo e($criancas_externas[$i]->CRIA_EXTR_END_INSTI); ?>" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Data de Nascimento</label>
+                                                    <input type="date" class="form-control" value="<?php echo e($criancas_externas[$i]->CRIA_EXTR_DATA_NASC); ?>" disabled>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label>Contato</label>
+                                                    <input type="number" class="form-control" value="<?php echo e($criancas_externas[$i]->CRIA_EXTR_FAM_CONT); ?>" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
+                                     <?php endfor; ?>
+                                </article>
+                            </section><br>
+                            
+
 
                                     
                         <div class="row">

@@ -337,22 +337,52 @@ class ChildController extends Controller
             ->join('ldcr_conselheiros_tute', 'ldcr_conselho_tutelar.id', '=', 'ldcr_conselheiros_tute.FK_COTL_ID')
             ->join('ldcr_acolhimento', 'ldcr_conselheiros_tute.CONS_ID', '=', 'ldcr_acolhimento.FK_CONS_ID')
             ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get(); 
-             foreach($nome_conselho as $nome_cons){ $nome_conselho = $nome_cons->COTL_NOME;}
+         foreach($nome_conselho as $nome_cons){ $nome_conselho = $nome_cons->COTL_NOME;}
 
         //pegando nome do conselheiro
         $nome_conselheiro = DB::table('ldcr_conselheiros_tute')->select('CONS_NOME')
             ->join('ldcr_acolhimento', 'ldcr_acolhimento.FK_CONS_ID', '=', 'ldcr_conselheiros_tute.CONS_ID')
             ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get();
-            foreach($nome_conselheiro as $nome_cons){ $nome_conselheiro = $nome_cons->CONS_NOME;}
+        foreach($nome_conselheiro as $nome_cons){ $nome_conselheiro = $nome_cons->CONS_NOME;}
 
         //pegando a raça da criança
-            $raca_crianca = DB::table('ldcr_raca')->select('RACA_DESCRICAO')
-                ->join('ldcr_crianca', 'ldcr_raca.RACA_ID', '=', 'ldcr_crianca.FK_RACA_ID')
-                ->where('ldcr_crianca.ID', '=', $crianca->ID)->get();
-            foreach($raca_crianca as $raca_cria){ $raca_crianca = $raca_cria->RACA_DESCRICAO;}
-       
+        $raca_crianca = DB::table('ldcr_raca')->select('RACA_DESCRICAO')
+            ->join('ldcr_crianca', 'ldcr_raca.RACA_ID', '=', 'ldcr_crianca.FK_RACA_ID')
+            ->where('ldcr_crianca.ID', '=', $crianca->ID)->get();
+        foreach($raca_crianca as $raca_cria){ $raca_crianca = $raca_cria->RACA_DESCRICAO;}
 
-        return view('show_child', compact('crianca','acmt','acmt_qpi','cria_extr','saude','responsavel','orientacao','doc_apsen', 'racas', 'nome_conselho','nome_conselheiro', 'raca_crianca'));
+        //pegando o meio de chegada
+        $meio = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+            ->join('ldcr_acolhimento', 'ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', 'ldcr_acolhimento.ACMT_ID')
+            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 1)->get();
+        foreach($meio as $meio_de_chegada) {}
+
+        $proib_jud = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+            ->join('ldcr_acolhimento', 'ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', 'ldcr_acolhimento.ACMT_ID')
+            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 2)->get();
+        foreach($proib_jud as $proibicao_judicial) {}
+
+        $sit_pod_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+            ->join('ldcr_acolhimento', 'ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', 'ldcr_acolhimento.ACMT_ID')
+            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 3)->get();
+        foreach($sit_pod_fam as $situacao_poder_familiar) {}
+
+        $crias_exts = DB::table('ldcr_cria_externa')->select()
+            ->join('ldcr_crianca', 'ldcr_cria_externa.FK_CRIA_ID', '=', 'ldcr_crianca.ID')
+            ->where('ldcr_cria_externa.FK_CRIA_ID', '=', $crianca->ID)->get();
+        //pegando a quantidade de crianças externas, para fazer um laço criando a quantidade de forms necessários
+        $qt_cria_ext = count($crias_exts);
+        //incrementando o array para cada posição do objeto
+        $i=0;
+        foreach($crias_exts as $criancas_externas[$i]){$i++;}
+
+
+        //echo '<pre>'; print_r($criancas_externas); exit;    
+
+        return view('show_child', compact('crianca','acmt','acmt_qpi','cria_extr','saude','responsavel','orientacao','doc_apsen', 'racas', 'nome_conselho','nome_conselheiro', 'raca_crianca', 'meio_de_chegada', 'proibicao_judicial','situacao_poder_familiar','qt_cria_ext', 'criancas_externas'));
     }
 
     /**
