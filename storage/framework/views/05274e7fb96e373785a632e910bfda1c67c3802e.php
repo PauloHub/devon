@@ -58,7 +58,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Conselho Tutelar</label><br>
-                                                        <select class="form-control advice_counselor">
+                                                        <select name="ACMT_CONSELHO" class="form-control">
                                                             <option value="">Selecione</option>
                                                             <?php $__currentLoopData = $conselhos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <option value="<?php echo e($conselho->ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
@@ -69,13 +69,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Conselheiro Responsável</label><br>
-                                                        <!-- Salvar o FK_CONS_ID na tabela ldcr_acolhimento  -->
-                                                        <select name="FK_CONS_ID" class="form-control counselor_advice">
-                                                            <option value="">Selecione</option>
-                                                            <?php $__currentLoopData = $conselheiros; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselheiro): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                            <option value="<?php echo e($conselheiro->CONS_ID); ?>"><?php echo e($conselheiro->CONS_NOME); ?></option>
-                                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                        </select>
+                                                        <input type="text" class="form-control" placeholder="Nome do Conselheiro" name="ACMT_CONSELHEIRO"> 
                                                     </div>
                                                 </div> 
                                             </div>
@@ -395,7 +389,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Nome da Instituição de Acolhimento</label>
-                                            <input type="text" class="form-control" placeholder="Nome do Responsável" name="CRIA_EXTR_NOME_INSTI[]">
+                                            <input type="text" class="form-control" placeholder="Nome da Instituição de Acolhimento" name="CRIA_EXTR_NOME_INSTI[]">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -779,9 +773,9 @@
                                                     <label>Carteira de vacinação</label><br>
                                                     <select name="CSAU_CART_VAC"  class="form-control col-md-2">
                                                         <option value="">Selecione</option>
-                                                        <option value="SA">Sim, atualizada (SA)</option>
-                                                        <option value="SD">Sim, desatualizada (SD)</option>
-                                                        <option value="NP">Não possui (NP)</option>
+                                                        <option value="Sim, atualizada (SA)">Sim, atualizada (SA)</option>
+                                                        <option value="Sim, desatualizada (SD)">Sim, desatualizada (SD)</option>
+                                                        <option value="Não possui (NP)">Não possui (NP)</option>
                                                     </select>
                                                 </div>
                                             </div> 
