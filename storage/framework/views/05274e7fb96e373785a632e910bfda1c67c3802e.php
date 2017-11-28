@@ -1272,7 +1272,7 @@
                                                        
                                                         <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" 1"/>Outros Serviços de apoio sócio-familiar</label><br>
                                                         <label>Especifique</label>
-                                                        <input type="text" class="form-control"  name="1"> <br>
+                                                        <input type="text" class="form-control"  name="ORNT_OUTROS_SERVICOS_OBS"> <br>
                                                         
                                                         <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="1"/>Saúde</label><br>
                                                         <label>Especifique</label>

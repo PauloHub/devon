@@ -1079,7 +1079,99 @@
                                                 </div>
                                             </div>
                                         </article>
-                                    </section><br>      
+                                    </section><br>
+
+                                    <section id="hide_section" >
+                                        <article style="padding-left: 15px;">
+                                            <div class="btn func">14. Renda Familiar e Moradia</div>
+
+                                            <div class="row">
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>Renda Familiar</label><br>
+                                                        <select name="FK_QEPI_ID[]"  class="form-control col-md-2" disabled>
+                                                           <option value=""><?php echo e($renda_familiar->QEPI_DESCRICAO); ?></option>
+                                                       </select>
+                                                   </div>
+                                               </div>
+                                               <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>Tipo de Moradia</label><br>
+                                                    <select name="FK_QEPI_ID[]"  class="form-control col-md-2" disabled>
+                                                       <option value=""><?php echo e($tipo_moradia->QEPI_DESCRICAO); ?></option>
+                                                   </select>
+                                               </div>
+                                           </div>
+                                           <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label>Situação do Imóvel</label><br>
+                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2" disabled>
+                                                   <option value=""><?php echo e($situacao_imovel->QEPI_DESCRICAO); ?></option>
+                                               </select>
+                                           </div>
+                                       </div> 
+
+                                   </div>
+
+                                   <div class="row">
+
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <label>Condição da moradia</label><br/>
+                                            <textarea class="col-md-10" name="ACMT_MORA_CONDICAO"  placeholder="ex: casa de alvenaria ou de madeira, nº de cômodos, higiene, organização, etc." disabled><?php echo e($acmt->ACMT_MORA_CONDICAO); ?></textarea>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <label>Informar endereço, telefone da família extensa, das pessoas significativas da rede social da criança e/ou adolescente e da família</label><br/>
+                                            <textarea class="col-md-10" name="ACMT_INFOR_FAM_EXTENSA" disabled><?php echo e($acmt->ACMT_INFOR_FAM_EXTENSA); ?></textarea>
+                                        </div>
+                                    </div>  
+                                </div>
+                            </article>
+                        </section><br>  
+
+                        <section id="hide_section" >
+                            <article style="padding-left: 15px;">
+                                <div class="btn func">15. Estudo de caso</div>
+
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <div class="form-group">  
+                                            <label>Esse estudo de caso indica que as ações a serem desenvolvidas no PIA</label>
+                                            <div class="row">
+                                                <div class="col-md-5">
+                                                    <ul>                                                
+                                                        <?php for($i=0; $i<$qt_opiniao_vida; $i++): ?>
+                                                                    <li style="list-style-type:none;">          
+                                                                        <label class="checkbox-inline"><input type="checkbox" checked disabled /><?php echo e($tipo_acoes_pia[$i]->QEPI_DESCRICAO); ?></label>
+                                                                    </li>
+                                                            <?php endfor; ?>
+                                                    </ul>    
+                                                </div>  
+                                            </div>    
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="col-md-10">
+                                        <div class="form-group">
+                                            <label>Observações</label><br/>
+                                            <textarea class="col-md-10" name="ACMT_OBS_GERAIS" disabled><?php echo e($acmt->ACMT_OBS_GERAIS); ?></textarea>
+                                        </div>
+                                    </div>  
+
+                                </div>
+                            </article>
+                        </section><br>    
                             
 
 

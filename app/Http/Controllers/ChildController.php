@@ -515,9 +515,43 @@ class ChildController extends Controller
         ->get();
         foreach($orient_tipo_2 as $orientacao_tipo_2){}
 
-        //echo '<pre>'; print_r($orient_tipo_2); exit;    
+        //renda familiar
+        $rend_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 13 )
+            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+            ->get();
+        foreach($rend_fam as $renda_familiar){}
 
-        return view('show_child', compact('crianca','acmt', 'racas', 'nome_conselho','nome_conselheiro', 'raca_crianca', 'meio_de_chegada', 'proibicao_judicial','situacao_poder_familiar','qt_cria_ext', 'criancas_externas','qt_falta_recurso_resp', 'falta_recurso_resp', 'qt_tipo_orfn_aband','tipo_orfn_aband', 'qt_ausencia_temp_resp', 'ausencia_temp_resp', 'qt_cond_desfa_resp', 'cond_desfa_resp', 'qt_crian_adoles_sit', 'crian_adoles_sit', 'qt_tipo_documento', 'tipo_documento', 'qt_tipo_documento2', 'tipo_documento2', 'cria_saude', 'qt_prob_saude', 'prob_saude', 'qt_prob_saude2', 'prob_saude2', 'qt_opiniao_vida', 'opiniao_vida', 'qt_crianca_resp', 'crianca_resp', 'qt_grau_parentesco', 'grau_parentesco', 'orientacao_tipo_1', 'orientacao_tipo_2'  ));
+        //tipo de moradia
+        $tip_mora = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 14 )
+            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+            ->get();
+        foreach($tip_mora as $tipo_moradia){}
+
+        //situação do imóvel
+        $sit_imo = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 15 )
+            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+            ->get();
+        foreach($sit_imo as $situacao_imovel){}
+
+        //tipo de açoes do pia
+        $i=0;
+        $tp_acoes_pia = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 16 )
+            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+            ->get();
+        $qt_opiniao_vida = count($tp_acoes_pia);
+        foreach($tp_acoes_pia as $tipo_acoes_pia[$i]){$i++;}
+
+        //echo '<pre>'; print_r($tipo_acoes_pia); exit;    
+
+        return view('show_child', compact('crianca','acmt', 'racas', 'nome_conselho','nome_conselheiro', 'raca_crianca', 'meio_de_chegada', 'proibicao_judicial','situacao_poder_familiar','qt_cria_ext', 'criancas_externas','qt_falta_recurso_resp', 'falta_recurso_resp', 'qt_tipo_orfn_aband','tipo_orfn_aband', 'qt_ausencia_temp_resp', 'ausencia_temp_resp', 'qt_cond_desfa_resp', 'cond_desfa_resp', 'qt_crian_adoles_sit', 'crian_adoles_sit', 'qt_tipo_documento', 'tipo_documento', 'qt_tipo_documento2', 'tipo_documento2', 'cria_saude', 'qt_prob_saude', 'prob_saude', 'qt_prob_saude2', 'prob_saude2', 'qt_opiniao_vida', 'opiniao_vida', 'qt_crianca_resp', 'crianca_resp', 'qt_grau_parentesco', 'grau_parentesco', 'orientacao_tipo_1', 'orientacao_tipo_2', 'renda_familiar', 'tipo_moradia', 'situacao_imovel', 'qt_opiniao_vida', 'tipo_acoes_pia'  ));
     }
 
     /**
