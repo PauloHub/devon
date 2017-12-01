@@ -181,7 +181,7 @@
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Data Acolhimento</label><br>
-                                                <input type="date" class="form-control"  name="ACMT_DTA_ACOLHI" value="{{$acmt->ACMT_DTA_ACOLHI}}" disabled=""> 
+                                                <input type="date" class="form-control"  name="ACMT_DTA_ACOLHI" value="{{$acmt->ACMT_DTA_ACOLHI}}" disabled> 
                                             </div>
                                         </div>
                                         <div class="col-md-2">
@@ -1180,8 +1180,8 @@
                         <div class="row">
 
                             <br><br>
-                            <div align="center" >
-                                <button type="submit" class="btn btn-info btn-fill">Editar Criança</button>
+                            <div align="center" >                                
+                                <a href="{{ url('/edit_child', $crianca->ID) }}" class="btn btn-info btn-fill">Editar Criança</a>
                                 <input style="margin-left:10%; width: 150px;" type="button" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
                             </div>
                             <br>

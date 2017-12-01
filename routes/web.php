@@ -23,6 +23,8 @@ Route::get('/register_child', 'ChildController@create', 'CityController@state_ci
 Route::post('/register_child', 'ChildController@store');
 Route::get('/list_child', 'ChildController@list');
 Route::get('/show_child/{id}', 'ChildController@show');
+Route::get('/edit_child/{id}', 'ChildController@edit');
+Route::put('/edit_child/{id}', 'ChildController@update');
 
 Route::get('/register_donor', 'DonorController@create');
 Route::post('/register_donor', 'DonorController@store');
