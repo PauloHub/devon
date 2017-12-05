@@ -810,7 +810,7 @@
                                                 <div class="form-group">
                                                     <label>Grau de Parenteco</label><br>                                                
                                                     <input type="text" class="form-control"  value="<?php echo e($grau_parentesco[$j]->GRPA_NOME); ?>" disabled>
-                                                    <?php $j++ ?>
+                                                    
                                                 </div>
                                             </div>
 
@@ -905,7 +905,7 @@
                                         <div class="row" id="divResponsavelList">
                                         </div>
                                         <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
-                                        
+                                        <?php $j++ ?>
                                        <?php endfor; ?>
                                    </article>
                                </section><br>

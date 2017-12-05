@@ -721,105 +721,214 @@
                                     <div class="form-group">  
                                         <label>Documentos apresentados ao serviço no ato do acolhimento Institucional familiar</label>
                                         <div class="row">  
-                                            <div class="col-md-5">
-                                                <ul>    
+                                         <div class="col-md-5">
+                                            <ul>                                                   
+                                                <?php
+                                                $flag = 0;
+                                                $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
+                                                ?>
+                                                <?php $__currentLoopData = $tipo_documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documento_1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>   
+                                                <?php $cont_repeticao=0; ?>    
+
+                                                <?php if($tipo_documento_1->TPDO_ID <= 10 ): ?>
+
+                                                <?php $flag = $flag + 1; ?>
+
+                                                <li style="list-style-type:none;">  
+
                                                     <?php for($i=0; $i<$qt_tipo_documento; $i++): ?>
+                                                    <?php if($tipo_documento_1->TPDO_ID ==  $tipo_documento[$i]->TPDO_ID ): ?>
                                                     <li style="list-style-type:none;">          
-                                                        <label class="checkbox-inline"><input type="checkbox" checked disabled /><?php echo e($tipo_documento[$i]->TPDO_DESC); ?></label>
+                                                        <label class="checkbox-inline"><input type="checkbox" name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento[$i]->TPDO_ID); ?>" checked/><?php echo e($tipo_documento[$i]->TPDO_DESC); ?></label>
                                                     </li>
+                                                    <?php $cont_repeticao++; ?> 
+                                                    <?php endif; ?>
                                                     <?php endfor; ?>
-                                                </ul>    
-                                            </div> 
-                                        </div>
-                                    </div>    
-                                </div>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-md-11">
-                                    <div class="form-group">  
-                                        <label>Documentação a ser providenciada</label><br>
-                                        <div class="col-md-5">
-                                            <ul>                                                
-                                                <?php for($i=0; $i<$qt_tipo_documento2; $i++): ?>
-                                                <li style="list-style-type:none;">          
-                                                    <label class="checkbox-inline"><input type="checkbox" checked disabled /><?php echo e($tipo_documento2[$i]->TPDO_DESC); ?></label>
+                                                    <?php if($cont_repeticao==0): ?>            
+                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento_1->TPDO_ID); ?>"/><?php echo e($tipo_documento_1->TPDO_DESC); ?></label>
                                                 </li>
-                                                <?php endfor; ?>
+                                                <?php endif; ?>
+                                                <?php endif; ?>
+                                                <?php if($flag == $dividir): ?>
                                             </ul>    
                                         </div>  
-
+                                        <div class="col-md-6">
+                                            <ul>
+                                                <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </ul> 
+                                        </div> 
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </section><br>
-
-                <section id="hide_section" >
-                    <article style="padding-left: 15px;">
-                        <div class="btn func">8. Educação</div>
-
-                        <div class="row"> 
-
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Ano escolar atual</label><br>
-                                    <input type="text" class="form-control" name="ACMT_ANO_ESCO" value="<?php echo e($acmt->ACMT_ANO_ESCO); ?>" disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Frequência</label><br>
-                                    <input type="text" class="form-control" name="ACMT_FREQ_ESC" value="<?php echo e($acmt->ACMT_FREQ_ESC); ?>" disabled>
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Rendimento Escolar</label><br>
-                                    <input type="text" class="form-control" name="ACMT_REND_ESC" value="<?php echo e($acmt->ACMT_REND_ESC); ?>" disabled>
-                                </div>
+                                </div>    
                             </div>
                         </div>
 
                         <div class="row">
 
-                            <div class="col-md-10">
-                                <div class="form-group">
-                                    <label>Como a criança percebe ou vivencia sua relação com a escola?</label><br/>
-                                    <textarea class="col-md-10" name="ACMT_VIV_REL_ESC" disabled><?php echo e($acmt->ACMT_VIV_REL_ESC); ?></textarea>
+                            <div class="col-md-11">
+                                <div class="form-group">  
+                                    <label>Documentação a ser providenciada</label><br>
+                                    <div class="col-md-5">
+                                        <ul>                                                   
+                                            <?php
+                                            $flag = 0;
+                                            $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
+                                            ?>
+                                            <?php $__currentLoopData = $tipo_documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documento_2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>   
+                                            <?php $cont_repeticao=0; ?>    
+
+                                            <?php if($tipo_documento_2->TPDO_ID > 10 ): ?>
+
+                                            <?php $flag = $flag + 1; ?>
+
+                                            <li style="list-style-type:none;">  
+
+                                                <?php for($i=0; $i<$qt_tipo_documento2; $i++): ?>
+                                                <?php if($tipo_documento_2->TPDO_ID ==  $tipo_documento2[$i]->TPDO_ID ): ?>
+                                                <li style="list-style-type:none;">          
+                                                    <label class="checkbox-inline"><input type="checkbox" name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento2[$i]->TPDO_ID); ?>" checked/><?php echo e($tipo_documento2[$i]->TPDO_DESC); ?></label>
+                                                </li>
+                                                <?php $cont_repeticao++; ?> 
+                                                <?php endif; ?>
+                                                <?php endfor; ?>
+                                                <?php if($cont_repeticao==0): ?>            
+                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento_2->TPDO_ID); ?>"/><?php echo e($tipo_documento_2->TPDO_DESC); ?></label>
+                                            </li>
+                                            <?php endif; ?>
+                                            <?php endif; ?>
+                                            <?php if($flag == $dividir): ?>
+                                        </ul>    
+                                    </div>  
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </ul> 
+                                    </div>   
+
                                 </div>
                             </div>
                         </div>
-                    </article>
-                </section><br>
+                    </div>
+                </article>
+            </section><br>
 
-                <section id="hide_section" >
-                    <article style="padding-left: 15px;">
-                        <div class="btn func">9. Saúde</div>
+            <section id="hide_section" >
+                <article style="padding-left: 15px;">
+                    <div class="btn func">8. Educação</div>
 
-                        <div class="row">
+                    <div class="row"> 
 
-                         <div class="col-md-2">
+                        <div class="col-md-2">
                             <div class="form-group">
-                                <label>Carteira de vacinação</label><br>
-                                <input type="text" class="form-control" name="CSAU_CART_VAC" value="<?php echo e($cria_saude->CSAU_CART_VAC); ?>" disabled>
+                                <label>Ano escolar atual</label><br>
+                                <select name="ACMT_ANO_ESCO"  class="form-control col-md-2">
+                                    <option value="<?php echo e($acmt->ACMT_ANO_ESCO); ?>"><?php echo e($acmt->ACMT_ANO_ESCO); ?></option>
+                                    <option value="Creche">Creche</option>
+                                    <option value="Pre-escola">Pré-escola</option>
+                                    <option value="Ensino Fundamental">Ensino Fundamental</option>
+                                    <option value="Ensino Medio">Ensino Médio</option>
+                                    <option value="Nao frequenta">Não frequenta escola/creche</option>
+                                    <option value="Sem informacoes">Sem informações</option>
+                                </select>
                             </div>
-                        </div> 
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Frequência</label><br>
+                                <select name="ACMT_FREQ_ESC"  class="form-control col-md-2">
+                                    <option value="<?php echo e($acmt->ACMT_FREQ_ESC); ?>"><?php echo e($acmt->ACMT_FREQ_ESC); ?></option>
+                                    <option value="Satisfatorio">Satisfátoria</option>
+                                    <option value="Insatisfatoria">Insatisfatória</option>
+                                    <option value="Sem informacao">Sem Informação</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Rendimento Escolar</label><br>
+                                <select name="ACMT_REND_ESC"  class="form-control col-md-2">
+                                    <option value="<?php echo e($acmt->ACMT_REND_ESC); ?>"><?php echo e($acmt->ACMT_REND_ESC); ?></option>
+                                    <option value="Satisfatorio">Satisfátoria</option>
+                                    <option value="Insatisfatoria">Insatisfatória</option>
+                                    <option value="Sem informacao">Sem Informação</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
 
-                        <div class="col-md-11">
-                            <div class="form-group">  
-                                <label>Problemas de saúde física e mental</label><br>
-                                <div class="col-md-5">
-                                    <ul>                                                
-                                       <?php for($i=0; $i<$qt_prob_saude; $i++): ?>
-                                       <li style="list-style-type:none;">          
-                                        <label class="checkbox-inline"><input type="checkbox" checked disabled /><?php echo e($prob_saude[$i]->QEPI_DESCRICAO); ?></label>
+                    <div class="row">
+
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label>Como a criança percebe ou vivencia sua relação com a escola?</label><br/>
+                                <textarea class="col-md-10" name="ACMT_VIV_REL_ESC"><?php echo e($acmt->ACMT_VIV_REL_ESC); ?></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section><br>
+
+            <section id="hide_section" >
+                <article style="padding-left: 15px;">
+                    <div class="btn func">9. Saúde</div>
+
+                    <div class="row">
+
+                     <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Carteira de vacinação</label><br>
+                            <select name="CSAU_CART_VAC"  class="form-control col-md-2">
+                                <option value="<?php echo e($cria_saude->CSAU_CART_VAC); ?>"><?php echo e($cria_saude->CSAU_CART_VAC); ?></option>
+                                <option value="Sim, atualizada (SA)">Sim, atualizada (SA)</option>
+                                <option value="Sim, desatualizada (SD)">Sim, desatualizada (SD)</option>
+                                <option value="Não possui (NP)">Não possui (NP)</option>
+                            </select>
+                        </div>
+                    </div> 
+
+                    <div class="col-md-11">
+                        <div class="form-group">  
+                            <label>Problemas de saúde física e mental</label><br>
+                            <div class="col-md-5">  
+                                <ul>
+                                    <?php
+                                    $flag = 0;
+                                    $question = 10;
+                                    $pos = $question - 1;
+                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                    ?>
+                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $cont_repeticao=0; ?>
+
+                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
+                                    <?php $flag = $flag + 1; ?>
+
+                                    <li style="list-style-type:none;">    
+                                        <?php for($i=0; $i<$qt_prob_saude; $i++): ?>                                                                    
+                                        <?php if($qpi->QEPI_ID == $prob_saude[$i]->QEPI_ID ): ?>
+                                        <li style="list-style-type:none;">          
+                                            <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                        </li>
+                                        <?php $cont_repeticao++; ?>  
+
+                                        <?php endif; ?>
+                                        <?php endfor; ?>
+                                        <?php if($cont_repeticao==0): ?>    
+                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                        <?php endif; ?>
                                     </li>
-                                    <?php endfor; ?>
+                                    <?php if($flag == $dividir): ?>
                                 </ul>    
                             </div>  
+
+                            <div class="col-md-6">
+                                <ul>
+                                    <?php endif; ?>
+                                    <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>    
+                            </div> 
 
                         </div>    
                     </div>
@@ -830,14 +939,14 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Especificar o diagnóstico e a data de sua realização</label><br/>
-                            <textarea class="col-md-10" name="CSAU_DIAG_MED" disabled><?php echo e($cria_saude->CSAU_DIAG_MED); ?></textarea>
+                            <textarea class="col-md-10" name="CSAU_DIAG_MED"><?php echo e($cria_saude->CSAU_DIAG_MED); ?></textarea>
                         </div>
                     </div> 
 
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Data da Realização</label>
-                            <input type="date" class="form-control" name="CSAU_DTA_DIAG_MED" value="<?php echo e($cria_saude->CSAU_DTA_DIAG_MED); ?>" disabled>
+                            <input type="date" class="form-control" name="CSAU_DTA_DIAG_MED" value="<?php echo e($cria_saude->CSAU_DTA_DIAG_MED); ?>">
                         </div>    
                     </div> 
                 </div>
@@ -847,108 +956,183 @@
                     <div class="col-md-11">
                         <div class="form-group">  
                             <label>Problemas de saúde física e mental</label><br>
-                            <div class="col-md-5">
-                                <ul>                                                
-                                   <?php for($i=0; $i<$qt_prob_saude2; $i++): ?>
-                                   <li style="list-style-type:none;">          
-                                    <label class="checkbox-inline"><input type="checkbox" checked disabled /><?php echo e($prob_saude2[$i]->QEPI_DESCRICAO); ?></label>
-                                </li>
-                                <?php endfor; ?>
-                            </ul>    
-                        </div>  
-
-                    </div>    
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Acompanhamentos médicos necessários</label><br/>
-                        <textarea class="col-md-10" name="CSAU_ACOP_MED" disabled><?php echo e($cria_saude->CSAU_ACOP_MED); ?></textarea>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Uso contínuo de medicação?</label><br/>
-                        <?php $cria_saude->CSAU_USO_MED = ($cria_saude->CSAU_USO_MED == '1' ? 'Sim' : 'Não'); ?>
-                        <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="1" disabled checked /><?php echo e($cria_saude->CSAU_USO_MED); ?></label>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Quais?</label><br/>
-                        <textarea class="col-md-10" name="CSAU_USO_MED_ESP" disabled><?php echo e($cria_saude->CSAU_USO_MED_ESP); ?></textarea>
-                    </div>
-                </div>  
-            </div>
-        </article>
-    </section><br>
-
-    <section id="hide_section" >
-        <article style="padding-left: 15px;">
-            <div class="btn func">10. Autonomia da criança, do adolescente e do jovem</div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Teve acesso a informações sobre sua história de vida, familiar e motivos de acolhimento; considerando-se o grau de desenvolvimento?</label><br/>
-                        <?php $acmt->ACMT_HIST_FAMI = ($acmt->ACMT_HIST_FAMI == '1' ? 'Sim' : 'Não'); ?>
-                        <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="1" checked disabled/><?php echo e($acmt->ACMT_HIST_FAMI); ?></label>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Se não, Por quê?</label><br/>
-                        <textarea class="col-md-10" name="ACMT_HIST_FAMI_DES" disabled><?php echo e($acmt->ACMT_HIST_FAMI_DES); ?></textarea>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Emite sua opinião quanto às decisões que dizem respeito à sua vida cotidiana no serviço de acolhimento e à sua situação familiar?</label><br/>
-                        <?php $acmt->ACMT_OPIN_DECI = ($acmt->ACMT_OPIN_DECI == '1' ? 'Sim' : 'Não'); ?>
-                        <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="1" checked disabled /><?php echo e($acmt->ACMT_OPIN_DECI); ?></label>
-                    </div>
-                </div>  
-            </div>
-
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Quais?</label><br/>
-                        <textarea class="col-md-10" name="ACMT_OPIN_DEC_DES" disabled><?php echo e($acmt->ACMT_OPIN_DEC_DES); ?></textarea>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-md-11">
-                    <div class="form-group">  
-                        <label>Sua opinião reflete sua preferência em:</label>  
-                        <div class="row">
                             <div class="col-md-5">  
                                 <ul>
-                                    <?php for($i=0; $i<$qt_opiniao_vida; $i++): ?>
-                                    <li style="list-style-type:none;">          
-                                        <label class="checkbox-inline"><input type="checkbox" checked disabled /><?php echo e($opiniao_vida[$i]->QEPI_DESCRICAO); ?></label>
+                                    <?php
+                                    $flag = 0;
+                                    $question = 17;
+                                    $pos = $question - 1;
+                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                    ?>
+                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $cont_repeticao=0; ?>
+
+                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
+                                    <?php $flag = $flag + 1; ?>
+
+                                    <li style="list-style-type:none;">    
+                                        <?php for($i=0; $i<$qt_prob_saude2; $i++): ?>                                                                    
+                                        <?php if($qpi->QEPI_ID == $prob_saude2[$i]->QEPI_ID ): ?>
+                                        <li style="list-style-type:none;">          
+                                            <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                        </li>
+                                        <?php $cont_repeticao++; ?>  
+
+                                        <?php endif; ?>
+                                        <?php endfor; ?>
+                                        <?php if($cont_repeticao==0): ?>    
+                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                        <?php endif; ?>
                                     </li>
-                                    <?php endfor; ?>                                                               
+                                    <?php if($flag == $dividir): ?>
                                 </ul>    
-                            </div>                                                          
+                            </div>  
+
+                            <div class="col-md-6">
+                                <ul>
+                                    <?php endif; ?>
+                                    <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>    
+                            </div>  
+
+                        </div>    
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Acompanhamentos médicos necessários</label><br/>
+                            <textarea class="col-md-10" name="CSAU_ACOP_MED"><?php echo e($cria_saude->CSAU_ACOP_MED); ?></textarea>
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Uso contínuo de medicação?</label><br/>
+                            <?php if($cria_saude->CSAU_USO_MED == 1): ?>
+                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="1" checked/>Sim</label>
+                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="0"/>Não</label>
+                            <?php else: ?>
+                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="1"/>Sim</label>
+                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="0" checked/>Não</label>
+                            <?php endif; ?>
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Quais?</label><br/>
+                            <textarea class="col-md-10" name="CSAU_USO_MED_ESP"><?php echo e($cria_saude->CSAU_USO_MED_ESP); ?></textarea>
+                        </div>
+                    </div>  
+                </div>
+            </article>
+        </section><br>
+
+        <section id="hide_section" >
+            <article style="padding-left: 15px;">
+                <div class="btn func">10. Autonomia da criança, do adolescente e do jovem</div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Teve acesso a informações sobre sua história de vida, familiar e motivos de acolhimento; considerando-se o grau de desenvolvimento?</label><br/>
+                            <?php if($acmt->ACMT_HIST_FAMI == 1): ?>
+                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="1" checked/>Sim</label>
+                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="0"/>Não</label>
+                            <?php else: ?>
+                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="1"/>Sim</label>
+                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="0" checked/>Não</label>
+                            <?php endif; ?>
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Se não, Por quê?</label><br/>
+                            <textarea class="col-md-10" name="ACMT_HIST_FAMI_DES"><?php echo e($acmt->ACMT_HIST_FAMI_DES); ?></textarea>
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Emite sua opinião quanto às decisões que dizem respeito à sua vida cotidiana no serviço de acolhimento e à sua situação familiar?</label><br/>
+                            <?php if($acmt->ACMT_OPIN_DECI  == 1): ?>
+                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="1" checked/>Sim</label>
+                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="0"/>Não</label>
+                            <?php else: ?>
+                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="1"/>Sim</label>
+                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="0" checked/>Não</label>
+                            <?php endif; ?>
+                        </div>
+                    </div>  
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="form-group">
+                            <label>Quais?</label><br/>
+                            <textarea class="col-md-10" name="ACMT_OPIN_DEC_DES"><?php echo e($acmt->ACMT_OPIN_DEC_DES); ?></textarea>
+                        </div>
+                    </div>  
+                </div>
+
+                <div class="row">
+                    <div class="col-md-11">
+                        <div class="form-group">  
+                            <label>Sua opinião reflete sua preferência em:</label>  
+                            <div class="row">
+                             <div class="col-md-5">  
+                                <ul>
+                                    <?php
+                                    $flag = 0;
+                                    $question = 12;
+                                    $pos = $question - 1;
+                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                    ?>
+                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $cont_repeticao=0; ?>
+
+                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
+                                    <?php $flag = $flag + 1; ?>
+
+                                    <li style="list-style-type:none;">    
+                                        <?php for($i=0; $i<$qt_opiniao_vida; $i++): ?>                                                                    
+                                        <?php if($qpi->QEPI_ID == $opiniao_vida[$i]->QEPI_ID ): ?>
+                                        <li style="list-style-type:none;">          
+                                            <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                        </li>
+                                        <?php $cont_repeticao++; ?>  
+
+                                        <?php endif; ?>
+                                        <?php endfor; ?>
+                                        <?php if($cont_repeticao==0): ?>    
+                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                        <?php endif; ?>
+                                    </li>
+                                    <?php if($flag == $dividir): ?>
+                                </ul>    
+                            </div>  
+
+                            <div class="col-md-6">
+                                <ul>
+                                    <?php endif; ?>
+                                    <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </ul>    
+                            </div>                                                           
                         </div>
                     </div>
                 </div>
@@ -964,7 +1148,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Desenvolvimento Físico</label><br/>
-                        <textarea class="col-md-10" name="ACMT_DESEN_FISIC" disabled><?php echo e($acmt->ACMT_DESEN_FISIC); ?></textarea>
+                        <textarea class="col-md-10" name="ACMT_DESEN_FISIC"><?php echo e($acmt->ACMT_DESEN_FISIC); ?></textarea>
                     </div>
                 </div>  
             </div>
@@ -973,7 +1157,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Desenvolvimento Cognitivo</label><br/>
-                        <textarea class="col-md-10" name="ACMT_DESEN_COGNI" disabled><?php echo e($acmt->ACMT_DESEN_COGNI); ?></textarea>
+                        <textarea class="col-md-10" name="ACMT_DESEN_COGNI"><?php echo e($acmt->ACMT_DESEN_COGNI); ?></textarea>
                     </div>
                 </div>  
             </div>
@@ -982,7 +1166,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Desenvolvimento Sócio Emocional</label><br/>
-                        <textarea class="col-md-10" name="ACMT_DESEN_SOCIO_EMO" disabled><?php echo e($acmt->ACMT_DESEN_SOCIO_EMO); ?></textarea>
+                        <textarea class="col-md-10" name="ACMT_DESEN_SOCIO_EMO"><?php echo e($acmt->ACMT_DESEN_SOCIO_EMO); ?></textarea>
                     </div>
                 </div>  
             </div>
@@ -991,7 +1175,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Vida Cotidiana</label><br/>
-                        <textarea class="col-md-10" name="ACMT_VDA_COT" disabled><?php echo e($acmt->ACMT_VDA_COT); ?></textarea>
+                        <textarea class="col-md-10" name="ACMT_VDA_COT"><?php echo e($acmt->ACMT_VDA_COT); ?></textarea>
                     </div>
                 </div>  
             </div>
@@ -1000,7 +1184,7 @@
                 <div class="col-md-10">
                     <div class="form-group">
                         <label>Outras Informações</label><br/>
-                        <textarea class="col-md-10" name="ACMT_OUT_INFO" disabled><?php echo e($acmt->ACMT_OUT_INFO); ?></textarea>
+                        <textarea class="col-md-10" name="ACMT_OUT_INFO"><?php echo e($acmt->ACMT_OUT_INFO); ?></textarea>
                     </div>
                 </div>  
             </div>
@@ -1018,15 +1202,20 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Nome do Responsável</label>
-                        <input type="text" class="form-control" value="<?php echo e($crianca_resp[$i]->RESP_NOME); ?>" disabled>
+                        <input type="text" class="form-control" name="RESP_NOME[]" value="<?php echo e($crianca_resp[$i]->RESP_NOME); ?>">
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="form-group">
-                        <label>Grau de Parenteco</label><br>                                                
-                        <input type="text" class="form-control"  value="<?php echo e($grau_parentesco[$j]->GRPA_NOME); ?>" disabled>
-                        <?php $j++ ?>
+                        <label>Grau de Parenteco</label><br>    
+                        <select name="FK_GRPA_ID[]"  class="form-control col-md-2">
+                            <option value="<?php echo e($grau_parentesco[$j]->GRPA_ID); ?>"><?php echo e($grau_parentesco[$j]->GRPA_NOME); ?></option>
+                            <?php $__currentLoopData = $graus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grau): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($grau->GRPA_ID); ?>"><?php echo e($grau->GRPA_NOME); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
+                        
                     </div>
                 </div>
 
@@ -1037,27 +1226,37 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>Estado</label><br>
-                        <input type="text" class="form-control" value="<?php echo e($crianca_resp[$i]->FK_RESP_ESTD); ?>" disabled>
+                        <select name="FK_RESP_ESTD[]" id="state_city_resp" class="form-control state_city_resp">
+                            <option value="<?php echo e($crianca_resp[$i]->FK_RESP_ESTD); ?>"><?php echo e($crianca_resp[$i]->FK_RESP_ESTD); ?></option>
+                            <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
                     </div>
                 </div>
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>Cidade</label><br>
-                        <input type="text" class="form-control" value="<?php echo e($crianca_resp[$i]->FK_RESP_CIDADE); ?>" disabled>
+                        <select name="FK_RESP_CIDADE[]" id="id_cidade" class="form-control city_state_resp">
+                            <option value="<?php echo e($crianca_resp[$i]->FK_RESP_CIDADE); ?>"><?php echo e($crianca_resp[$i]->FK_RESP_CIDADE); ?></option>
+                            <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Endereço</label>
-                        <input type="text" class="form-control" placeholder="Endereço" name="RESP_END_CSA[]" value="<?php echo e($crianca_resp[$i]->RESP_END_CSA); ?>" disabled>
+                        <input type="text" class="form-control" placeholder="Endereço" name="RESP_END_CSA[]" value="<?php echo e($crianca_resp[$i]->RESP_END_CSA); ?>">
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Bairro</label>
-                        <input type="text" class="form-control" placeholder="Bairro" name="RESP_BAIRRO[]" value="<?php echo e($crianca_resp[$i]->RESP_BAIRRO); ?>" disabled>
+                        <input type="text" class="form-control" placeholder="Bairro" name="RESP_BAIRRO[]" value="<?php echo e($crianca_resp[$i]->RESP_BAIRRO); ?>">
                     </div>
                 </div>
 
@@ -1068,28 +1267,28 @@
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>Data de Nascimento</label>
-                        <input type="date" class="form-control"  name="RESP_DT_NASCI[]" value="<?php echo e($crianca_resp[$i]->RESP_DT_NASCI); ?>" disabled>
+                        <input type="date" class="form-control"  name="RESP_DT_NASCI[]" value="<?php echo e($crianca_resp[$i]->RESP_DT_NASCI); ?>">
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>RG</label>
-                        <input type="number" class="form-control" placeholder="RG" name="RESP_RG[]" value="<?php echo e($crianca_resp[$i]->RESP_RG); ?>" disabled>
+                        <input type="number" class="form-control" placeholder="RG" name="RESP_RG[]" value="<?php echo e($crianca_resp[$i]->RESP_RG); ?>">
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>CPF</label>
-                        <input type="number" class="form-control" placeholder="CPF" name="RESP_CPF[]" value="<?php echo e($crianca_resp[$i]->RESP_CPF); ?>" disabled>
+                        <input type="number" class="form-control" placeholder="CPF" name="RESP_CPF[]" value="<?php echo e($crianca_resp[$i]->RESP_CPF); ?>">
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <div class="form-group">
                         <label>Contato</label>
-                        <input type="number" class="form-control" placeholder="Contato" name="RESP_TEL[]" value="<?php echo e($crianca_resp[$i]->RESP_TEL); ?>" disabled>
+                        <input type="number" class="form-control" placeholder="Contato" name="RESP_TEL[]" value="<?php echo e($crianca_resp[$i]->RESP_TEL); ?>">
                     </div>
                 </div>
 
@@ -1100,20 +1299,20 @@
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Ponto de Referência</label>
-                        <input type="text" class="form-control" placeholder="Ponto de referência" name="RESP_PONT_REF[]" value="<?php echo e($crianca_resp[$i]->RESP_PONT_REF); ?>" disabled>
+                        <input type="text" class="form-control" placeholder="Ponto de referência" name="RESP_PONT_REF[]" value="<?php echo e($crianca_resp[$i]->RESP_PONT_REF); ?>">
                     </div>
                 </div>
 
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Profissão/trabalho</label>
-                        <input type="text" class="form-control" placeholder="Profissão/Trabalho" name="RESP_PROF[]" value="<?php echo e($crianca_resp[$i]->RESP_PROF); ?>" disabled>
+                        <input type="text" class="form-control" placeholder="Profissão/Trabalho" name="RESP_PROF[]" value="<?php echo e($crianca_resp[$i]->RESP_PROF); ?>">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Endereço do trabalho</label>
-                        <input type="text" class="form-control" placeholder="Endereço do Trarbalho" name="RESP_END_TRAB[]" value="<?php echo e($crianca_resp[$i]->RESP_END_TRAB); ?>" disabled>
+                        <input type="text" class="form-control" placeholder="Endereço do Trarbalho" name="RESP_END_TRAB[]" value="<?php echo e($crianca_resp[$i]->RESP_END_TRAB); ?>">
                     </div>
                 </div>
             </div>  
@@ -1121,7 +1320,7 @@
             <div class="row" id="divResponsavelList">
             </div>
             <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
-
+            <?php $j++ ?>
             <?php endfor; ?>
         </article>
     </section><br>
@@ -1137,28 +1336,40 @@
                             Quais instituições e os serviços que prestaram ou que estão prestando orientação ao grupo familiar?<br></label><br><br>
 
                             <?php if($orientacao_tipo_1->ORNT_CONS_TUT == 1): ?>
-                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="1" checked disabled />Conselho Tutelar</label><br>
-                            <label>Observação</label>
-                            <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_CONS_TUT_OBS); ?>" disabled> <br>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="1" checked/>Conselho Tutelar</label><br>
+                            <?php else: ?>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="1"/>Conselho Tutelar</label><br>
                             <?php endif; ?>
+                            <label>Observação</label>
+                            <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_CONS_TUT_OBS); ?>"> <br>
+                            
 
                             <?php if($orientacao_tipo_1->ORNT_DPCA == 1): ?>
-                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_DPCA" value="1" checked disabled />Delegacia de Proteção à Criança e ao Adolescente - DPCA</label><br>
-                            <label>Observação</label>
-                            <input type="text" class="form-control"  name="ORNT_DPCA_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_DPCA_OBS); ?>" disabled><br>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_DPCA" value="1" checked/>Delegacia de Proteção à Criança e ao Adolescente - DPCA</label><br>
+                            <?php else: ?>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_DPCA" value="1"/>Delegacia de Proteção à Criança e ao Adolescente - DPCA</label><br>
                             <?php endif; ?>
+                            <label>Observação</label>
+                            <input type="text" class="form-control"  name="ORNT_DPCA_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_DPCA_OBS); ?>"><br>
+                            
 
                             <?php if($orientacao_tipo_1->ORNT_DPCA == 1): ?>
-                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_DELEGACIA_COMUM" value="1" checked disabled />Delegacias comuns e especializadas</label><br>
-                            <label>Observação</label>
-                            <input type="text" class="form-control"  name="DELEGACIA_COMUM_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_DPCA_OBS); ?>" disabled><br>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_DELEGACIA_COMUM" value="1" checked/>Delegacias comuns e especializadas</label><br>
+                            <?php else: ?>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_DELEGACIA_COMUM" value="1"/>Delegacias comuns e especializadas</label><br>
                             <?php endif; ?>
+                            <label>Observação</label>
+                            <input type="text" class="form-control"  name="DELEGACIA_COMUM_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_DPCA_OBS); ?>"><br>
+                            
 
                             <?php if($orientacao_tipo_1->ORNT_ASSISTENCIA_SOCIAL == 1): ?>
-                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_ASSISTENCIA_SOCIAL" value="1" checked disabled />Assitência Social</label><br>
-                            <label>Observação</label>
-                            <input type="text" class="form-control"  name="ORNT_ASSISTENCIA_SOCIAL_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_ASSISTENCIA_SOCIAL_OBS); ?>" disabled><br>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_ASSISTENCIA_SOCIAL" value="1" checked/>Assitência Social</label><br>
+                            <?php else: ?>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_ASSISTENCIA_SOCIAL" value="1"/>Assitência Social</label><br>
                             <?php endif; ?>
+                            <label>Observação</label>
+                            <input type="text" class="form-control"  name="ORNT_ASSISTENCIA_SOCIAL_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_ASSISTENCIA_SOCIAL_OBS); ?>"><br>
+                            
                         </div>
                     </div>
                 </div>
@@ -1167,7 +1378,7 @@
                     <div class="col-md-10">
                         <div class="form-group">
                             <label>Proteção Social Básica</label><br/>
-                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA" disabled><?php echo e($orientacao_tipo_1->ORNT_PROTECAO_SOCIAL_BASICA); ?></textarea>
+                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA"><?php echo e($orientacao_tipo_1->ORNT_PROTECAO_SOCIAL_BASICA); ?></textarea>
                         </div>
                     </div>  
                 </div>
@@ -1176,7 +1387,7 @@
                     <div class="col-md-10">
                         <div class="form-group">
                             <label>Proteção Social Especial</label><br/>
-                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL" disabled><?php echo e($orientacao_tipo_1->ORNT_PROTECAO_SOCIAL_ESPECIAL); ?></textarea>
+                            <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL"><?php echo e($orientacao_tipo_1->ORNT_PROTECAO_SOCIAL_ESPECIAL); ?></textarea>
                         </div>
                     </div>  
                 </div><br>
@@ -1186,34 +1397,46 @@
                         <div class="form-group"> 
 
                             <?php if($orientacao_tipo_1->ORNT_OUTROS_SERVICOS == 1): ?>
-                            <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" 1" checked disabled />Outros Serviços de apoio sócio-familiar</label><br>
-                            <label>Especifique</label>
-                            <input type="text" class="form-control"  name="ORNT_OUTROS_SERVICOS_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_OUTROS_SERVICOS_OBS); ?>" disabled> <br>
+                            <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" 1" checked/>Outros Serviços de apoio sócio-familiar</label><br>
+                            <?php else: ?>
+                            <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value=" 1"/>Outros Serviços de apoio sócio-familiar</label><br>
                             <?php endif; ?>
+                            <label>Especifique</label>
+                            <input type="text" class="form-control"  name="ORNT_OUTROS_SERVICOS_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_OUTROS_SERVICOS_OBS); ?>"> <br>
+                            
 
                             <?php if($orientacao_tipo_1->ORNT_SAUDE == 1): ?>
-                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="1" checked disabled />Saúde</label><br>
-                            <label>Especifique</label>
-                            <input type="text" class="form-control"  name="ORNT_SAUDE_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_SAUDE_OBS); ?>" disabled><br>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="1" checked/>Saúde</label><br>
+                            <?php else: ?>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="1"/>Saúde</label><br>
                             <?php endif; ?>
+                            <label>Especifique</label>
+                            <input type="text" class="form-control"  name="ORNT_SAUDE_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_SAUDE_OBS); ?>"><br>
+                            
 
                             <?php if($orientacao_tipo_1->ORNT_EDUCACAO == 1): ?>
-                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="1" checked disabled />Educação</label><br>
-                            <label>Especifique</label>
-                            <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_EDUCACAO_OBS); ?>" disabled><br>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="1" checked/>Educação</label><br>
+                            <?php else: ?>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="1"/>Educação</label><br>
                             <?php endif; ?>
+                            <label>Especifique</label>
+                            <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_EDUCACAO_OBS); ?>"><br>                            
 
                             <?php if($orientacao_tipo_1->ORNT_HABITACAO == 1): ?>
-                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="1" checked disabled />Habitação</label><br>
-                            <label>Especifique</label>
-                            <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_HABITACAO_OBS); ?>" disabled><br>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="1" checked/>Habitação</label><br>
+                            <?php else: ?>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="1"/>Habitação</label><br>
                             <?php endif; ?>
+                            <label>Especifique</label>
+                            <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_HABITACAO_OBS); ?>"><br>                            
 
                             <?php if($orientacao_tipo_1->ORNT_PROFISSIO_TRAB == 1): ?>
-                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="1" checked disabled />Profissionalização/Trabalho</label><br>
-                            <label>Especifique</label>
-                            <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_HABITACAO_OBS); ?>" disabled><br>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="1" checked/>Profissionalização/Trabalho</label><br>
+                            <?php else: ?>
+                            <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="1"/>Profissionalização/Trabalho</label><br>
                             <?php endif; ?>
+                            <label>Especifique</label>
+                            <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS" value="<?php echo e($orientacao_tipo_1->ORNT_HABITACAO_OBS); ?>"><br>                            
 
                         </div>
                     </div>
@@ -1232,10 +1455,12 @@
                                 Quais as instituições e os serviços que devem prestar atendimento a criança e/ou adolescente e a família para promover a reintegração familiar? <br></label><br><br>
 
                                 <?php if($orientacao_tipo_2->ORNT_CONS_TUT == 1): ?>
-                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="1" checked disabled />Conselho Tutelar</label><br>
-                                <label>Observação</label>
-                                <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_CONS_TUT_OBS); ?>" disabled><br>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="1" checked/>Conselho Tutelar</label><br>
+                                <?php else: ?>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_CONS_TUT" value="1"/>Conselho Tutelar</label><br>
                                 <?php endif; ?>
+                                <label>Observação</label>
+                                <input type="text" class="form-control"  name="ORNT_CONS_TUT_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_CONS_TUT_OBS); ?>"><br>                                
                             </div>
                         </div>
                     </div>
@@ -1244,7 +1469,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label>Proteção Social Básica</label><br/>
-                                <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA" disabled><?php echo e($orientacao_tipo_2->ORNT_PROTECAO_SOCIAL_BASICA); ?></textarea>
+                                <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_BASICA"><?php echo e($orientacao_tipo_2->ORNT_PROTECAO_SOCIAL_BASICA); ?></textarea>
                             </div>
                         </div>  
                     </div>
@@ -1253,7 +1478,7 @@
                         <div class="col-md-10">
                             <div class="form-group">
                                 <label>Proteção Social Especial</label><br/>
-                                <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL" disabled><?php echo e($orientacao_tipo_2->ORNT_PROTECAO_SOCIAL_ESPECIAL); ?></textarea>
+                                <textarea class="col-md-10" name="ORNT_PROTECAO_SOCIAL_ESPECIAL"><?php echo e($orientacao_tipo_2->ORNT_PROTECAO_SOCIAL_ESPECIAL); ?></textarea>
                             </div>
                         </div>  
                     </div><br>
@@ -1263,34 +1488,47 @@
                             <div class="form-group"> 
 
                                 <?php if($orientacao_tipo_2->ORNT_OUTROS_SERVICOS == 1): ?>
-                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value="1" checked disabled />Outros Serviços de apoio sócio-familiar</label><br>
-                                <label>Especifique</label>
-                                <input type="text" class="form-control"  name="1" value="<?php echo e($orientacao_tipo_2->ORNT_OUTROS_SERVICOS_OBS); ?>" disabled><br>
+                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value="1" checked/>Outros Serviços de apoio sócio-familiar</label><br>
+                                <?php else: ?>
+                                <label class="checkbox-inline"><input type="checkbox" name=" ORNT_OUTROS_SERVICOS" value="1"/>Outros Serviços de apoio sócio-familiar</label><br>
                                 <?php endif; ?>
+                                <label>Especifique</label>
+                                <input type="text" class="form-control"  name="1" value="<?php echo e($orientacao_tipo_2->ORNT_OUTROS_SERVICOS_OBS); ?>"><br>
+                                
 
                                 <?php if($orientacao_tipo_2->ORNT_SAUDE == 1): ?>
-                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="1" checked disabled/>Saúde</label><br>
-                                <label>Especifique</label>
-                                <input type="text" class="form-control"  name="ORNT_SAUDE_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_SAUDE_OBS); ?>" disabled><br>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="1" checked/>Saúde</label><br>
+                                <?php else: ?>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_SAUDE" value="1"/>Saúde</label><br>
                                 <?php endif; ?>
+                                <label>Especifique</label>
+                                <input type="text" class="form-control"  name="ORNT_SAUDE_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_SAUDE_OBS); ?>"><br>
+                                
 
                                 <?php if($orientacao_tipo_2->ORNT_EDUCACAO == 1): ?>
-                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="1" checked disabled/>Educação</label><br>
-                                <label>Especifique</label>
-                                <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_EDUCACAO_OBS); ?>" disabled><br>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="1" checked/>Educação</label><br>
+                                <?php else: ?>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_EDUCACAO" value="1"/>Educação</label><br>
                                 <?php endif; ?>
+                                <label>Especifique</label>
+                                <input type="text" class="form-control"  name="ORNT_EDUCACAO_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_EDUCACAO_OBS); ?>"><br>
+                                
 
                                 <?php if($orientacao_tipo_2->ORNT_HABITACAO == 1): ?>
-                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="1" checked disabled/>Habitação</label><br>
-                                <label>Especifique</label>
-                                <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_HABITACAO_OBS); ?>" disabled><br>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="1" checked/>Habitação</label><br>
+                                <?php else: ?>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_HABITACAO" value="1"/>Habitação</label><br>
                                 <?php endif; ?>
+                                <label>Especifique</label>
+                                <input type="text" class="form-control"  name="ORNT_HABITACAO_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_HABITACAO_OBS); ?>"><br>                                
 
                                 <?php if($orientacao_tipo_2->ORNT_PROFISSIO_TRAB == 1): ?>
-                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="1" checked disabled/>Profissionalização/Trabalho</label><br>
-                                <label>Especifique</label>
-                                <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_PROFISSIO_TRAB_OBS); ?>" disabled><br>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="1" checked/>Profissionalização/Trabalho</label><br>
+                                <?php else: ?>
+                                <label class="checkbox-inline"><input type="checkbox" name="ORNT_PROFISSIO_TRAB" value="1"/>Profissionalização/Trabalho</label><br>
                                 <?php endif; ?>
+                                <label>Especifique</label>
+                                <input type="text" class="form-control"  name="ORNT_PROFISSIO_TRAB_OBS" value="<?php echo e($orientacao_tipo_2->ORNT_PROFISSIO_TRAB_OBS); ?>"><br>                                
                             </div>
                         </div>
                     </div>
@@ -1306,24 +1544,39 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Renda Familiar</label><br>
-                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2" disabled>
-                                 <option value=""><?php echo e($renda_familiar->QEPI_DESCRICAO); ?></option>
+                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
+                                 <option value="<?php echo e($renda_familiar->QEPI_ID); ?>"><?php echo e($renda_familiar->QEPI_DESCRICAO); ?></option>
+                                 <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                 <?php if($qpi->FK_QESP_ID == 13 && $qpi->QEPI_SIT == 1): ?>
+                                 <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
+                                 <?php endif; ?>
+                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                              </select>
                          </div>
                      </div>
                      <div class="col-md-3">
                         <div class="form-group">
                             <label>Tipo de Moradia</label><br>
-                            <select name="FK_QEPI_ID[]"  class="form-control col-md-2" disabled>
-                             <option value=""><?php echo e($tipo_moradia->QEPI_DESCRICAO); ?></option>
+                            <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
+                             <option value="<?php echo e($tipo_moradia->QEPI_ID); ?>"><?php echo e($tipo_moradia->QEPI_DESCRICAO); ?></option>
+                             <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                             <?php if($qpi->FK_QESP_ID == 14 && $qpi->QEPI_SIT == 1): ?>
+                             <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
+                             <?php endif; ?>
+                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                          </select>
                      </div>
                  </div>
                  <div class="col-md-3">
                     <div class="form-group">
                         <label>Situação do Imóvel</label><br>
-                        <select name="FK_QEPI_ID[]"  class="form-control col-md-2" disabled>
-                         <option value=""><?php echo e($situacao_imovel->QEPI_DESCRICAO); ?></option>
+                        <select name="FK_QEPI_ID[]"  class="form-control col-md-2">
+                         <option value="<?php echo e($situacao_imovel->QEPI_ID); ?>"><?php echo e($situacao_imovel->QEPI_DESCRICAO); ?></option>
+                         <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                         <?php if($qpi->FK_QESP_ID == 15 && $qpi->QEPI_SIT == 1): ?>
+                         <option value="<?php echo e($qpi->QEPI_ID); ?>"><?php echo e($qpi->QEPI_DESCRICAO); ?></option>
+                         <?php endif; ?>
+                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                      </select>
                  </div>
              </div> 
@@ -1335,7 +1588,7 @@
             <div class="col-md-10">
                 <div class="form-group">
                     <label>Condição da moradia</label><br/>
-                    <textarea class="col-md-10" name="ACMT_MORA_CONDICAO"  placeholder="ex: casa de alvenaria ou de madeira, nº de cômodos, higiene, organização, etc." disabled><?php echo e($acmt->ACMT_MORA_CONDICAO); ?></textarea>
+                    <textarea class="col-md-10" name="ACMT_MORA_CONDICAO"  placeholder="ex: casa de alvenaria ou de madeira, nº de cômodos, higiene, organização, etc."><?php echo e($acmt->ACMT_MORA_CONDICAO); ?></textarea>
                 </div>
             </div>
 
@@ -1345,7 +1598,7 @@
             <div class="col-md-10">
                 <div class="form-group">
                     <label>Informar endereço, telefone da família extensa, das pessoas significativas da rede social da criança e/ou adolescente e da família</label><br/>
-                    <textarea class="col-md-10" name="ACMT_INFOR_FAM_EXTENSA" disabled><?php echo e($acmt->ACMT_INFOR_FAM_EXTENSA); ?></textarea>
+                    <textarea class="col-md-10" name="ACMT_INFOR_FAM_EXTENSA"><?php echo e($acmt->ACMT_INFOR_FAM_EXTENSA); ?></textarea>
                 </div>
             </div>  
         </div>
@@ -1361,32 +1614,62 @@
                 <div class="form-group">  
                     <label>Esse estudo de caso indica que as ações a serem desenvolvidas no PIA</label>
                     <div class="row">
-                        <div class="col-md-5">
-                            <ul>                                                
-                                <?php for($i=0; $i<$qt_opiniao_vida; $i++): ?>
+                       <div class="col-md-5">  
+                        <ul>
+                            <?php
+                            $flag = 0;
+                            $question = 16;
+                            $pos = $question - 1;
+                            $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                            ?>
+                            <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $cont_repeticao=0; ?>
+
+                            <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
+                            <?php $flag = $flag + 1; ?>
+
+                            <li style="list-style-type:none;">    
+                                <?php for($i=0; $i<$qt_tipo_acoes_pia; $i++): ?>                                                                    
+                                <?php if($qpi->QEPI_ID == $tipo_acoes_pia[$i]->QEPI_ID ): ?>
                                 <li style="list-style-type:none;">          
-                                    <label class="checkbox-inline"><input type="checkbox" checked disabled /><?php echo e($tipo_acoes_pia[$i]->QEPI_DESCRICAO); ?></label>
+                                    <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
                                 </li>
+                                <?php $cont_repeticao++; ?>  
+
+                                <?php endif; ?>
                                 <?php endfor; ?>
-                            </ul>    
-                        </div>  
-                    </div>    
-                </div>
+                                <?php if($cont_repeticao==0): ?>    
+                                <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                <?php endif; ?>
+                            </li>
+                            <?php if($flag == $dividir): ?>
+                        </ul>    
+                    </div>  
+
+                    <div class="col-md-6">
+                        <ul>
+                            <?php endif; ?>
+                            <?php endif; ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>    
+                    </div>
+                </div>    
             </div>
-
         </div>
 
-        <div class="row">
+    </div>
 
-            <div class="col-md-10">
-                <div class="form-group">
-                    <label>Observações</label><br/>
-                    <textarea class="col-md-10" name="ACMT_OBS_GERAIS" disabled><?php echo e($acmt->ACMT_OBS_GERAIS); ?></textarea>
-                </div>
-            </div>  
+    <div class="row">
 
-        </div>
-    </article>
+        <div class="col-md-10">
+            <div class="form-group">
+                <label>Observações</label><br/>
+                <textarea class="col-md-10" name="ACMT_OBS_GERAIS"><?php echo e($acmt->ACMT_OBS_GERAIS); ?></textarea>
+            </div>
+        </div>  
+
+    </div>
+</article>
 </section><br>    
 
 
@@ -1411,7 +1694,353 @@
 </div>
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(document).on('change', ' .state_city', function(){
+           //console.log("mudou!");
 
+           var estd_uf = $(this).val();
+            //console.log(estd_uf);
+
+            var div = $(this).parents();
+
+            var op=" ";
+
+            $.ajax({
+                type: 'get',
+                url: '<?php echo URL::to('find_cities'); ?>', 
+                data:{'uf':estd_uf},
+                success:function(data){
+                    //console.log('com sucesso!');
+                    console.log(data);
+                    //console.log(data.length);
+
+                    op+='<option value="0" selected disabled>Selecione a cidade</option>';
+                    for(var i=0; i<data.length; i++){
+                        op+='<option value=" '+data[i].CIDADE_DESC+' "> '+data[i].CIDADE_DESC+'</option>';
+                    }     
+
+                    div.find('.city_state').html(" ");
+                    div.find('.city_state').append(op);
+
+                },
+                error:function(){
+
+                }
+            });
+
+        } );
+    } );
+
+    $(document).ready(function(){
+        $(document).on('change', ' .state_city_resp', function(){
+           //console.log("mudou!");
+
+           var estd_uf = $(this).val();
+            //console.log(estd_uf);
+
+            var div = $(this).parents();
+
+            var op=" ";
+
+            $.ajax({
+                type: 'get',
+                url: '<?php echo URL::to('find_cities'); ?>', 
+                data:{'uf':estd_uf},
+                success:function(data){
+                    //console.log('com sucesso!');
+                    //console.log(data);
+                    //console.log(data.length);
+
+                    op+='<option value="0" selected disabled>Selecione a cidade</option>';
+                    for(var i=0; i<data.length; i++){
+                        op+='<option value=" '+data[i].CIDADE_DESC+' "> '+data[i].CIDADE_DESC+'</option>';
+                    }     
+
+                    div.find('.city_state_resp').html(" ");
+                    div.find('.city_state_resp').append(op);
+
+                },
+                error:function(){
+
+                }
+            });
+
+        } );
+    } );
+
+    $(document).ready(function(){
+        $(document).on('change', ' .advice_counselor', function(){
+           //console.log("mudou!");
+
+           var cons_id = $(this).val();
+            //console.log(cons_id);
+
+            var div2 = $(this).parents();
+
+            var op2=" ";
+
+            $.ajax({
+                type: 'get',
+                url: '<?php echo URL::to('find_counselors'); ?>', 
+                data:{'id':cons_id},
+                success:function(data){
+                    //console.log('com sucesso!');
+                    //console.log(data);
+                    //console.log(data.length);
+
+                    op2+='<option value="0" selected disabled>Selecione o conselheiro</option>';
+                    for(var i=0; i<data.length; i++){
+                        op2+='<option value=" '+data[i].CONS_ID+' "> '+data[i].CONS_NOME+'</option>';
+                    }     
+
+                    div2.find('.counselor_advice').html(" ");
+                    div2.find('.counselor_advice').append(op2);
+
+                },
+                error:function(){
+
+                }
+            });
+
+        } );
+    } );
+</script>
+
+<div id="divResponsavelBase" style="display:none; margin-left:15px">
+ <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
+ <div class="row">      
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome do Responsável</label>
+            <input type="text" class="form-control" placeholder="Nome do responsável" name="RESP_NOME[]">
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Grau de Parenteco</label><br>
+            <select name="FK_GRPA_ID[]"  class="form-control col-md-2">
+                <option value="">Selecione</option>
+                <?php $__currentLoopData = $graus; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $grau): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($grau->GRPA_ID); ?>"><?php echo e($grau->GRPA_NOME); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
+        </div>
+    </div>
+
+</div>
+
+<div class="row"> 
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Estado</label><br>
+            <select name="FK_RESP_ESTD[]" class="form-control">
+                <option value="">Selecione</option>
+                <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Cidade</label><br>
+            <select name="FK_RESP_CIDADE[]" class="form-control">
+                <option value="">Selecione</option>
+                <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Endereço</label>
+            <input type="text" class="form-control" placeholder="Endereço" name="RESP_END_CSA[]">
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Bairro</label>
+            <input type="text" class="form-control" placeholder="Bairro" name="RESP_BAIRRO[]">
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Data de Nascimento</label>
+            <input type="date" class="form-control"  name="RESP_DT_NASCI[]">
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>RG</label>
+            <input type="number" class="form-control" placeholder="RG" name="RESP_RG[]">
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>CPF</label>
+            <input type="number" class="form-control" placeholder="CPF" name="RESP_CPF[]">
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Contato</label>
+            <input type="number" class="form-control" placeholder="Contato" name="RESP_TEL[]">
+        </div>
+    </div>
+
+</div>                                    
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Ponto de Referência</label>
+            <input type="text" class="form-control" placeholder="Ponto de referência" name="RESP_PONT_REF[]">
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Profissão/trabalho</label>
+            <input type="text" class="form-control" placeholder="Profissão/Trabalho" name="RESP_PROF[]">
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Endereço do trabalho</label>
+            <input type="text" class="form-control" placeholder="Endereço do Trarbalho" name="RESP_END_TRAB[]">
+        </div>
+    </div>
+    
+</div>
+<input type="button" value="Remover" onclick="responsavelList.remove(this.parentNode)" /><br><br>
+</div>
+
+<!-- form dinamico dos responsaveis da criança -->
+<script>
+    responsavelList = {
+        'init': function()
+        {
+            this.divResponsavelList = document.getElementById('divResponsavelList');
+            this.divResponsavelBase = document.getElementById('divResponsavelBase');
+        },
+        
+        'insert': function()
+        {
+            responsavelList.init();
+            var newDiv = this.divResponsavelBase.cloneNode(true);
+            newDiv.style.display = '';
+
+            console.log('newDiv => ', newDiv);
+            this.divResponsavelList.appendChild(newDiv);
+        },
+        
+        'remove': function(el)
+        {
+            el.parentNode.removeChild(el);
+        }
+    };
+    responsavelList.init();
+</script>
+
+<!-- form dinamico da criança externa -->
+
+<div id="div_cria_extrBase" style="display:none; margin-left: 10px;">
+ <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
+ <div class="row">
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome da Criança Externa</label>
+            <input type="text" class="form-control" placeholder="Nome da criança externa" name="CRIA_EXTR_NOME[]">
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome do Responsável</label>
+            <input type="text" class="form-control" placeholder="Nome da criança externa" name="CRIA_EXTR_FAM_NOME[]">
+        </div>
+    </div>
+
+</div>
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Nome da Instituição de Acolhimento</label>
+            <input type="text" class="form-control" placeholder="Nome do Responsável" name="CRIA_EXTR_NOME_INSTI[]">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label>Endereço da(s) instituição(ões)</label>
+            <input type="text" class="form-control" placeholder="Endereço da Instituição" name="CRIA_EXTR_END_INSTI[]">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Data de Nascimento</label>
+            <input type="date" class="form-control"  name="CRIA_EXTR_DATA_NASC[]">
+        </div>
+    </div>
+
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Contato</label>
+            <input type="number" class="form-control" placeholder="Contato" name="CRIA_EXTR_FAM_CONT[]">
+        </div>
+    </div>
+</div>
+<input type="button" value="Remover" onclick="cria_extrList.remove(this.parentNode)" /><br><br>
+</div>
+
+
+<!-- form dinamico da criança externa -->
+<script>
+    cria_extrList = {
+        'init': function()
+        {
+            this.div_cria_extrList = document.getElementById('div_cria_extrList');
+            this.div_cria_extrBase = document.getElementById('div_cria_extrBase');
+        },
+        
+        'insert': function()
+        {
+            cria_extrList.init();
+            var newDiv = this.div_cria_extrBase.cloneNode(true);
+            newDiv.style.display = '';
+
+            console.log('newDiv => ', newDiv);
+            this.div_cria_extrList.appendChild(newDiv);
+        },
+        
+        'remove': function(el)
+        {
+            el.parentNode.removeChild(el);
+        }
+    };
+    cria_extrList.init();
+</script>
 
 
 <?php $__env->stopSection(); ?>

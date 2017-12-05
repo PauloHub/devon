@@ -72,7 +72,27 @@ class EmployeeController extends Controller
         $employee = Ldcr_funcionario::findOrFail($id);
         $update_employee = $employee->update($request_form);*/
 
-        DB::table('Ldcr_funcionario')->where('ID', $id)->update(['FUNC_NOME' => $request->FUNC_NOME, 'FUNC_RG' => $request->FUNC_RG, 'FUNC_CPF' => $request->FUNC_CPF, 'FUNC_CONTA' => $request->FUNC_CONTA, 'FUNC_DT_ADMISSAO' => $request->FUNC_DT_ADMISSAO, 'FUNC_DT_DEMISSAO' => $request->FUNC_DT_DEMISSAO, 'FUNC_STATUS' => $request->FUNC_STATUS, 'FUNC_NUMERO_CASA' => $request->FUNC_NUMERO_CASA, 'FUNC_BAIRRO' => $request->FUNC_BAIRRO, 'FUNC_MAE' => $request->FUNC_MAE, 'FUNC_PAI' => $request->FUNC_PAI, 'FUNC_DT_NASCI' => $request->FUNC_DT_NASCI, 'FUNC_FORMACAO' => $request->FUNC_FORMACAO, 'FUNC_CARGO' => $request->FUNC_CARGO, 'FUNC_EMAIL' => $request->FUNC_EMAIL, 'FUNC_TEL' => $request->FUNC_TEL, 'FUNC_ENDERECO' => $request->FUNC_ENDERECO, 'FK_FUNC_CIDADE' => $request->FK_FUNC_CIDADE, 'FK_FUNC_ESTD' => $request->FK_FUNC_ESTD, 'FUNC_CEP' => $request->FUNC_CEP]);
+        DB::table('Ldcr_funcionario')->where('ID', $id)->update([
+            'FUNC_NOME' => $request->FUNC_NOME, 
+            'FUNC_RG' => $request->FUNC_RG, 
+            'FUNC_CPF' => $request->FUNC_CPF, 
+            'FUNC_CONTA' => $request->FUNC_CONTA, 
+            'FUNC_DT_ADMISSAO' => $request->FUNC_DT_ADMISSAO, 
+            'FUNC_DT_DEMISSAO' => $request->FUNC_DT_DEMISSAO, 
+            'FUNC_STATUS' => $request->FUNC_STATUS, 
+            'FUNC_NUMERO_CASA' => $request->FUNC_NUMERO_CASA, 
+            'FUNC_BAIRRO' => $request->FUNC_BAIRRO, 
+            'FUNC_MAE' => $request->FUNC_MAE, 
+            'FUNC_PAI' => $request->FUNC_PAI, 
+            'FUNC_DT_NASCI' => $request->FUNC_DT_NASCI, 
+            'FUNC_FORMACAO' => $request->FUNC_FORMACAO, 
+            'FUNC_CARGO' => $request->FUNC_CARGO, 
+            'FUNC_EMAIL' => $request->FUNC_EMAIL, 
+            'FUNC_TEL' => $request->FUNC_TEL, 
+            'FUNC_ENDERECO' => $request->FUNC_ENDERECO, 
+            'FK_FUNC_CIDADE' => $request->FK_FUNC_CIDADE, 
+            'FK_FUNC_ESTD' => $request->FK_FUNC_ESTD, 
+            'FUNC_CEP' => $request->FUNC_CEP]);
         
         return redirect('list_employee')->with(['success' => 'Funcionário editado com sucesso!']);        
     }

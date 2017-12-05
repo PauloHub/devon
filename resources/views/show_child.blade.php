@@ -811,7 +811,7 @@
                                                 <div class="form-group">
                                                     <label>Grau de Parenteco</label><br>                                                
                                                     <input type="text" class="form-control"  value="{{$grau_parentesco[$j]->GRPA_NOME}}" disabled>
-                                                    <?php $j++ ?>
+                                                    
                                                 </div>
                                             </div>
 
@@ -906,7 +906,7 @@
                                         <div class="row" id="divResponsavelList">
                                         </div>
                                         <hr style="height: 10px;  border: 0;  box-shadow: 0 10px 10px -10px #8c8b8b inset;"> <br>
-                                        
+                                        <?php $j++ ?>
                                        @endfor
                                    </article>
                                </section><br>
@@ -1148,7 +1148,7 @@
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <ul>                                                
-                                                        @for($i=0; $i<$qt_opiniao_vida; $i++)
+                                                        @for($i=0; $i<$qt_tipo_acoes_pia; $i++)
                                                                     <li style="list-style-type:none;">          
                                                                         <label class="checkbox-inline"><input type="checkbox" checked disabled />{{ $tipo_acoes_pia[$i]->QEPI_DESCRICAO}}</label>
                                                                     </li>
