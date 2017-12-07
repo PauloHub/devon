@@ -343,10 +343,10 @@ class ChildController extends Controller
         foreach($nome_conselheiro as $nome_cons){ $nome_conselheiro = $nome_cons->CONS_NOME;}
 
         //pegando a raça da criança
-        $raca_crianca = DB::table('ldcr_raca')->select('RACA_DESCRICAO')
+        $raca_cria = DB::table('ldcr_raca')->select()
         ->join('ldcr_crianca', 'ldcr_raca.RACA_ID', '=', 'ldcr_crianca.FK_RACA_ID')
         ->where('ldcr_crianca.ID', '=', $crianca->ID)->get();
-        foreach($raca_crianca as $raca_cria){ $raca_crianca = $raca_cria->RACA_DESCRICAO;}
+        foreach($raca_cria as $raca_crianca){ }
 
         //pegando o meio de chegada
         $meio = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
@@ -618,10 +618,10 @@ class ChildController extends Controller
         foreach($nome_conselheiro as $nome_cons){ $nome_conselheiro = $nome_cons->CONS_NOME;}
 
         //pegando a raça da criança
-        $raca_crianca = DB::table('ldcr_raca')->select('RACA_DESCRICAO')
+        $raca_cria = DB::table('ldcr_raca')->select()
         ->join('ldcr_crianca', 'ldcr_raca.RACA_ID', '=', 'ldcr_crianca.FK_RACA_ID')
         ->where('ldcr_crianca.ID', '=', $crianca->ID)->get();
-        foreach($raca_crianca as $raca_cria){ $raca_crianca = $raca_cria->RACA_DESCRICAO;}
+        foreach($raca_cria as $raca_crianca){}
 
         //pegando o meio de chegada
         $meio = DB::table('ldcr_questoes_pia_iten')->select( 'QEPI_ID' ,'QEPI_DESCRICAO')
@@ -994,13 +994,6 @@ class ChildController extends Controller
 
             $qpia->save();
         }
-
-
-
-
-
-
-
 
 
      return redirect('list_child')->with(['success' => 'Criança editada com sucesso!']);

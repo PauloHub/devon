@@ -1,6 +1,5 @@
 <?php $__env->startSection('content'); ?>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
@@ -107,7 +106,7 @@
                                                 <div class="form-group">
                                                     <label>Cidade</label><br>
                                                     <select name="FK_CRIA_CIDADE" id="city_state" class="form-control city_state">                                                        
-                                                        <option value=""><?php echo e($crianca->FK_CRIA_CIDADE); ?></option>
+                                                        <option value="<?php echo e($crianca->FK_CRIA_CIDADE); ?>"><?php echo e($crianca->FK_CRIA_CIDADE); ?></option>
                                                         <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -155,7 +154,7 @@
                                                 <div class="form-group">
                                                     <label>Raça/Cor</label><br>
                                                     <select name="FK_RACA_ID" class="form-control">                                                    
-                                                        <option value="<?php echo e($raca_crianca); ?>"><?php echo e($raca_crianca); ?></option>
+                                                        <option value="<?php echo e($raca_crianca->RACA_ID); ?>"><?php echo e($raca_crianca->RACA_DESCRICAO); ?></option>
                                                         <?php $__currentLoopData = $racas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $raca): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <option value="<?php echo e($raca->RACA_ID); ?>"><?php echo e($raca->RACA_DESCRICAO); ?></option>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -183,8 +182,7 @@
                                             </div>
                                         </div>
                                     </article>
-                                </section><br> 
-
+                                </section><br>
                                 <section id="hide_section" >
                                  <article>
                                      <div class="btn func">3. Situação de Acolhimento</div>
@@ -459,7 +457,6 @@
                                 <?php endfor; ?>
                             </article>
                         </section><br>
-
                         <section id="hide_section" >
                             <article>
                                 <div class="btn func">6. Motivos do acolhimento institucional ou familiar</div>
@@ -712,486 +709,383 @@
                     </section><br>
 
                     <section id="hide_section" >
-                        <article>
-                            <div class="btn func">7. Documentação</div> 
+                        <article style="padding-left: 15px;">
+                            <div class="btn func">8. Educação</div>
+
+                            <div class="row"> 
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Ano escolar atual</label><br>
+                                        <select name="ACMT_ANO_ESCO"  class="form-control col-md-2">
+                                            <option value="<?php echo e($acmt->ACMT_ANO_ESCO); ?>"><?php echo e($acmt->ACMT_ANO_ESCO); ?></option>
+                                            <option value="Creche">Creche</option>
+                                            <option value="Pre-escola">Pré-escola</option>
+                                            <option value="Ensino Fundamental">Ensino Fundamental</option>
+                                            <option value="Ensino Medio">Ensino Médio</option>
+                                            <option value="Nao frequenta">Não frequenta escola/creche</option>
+                                            <option value="Sem informacoes">Sem informações</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Frequência</label><br>
+                                        <select name="ACMT_FREQ_ESC"  class="form-control col-md-2">
+                                            <option value="<?php echo e($acmt->ACMT_FREQ_ESC); ?>"><?php echo e($acmt->ACMT_FREQ_ESC); ?></option>
+                                            <option value="Satisfatorio">Satisfátoria</option>
+                                            <option value="Insatisfatoria">Insatisfatória</option>
+                                            <option value="Sem informacao">Sem Informação</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Rendimento Escolar</label><br>
+                                        <select name="ACMT_REND_ESC"  class="form-control col-md-2">
+                                            <option value="<?php echo e($acmt->ACMT_REND_ESC); ?>"><?php echo e($acmt->ACMT_REND_ESC); ?></option>
+                                            <option value="Satisfatorio">Satisfátoria</option>
+                                            <option value="Insatisfatoria">Insatisfatória</option>
+                                            <option value="Sem informacao">Sem Informação</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="row">
 
-                                <div class="col-md-11">
-                                    <div class="form-group">  
-                                        <label>Documentos apresentados ao serviço no ato do acolhimento Institucional familiar</label>
-                                        <div class="row">  
-                                         <div class="col-md-5">
-                                            <ul>                                                   
-                                                <?php
-                                                $flag = 0;
-                                                $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
-                                                ?>
-                                                <?php $__currentLoopData = $tipo_documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documento_1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>   
-                                                <?php $cont_repeticao=0; ?>    
-
-                                                <?php if($tipo_documento_1->TPDO_ID <= 10 ): ?>
-
-                                                <?php $flag = $flag + 1; ?>
-
-                                                <li style="list-style-type:none;">  
-
-                                                    <?php for($i=0; $i<$qt_tipo_documento; $i++): ?>
-                                                    <?php if($tipo_documento_1->TPDO_ID ==  $tipo_documento[$i]->TPDO_ID ): ?>
-                                                    <li style="list-style-type:none;">          
-                                                        <label class="checkbox-inline"><input type="checkbox" name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento[$i]->TPDO_ID); ?>" checked/><?php echo e($tipo_documento[$i]->TPDO_DESC); ?></label>
-                                                    </li>
-                                                    <?php $cont_repeticao++; ?> 
-                                                    <?php endif; ?>
-                                                    <?php endfor; ?>
-                                                    <?php if($cont_repeticao==0): ?>            
-                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento_1->TPDO_ID); ?>"/><?php echo e($tipo_documento_1->TPDO_DESC); ?></label>
-                                                </li>
-                                                <?php endif; ?>
-                                                <?php endif; ?>
-                                                <?php if($flag == $dividir): ?>
-                                            </ul>    
-                                        </div>  
-                                        <div class="col-md-6">
-                                            <ul>
-                                                <?php endif; ?>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </ul> 
-                                        </div> 
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label>Como a criança percebe ou vivencia sua relação com a escola?</label><br/>
+                                        <textarea class="col-md-10" name="ACMT_VIV_REL_ESC"><?php echo e($acmt->ACMT_VIV_REL_ESC); ?></textarea>
                                     </div>
-                                </div>    
+                                </div>
                             </div>
-                        </div>
+                        </article>
+                    </section><br>
 
-                        <div class="row">
+                        <section id="hide_section" >
+                        <article style="padding-left: 15px;">
+                            <div class="btn func">9. Saúde</div>
+
+                            <div class="row">
+
+                             <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Carteira de vacinação</label><br>
+                                    <select name="CSAU_CART_VAC"  class="form-control col-md-2">
+                                        <option value="<?php echo e($cria_saude->CSAU_CART_VAC); ?>"><?php echo e($cria_saude->CSAU_CART_VAC); ?></option>
+                                        <option value="Sim, atualizada (SA)">Sim, atualizada (SA)</option>
+                                        <option value="Sim, desatualizada (SD)">Sim, desatualizada (SD)</option>
+                                        <option value="Não possui (NP)">Não possui (NP)</option>
+                                    </select>
+                                </div>
+                            </div> 
 
                             <div class="col-md-11">
                                 <div class="form-group">  
-                                    <label>Documentação a ser providenciada</label><br>
-                                    <div class="col-md-5">
-                                        <ul>                                                   
+                                    <label>Problemas de saúde física e mental</label><br>
+                                    <div class="col-md-5">  
+                                        <ul>
                                             <?php
                                             $flag = 0;
-                                            $dividir = $count_doc % 2 == 0 ? $count_doc/2 : ($count_doc/2) + 0.5;
+                                            $question = 10;
+                                            $pos = $question - 1;
+                                            $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
                                             ?>
-                                            <?php $__currentLoopData = $tipo_documentos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tipo_documento_2): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>   
-                                            <?php $cont_repeticao=0; ?>    
+                                            <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $cont_repeticao=0; ?>
 
-                                            <?php if($tipo_documento_2->TPDO_ID > 10 ): ?>
-
+                                            <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
                                             <?php $flag = $flag + 1; ?>
 
-                                            <li style="list-style-type:none;">  
-
-                                                <?php for($i=0; $i<$qt_tipo_documento2; $i++): ?>
-                                                <?php if($tipo_documento_2->TPDO_ID ==  $tipo_documento2[$i]->TPDO_ID ): ?>
+                                            <li style="list-style-type:none;">    
+                                                <?php for($i=0; $i<$qt_prob_saude; $i++): ?>                                                                    
+                                                <?php if($qpi->QEPI_ID == $prob_saude[$i]->QEPI_ID ): ?>
                                                 <li style="list-style-type:none;">          
-                                                    <label class="checkbox-inline"><input type="checkbox" name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento2[$i]->TPDO_ID); ?>" checked/><?php echo e($tipo_documento2[$i]->TPDO_DESC); ?></label>
+                                                    <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
                                                 </li>
-                                                <?php $cont_repeticao++; ?> 
+                                                <?php $cont_repeticao++; ?>  
+
                                                 <?php endif; ?>
                                                 <?php endfor; ?>
-                                                <?php if($cont_repeticao==0): ?>            
-                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento_2->TPDO_ID); ?>"/><?php echo e($tipo_documento_2->TPDO_DESC); ?></label>
+                                                <?php if($cont_repeticao==0): ?>    
+                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                <?php endif; ?>
                                             </li>
-                                            <?php endif; ?>
-                                            <?php endif; ?>
                                             <?php if($flag == $dividir): ?>
                                         </ul>    
                                     </div>  
+
                                     <div class="col-md-6">
                                         <ul>
                                             <?php endif; ?>
+                                            <?php endif; ?>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                        </ul> 
-                                    </div>   
+                                        </ul>    
+                                    </div> 
 
+                                </div>    
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Especificar o diagnóstico e a data de sua realização</label><br/>
+                                    <textarea class="col-md-10" name="CSAU_DIAG_MED"><?php echo e($cria_saude->CSAU_DIAG_MED); ?></textarea>
+                                </div>
+                            </div> 
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Data da Realização</label>
+                                    <input type="date" class="form-control" name="CSAU_DTA_DIAG_MED" value="<?php echo e($cria_saude->CSAU_DTA_DIAG_MED); ?>">
+                                </div>    
+                            </div> 
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-11">
+                                <div class="form-group">  
+                                    <label>Problemas de saúde física e mental</label><br>
+                                    <div class="col-md-5">  
+                                        <ul>
+                                            <?php
+                                            $flag = 0;
+                                            $question = 17;
+                                            $pos = $question - 1;
+                                            $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                            ?>
+                                            <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $cont_repeticao=0; ?>
+
+                                            <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
+                                            <?php $flag = $flag + 1; ?>
+
+                                            <li style="list-style-type:none;">    
+                                                <?php for($i=0; $i<$qt_prob_saude2; $i++): ?>                                                                    
+                                                <?php if($qpi->QEPI_ID == $prob_saude2[$i]->QEPI_ID ): ?>
+                                                <li style="list-style-type:none;">          
+                                                    <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                </li>
+                                                <?php $cont_repeticao++; ?>  
+
+                                                <?php endif; ?>
+                                                <?php endfor; ?>
+                                                <?php if($cont_repeticao==0): ?>    
+                                                <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                <?php endif; ?>
+                                            </li>
+                                            <?php if($flag == $dividir): ?>
+                                        </ul>    
+                                    </div>  
+
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <?php endif; ?>
+                                            <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </ul>    
+                                    </div>  
+
+                                </div>    
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Acompanhamentos médicos necessários</label><br/>
+                                    <textarea class="col-md-10" name="CSAU_ACOP_MED"><?php echo e($cria_saude->CSAU_ACOP_MED); ?></textarea>
+                                </div>
+                            </div>  
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Uso contínuo de medicação?</label><br/>
+                                    <?php if($cria_saude->CSAU_USO_MED == 1): ?>
+                                    <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="1" checked/>Sim</label>
+                                    <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="0"/>Não</label>
+                                    <?php else: ?>
+                                    <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="1"/>Sim</label>
+                                    <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="0" checked/>Não</label>
+                                    <?php endif; ?>
+                                </div>
+                            </div>  
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Quais?</label><br/>
+                                    <textarea class="col-md-10" name="CSAU_USO_MED_ESP"><?php echo e($cria_saude->CSAU_USO_MED_ESP); ?></textarea>
+                                </div>
+                            </div>  
+                        </div>
+                    </article>
+                </section><br>
+
+                    <section id="hide_section" >
+                        <article style="padding-left: 15px;">
+                            <div class="btn func">10. Autonomia da criança, do adolescente e do jovem</div>
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label>Teve acesso a informações sobre sua história de vida, familiar e motivos de acolhimento; considerando-se o grau de desenvolvimento?</label><br/>
+                                        <?php if($acmt->ACMT_HIST_FAMI == 1): ?>
+                                        <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="1" checked/>Sim</label>
+                                        <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="0"/>Não</label>
+                                        <?php else: ?>
+                                        <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="1"/>Sim</label>
+                                        <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="0" checked/>Não</label>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>  
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label>Se não, Por quê?</label><br/>
+                                        <textarea class="col-md-10" name="ACMT_HIST_FAMI_DES"><?php echo e($acmt->ACMT_HIST_FAMI_DES); ?></textarea>
+                                    </div>
+                                </div>  
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label>Emite sua opinião quanto às decisões que dizem respeito à sua vida cotidiana no serviço de acolhimento e à sua situação familiar?</label><br/>
+                                        <?php if($acmt->ACMT_OPIN_DECI  == 1): ?>
+                                        <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="1" checked/>Sim</label>
+                                        <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="0"/>Não</label>
+                                        <?php else: ?>
+                                        <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="1"/>Sim</label>
+                                        <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="0" checked/>Não</label>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>  
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label>Quais?</label><br/>
+                                        <textarea class="col-md-10" name="ACMT_OPIN_DEC_DES"><?php echo e($acmt->ACMT_OPIN_DEC_DES); ?></textarea>
+                                    </div>
+                                </div>  
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="form-group">  
+                                        <label>Sua opinião reflete sua preferência em:</label>  
+                                        <div class="row">
+                                         <div class="col-md-5">  
+                                            <ul>
+                                                <?php
+                                                $flag = 0;
+                                                $question = 12;
+                                                $pos = $question - 1;
+                                                $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
+                                                ?>
+                                                <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php $cont_repeticao=0; ?>
+
+                                                <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
+                                                <?php $flag = $flag + 1; ?>
+
+                                                <li style="list-style-type:none;">    
+                                                    <?php for($i=0; $i<$qt_opiniao_vida; $i++): ?>                                                                    
+                                                    <?php if($qpi->QEPI_ID == $opiniao_vida[$i]->QEPI_ID ): ?>
+                                                    <li style="list-style-type:none;">          
+                                                        <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                    </li>
+                                                    <?php $cont_repeticao++; ?>  
+
+                                                    <?php endif; ?>
+                                                    <?php endfor; ?>
+                                                    <?php if($cont_repeticao==0): ?>    
+                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                    <?php endif; ?>
+                                                </li>
+                                                <?php if($flag == $dividir): ?>
+                                            </ul>    
+                                        </div>  
+
+                                        <div class="col-md-6">
+                                            <ul>
+                                                <?php endif; ?>
+                                                <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </ul>    
+                                        </div>                                                           
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </article>
-            </section><br>
+                    </article>
+                </section><br>
 
-            <section id="hide_section" >
-                <article style="padding-left: 15px;">
-                    <div class="btn func">8. Educação</div>
+                <section id="hide_section" >
+                    <article style="padding-left: 15px;">
+                        <div class="btn func">11. Observações</div>
 
-                    <div class="row"> 
-
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Ano escolar atual</label><br>
-                                <select name="ACMT_ANO_ESCO"  class="form-control col-md-2">
-                                    <option value="<?php echo e($acmt->ACMT_ANO_ESCO); ?>"><?php echo e($acmt->ACMT_ANO_ESCO); ?></option>
-                                    <option value="Creche">Creche</option>
-                                    <option value="Pre-escola">Pré-escola</option>
-                                    <option value="Ensino Fundamental">Ensino Fundamental</option>
-                                    <option value="Ensino Medio">Ensino Médio</option>
-                                    <option value="Nao frequenta">Não frequenta escola/creche</option>
-                                    <option value="Sem informacoes">Sem informações</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Frequência</label><br>
-                                <select name="ACMT_FREQ_ESC"  class="form-control col-md-2">
-                                    <option value="<?php echo e($acmt->ACMT_FREQ_ESC); ?>"><?php echo e($acmt->ACMT_FREQ_ESC); ?></option>
-                                    <option value="Satisfatorio">Satisfátoria</option>
-                                    <option value="Insatisfatoria">Insatisfatória</option>
-                                    <option value="Sem informacao">Sem Informação</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Rendimento Escolar</label><br>
-                                <select name="ACMT_REND_ESC"  class="form-control col-md-2">
-                                    <option value="<?php echo e($acmt->ACMT_REND_ESC); ?>"><?php echo e($acmt->ACMT_REND_ESC); ?></option>
-                                    <option value="Satisfatorio">Satisfátoria</option>
-                                    <option value="Insatisfatoria">Insatisfatória</option>
-                                    <option value="Sem informacao">Sem Informação</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-10">
-                            <div class="form-group">
-                                <label>Como a criança percebe ou vivencia sua relação com a escola?</label><br/>
-                                <textarea class="col-md-10" name="ACMT_VIV_REL_ESC"><?php echo e($acmt->ACMT_VIV_REL_ESC); ?></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </section><br>
-
-            <section id="hide_section" >
-                <article style="padding-left: 15px;">
-                    <div class="btn func">9. Saúde</div>
-
-                    <div class="row">
-
-                     <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Carteira de vacinação</label><br>
-                            <select name="CSAU_CART_VAC"  class="form-control col-md-2">
-                                <option value="<?php echo e($cria_saude->CSAU_CART_VAC); ?>"><?php echo e($cria_saude->CSAU_CART_VAC); ?></option>
-                                <option value="Sim, atualizada (SA)">Sim, atualizada (SA)</option>
-                                <option value="Sim, desatualizada (SD)">Sim, desatualizada (SD)</option>
-                                <option value="Não possui (NP)">Não possui (NP)</option>
-                            </select>
-                        </div>
-                    </div> 
-
-                    <div class="col-md-11">
-                        <div class="form-group">  
-                            <label>Problemas de saúde física e mental</label><br>
-                            <div class="col-md-5">  
-                                <ul>
-                                    <?php
-                                    $flag = 0;
-                                    $question = 10;
-                                    $pos = $question - 1;
-                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                    ?>
-                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php $cont_repeticao=0; ?>
-
-                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                    <?php $flag = $flag + 1; ?>
-
-                                    <li style="list-style-type:none;">    
-                                        <?php for($i=0; $i<$qt_prob_saude; $i++): ?>                                                                    
-                                        <?php if($qpi->QEPI_ID == $prob_saude[$i]->QEPI_ID ): ?>
-                                        <li style="list-style-type:none;">          
-                                            <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                        </li>
-                                        <?php $cont_repeticao++; ?>  
-
-                                        <?php endif; ?>
-                                        <?php endfor; ?>
-                                        <?php if($cont_repeticao==0): ?>    
-                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                        <?php endif; ?>
-                                    </li>
-                                    <?php if($flag == $dividir): ?>
-                                </ul>    
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Desenvolvimento Físico</label><br/>
+                                    <textarea class="col-md-10" name="ACMT_DESEN_FISIC"><?php echo e($acmt->ACMT_DESEN_FISIC); ?></textarea>
+                                </div>
                             </div>  
-
-                            <div class="col-md-6">
-                                <ul>
-                                    <?php endif; ?>
-                                    <?php endif; ?>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </ul>    
-                            </div> 
-
-                        </div>    
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Especificar o diagnóstico e a data de sua realização</label><br/>
-                            <textarea class="col-md-10" name="CSAU_DIAG_MED"><?php echo e($cria_saude->CSAU_DIAG_MED); ?></textarea>
                         </div>
-                    </div> 
 
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Data da Realização</label>
-                            <input type="date" class="form-control" name="CSAU_DTA_DIAG_MED" value="<?php echo e($cria_saude->CSAU_DTA_DIAG_MED); ?>">
-                        </div>    
-                    </div> 
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-11">
-                        <div class="form-group">  
-                            <label>Problemas de saúde física e mental</label><br>
-                            <div class="col-md-5">  
-                                <ul>
-                                    <?php
-                                    $flag = 0;
-                                    $question = 17;
-                                    $pos = $question - 1;
-                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                    ?>
-                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php $cont_repeticao=0; ?>
-
-                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                    <?php $flag = $flag + 1; ?>
-
-                                    <li style="list-style-type:none;">    
-                                        <?php for($i=0; $i<$qt_prob_saude2; $i++): ?>                                                                    
-                                        <?php if($qpi->QEPI_ID == $prob_saude2[$i]->QEPI_ID ): ?>
-                                        <li style="list-style-type:none;">          
-                                            <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                        </li>
-                                        <?php $cont_repeticao++; ?>  
-
-                                        <?php endif; ?>
-                                        <?php endfor; ?>
-                                        <?php if($cont_repeticao==0): ?>    
-                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                        <?php endif; ?>
-                                    </li>
-                                    <?php if($flag == $dividir): ?>
-                                </ul>    
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Desenvolvimento Cognitivo</label><br/>
+                                    <textarea class="col-md-10" name="ACMT_DESEN_COGNI"><?php echo e($acmt->ACMT_DESEN_COGNI); ?></textarea>
+                                </div>
                             </div>  
+                        </div>
 
-                            <div class="col-md-6">
-                                <ul>
-                                    <?php endif; ?>
-                                    <?php endif; ?>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </ul>    
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Desenvolvimento Sócio Emocional</label><br/>
+                                    <textarea class="col-md-10" name="ACMT_DESEN_SOCIO_EMO"><?php echo e($acmt->ACMT_DESEN_SOCIO_EMO); ?></textarea>
+                                </div>
                             </div>  
-
-                        </div>    
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label>Acompanhamentos médicos necessários</label><br/>
-                            <textarea class="col-md-10" name="CSAU_ACOP_MED"><?php echo e($cria_saude->CSAU_ACOP_MED); ?></textarea>
                         </div>
-                    </div>  
-                </div>
 
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label>Uso contínuo de medicação?</label><br/>
-                            <?php if($cria_saude->CSAU_USO_MED == 1): ?>
-                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="1" checked/>Sim</label>
-                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="0"/>Não</label>
-                            <?php else: ?>
-                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="1"/>Sim</label>
-                            <label class="radio-inline"><input type="radio" name="CSAU_USO_MED" value="0" checked/>Não</label>
-                            <?php endif; ?>
-                        </div>
-                    </div>  
-                </div>
-
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label>Quais?</label><br/>
-                            <textarea class="col-md-10" name="CSAU_USO_MED_ESP"><?php echo e($cria_saude->CSAU_USO_MED_ESP); ?></textarea>
-                        </div>
-                    </div>  
-                </div>
-            </article>
-        </section><br>
-
-        <section id="hide_section" >
-            <article style="padding-left: 15px;">
-                <div class="btn func">10. Autonomia da criança, do adolescente e do jovem</div>
-
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label>Teve acesso a informações sobre sua história de vida, familiar e motivos de acolhimento; considerando-se o grau de desenvolvimento?</label><br/>
-                            <?php if($acmt->ACMT_HIST_FAMI == 1): ?>
-                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="1" checked/>Sim</label>
-                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="0"/>Não</label>
-                            <?php else: ?>
-                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="1"/>Sim</label>
-                            <label class="radio-inline"><input type="radio" name="ACMT_HIST_FAMI" value="0" checked/>Não</label>
-                            <?php endif; ?>
-                        </div>
-                    </div>  
-                </div>
-
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label>Se não, Por quê?</label><br/>
-                            <textarea class="col-md-10" name="ACMT_HIST_FAMI_DES"><?php echo e($acmt->ACMT_HIST_FAMI_DES); ?></textarea>
-                        </div>
-                    </div>  
-                </div>
-
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label>Emite sua opinião quanto às decisões que dizem respeito à sua vida cotidiana no serviço de acolhimento e à sua situação familiar?</label><br/>
-                            <?php if($acmt->ACMT_OPIN_DECI  == 1): ?>
-                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="1" checked/>Sim</label>
-                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="0"/>Não</label>
-                            <?php else: ?>
-                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="1"/>Sim</label>
-                            <label class="radio-inline"><input type="radio" name="ACMT_OPIN_DECI" value="0" checked/>Não</label>
-                            <?php endif; ?>
-                        </div>
-                    </div>  
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-10">
-                        <div class="form-group">
-                            <label>Quais?</label><br/>
-                            <textarea class="col-md-10" name="ACMT_OPIN_DEC_DES"><?php echo e($acmt->ACMT_OPIN_DEC_DES); ?></textarea>
-                        </div>
-                    </div>  
-                </div>
-
-                <div class="row">
-                    <div class="col-md-11">
-                        <div class="form-group">  
-                            <label>Sua opinião reflete sua preferência em:</label>  
-                            <div class="row">
-                             <div class="col-md-5">  
-                                <ul>
-                                    <?php
-                                    $flag = 0;
-                                    $question = 12;
-                                    $pos = $question - 1;
-                                    $dividir = $apis_array[$pos] % 2 == 0 ? $apis_array[$pos]/2 : ($apis_array[$pos]/2) + 0.5;
-                                    ?>
-                                    <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php $cont_repeticao=0; ?>
-
-                                    <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
-                                    <?php $flag = $flag + 1; ?>
-
-                                    <li style="list-style-type:none;">    
-                                        <?php for($i=0; $i<$qt_opiniao_vida; $i++): ?>                                                                    
-                                        <?php if($qpi->QEPI_ID == $opiniao_vida[$i]->QEPI_ID ): ?>
-                                        <li style="list-style-type:none;">          
-                                            <label class="checkbox-inline"><input type="checkbox" name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" checked/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                        </li>
-                                        <?php $cont_repeticao++; ?>  
-
-                                        <?php endif; ?>
-                                        <?php endfor; ?>
-                                        <?php if($cont_repeticao==0): ?>    
-                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
-                                        <?php endif; ?>
-                                    </li>
-                                    <?php if($flag == $dividir): ?>
-                                </ul>    
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Vida Cotidiana</label><br/>
+                                    <textarea class="col-md-10" name="ACMT_VDA_COT"><?php echo e($acmt->ACMT_VDA_COT); ?></textarea>
+                                </div>
                             </div>  
-
-                            <div class="col-md-6">
-                                <ul>
-                                    <?php endif; ?>
-                                    <?php endif; ?>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                </ul>    
-                            </div>                                                           
                         </div>
-                    </div>
-                </div>
-            </div>
-        </article>
-    </section><br>
 
-    <section id="hide_section" >
-        <article style="padding-left: 15px;">
-            <div class="btn func">11. Observações</div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Desenvolvimento Físico</label><br/>
-                        <textarea class="col-md-10" name="ACMT_DESEN_FISIC"><?php echo e($acmt->ACMT_DESEN_FISIC); ?></textarea>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Desenvolvimento Cognitivo</label><br/>
-                        <textarea class="col-md-10" name="ACMT_DESEN_COGNI"><?php echo e($acmt->ACMT_DESEN_COGNI); ?></textarea>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Desenvolvimento Sócio Emocional</label><br/>
-                        <textarea class="col-md-10" name="ACMT_DESEN_SOCIO_EMO"><?php echo e($acmt->ACMT_DESEN_SOCIO_EMO); ?></textarea>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Vida Cotidiana</label><br/>
-                        <textarea class="col-md-10" name="ACMT_VDA_COT"><?php echo e($acmt->ACMT_VDA_COT); ?></textarea>
-                    </div>
-                </div>  
-            </div>
-
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="form-group">
-                        <label>Outras Informações</label><br/>
-                        <textarea class="col-md-10" name="ACMT_OUT_INFO"><?php echo e($acmt->ACMT_OUT_INFO); ?></textarea>
-                    </div>
-                </div>  
-            </div>
-        </article>
-    </section><br>
-
-    <section id="hide_section" >
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Outras Informações</label><br/>
+                                    <textarea class="col-md-10" name="ACMT_OUT_INFO"><?php echo e($acmt->ACMT_OUT_INFO); ?></textarea>
+                                </div>
+                            </div>  
+                        </div>
+                    </article>
+                </section><br>
+<section id="hide_section" >
         <article style="padding-left: 15px;">
             <div class="btn func">12. Identificações dos Pais ou Responsáveis</div>
 
@@ -1670,7 +1564,7 @@
 
     </div>
 </article>
-</section><br>    
+</section><br>                                                                                                                                                  
 
 
 

@@ -143,7 +143,7 @@
                                                 <div class="form-group">
                                                     <label>Raça/Cor</label><br>
                                                     <select name="FK_RACA_ID" class="form-control" disabled>                                                    
-                                                        <option value="">{{ $raca_crianca}}</option>
+                                                        <option value="">{{ $raca_crianca->RACA_DESCRICAO}}</option>
                                                     </select>
                                                 </div>
                                             </div>
