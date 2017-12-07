@@ -46,7 +46,7 @@
                                     <?php echo e(session('success')); ?> </p>
                                     <?php endif; ?>
 
-                                    <form action="<?php echo e(url('/register_child')); ?>" method="POST">
+                                    <form action="<?php echo e(url('/edit_child', $crianca->ID)); ?>" method="POST">
                                         <?php echo e(csrf_field()); ?>
 
                                         <?php echo method_field('PUT'); ?>
@@ -1679,7 +1679,7 @@
 
     <br><br>
     <div align="center" >
-        <button type="submit" class="btn btn-info btn-fill">Editar Criança</button>
+        <input type="submit" value="Editar Criança" class="btn btn-info btn-fill">
         <input style="margin-left:10%; width: 150px;" type="button" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
     </div>
     <br>

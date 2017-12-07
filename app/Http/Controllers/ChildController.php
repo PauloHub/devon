@@ -243,25 +243,25 @@ class ChildController extends Controller
         $result = count($request->get('RESP_NOME'));
 
         for ($i =0; $i< $result ; $i++ ){
-           $responsavel = new Ldcr_responsaveis();
+         $responsavel = new Ldcr_responsaveis();
 
-           $responsavel->RESP_NOME = $request->RESP_NOME[$i];
-           $responsavel->FK_RESP_ESTD = $request->FK_RESP_ESTD[$i];
-           $responsavel->FK_RESP_CIDADE = $request->FK_RESP_CIDADE[$i];
-           $responsavel->RESP_END_CSA = $request->RESP_END_CSA[$i];
-           $responsavel->RESP_BAIRRO = $request->RESP_BAIRRO[$i];
-           $responsavel->RESP_DT_NASCI = $request->RESP_DT_NASCI[$i];
-           $responsavel->RESP_RG = $request->RESP_RG[$i];
-           $responsavel->RESP_CPF = $request->RESP_CPF[$i];
-           $responsavel->RESP_TEL = $request->RESP_TEL[$i];
-           $responsavel->RESP_PONT_REF = $request->RESP_PONT_REF[$i];
-           $responsavel->RESP_PROF = $request->RESP_PROF[$i];
-           $responsavel->RESP_END_TRAB = $request->RESP_END_TRAB[$i];
-           $responsavel->FK_GRPA_ID = $request->FK_GRPA_ID[$i];
+         $responsavel->RESP_NOME = $request->RESP_NOME[$i];
+         $responsavel->FK_RESP_ESTD = $request->FK_RESP_ESTD[$i];
+         $responsavel->FK_RESP_CIDADE = $request->FK_RESP_CIDADE[$i];
+         $responsavel->RESP_END_CSA = $request->RESP_END_CSA[$i];
+         $responsavel->RESP_BAIRRO = $request->RESP_BAIRRO[$i];
+         $responsavel->RESP_DT_NASCI = $request->RESP_DT_NASCI[$i];
+         $responsavel->RESP_RG = $request->RESP_RG[$i];
+         $responsavel->RESP_CPF = $request->RESP_CPF[$i];
+         $responsavel->RESP_TEL = $request->RESP_TEL[$i];
+         $responsavel->RESP_PONT_REF = $request->RESP_PONT_REF[$i];
+         $responsavel->RESP_PROF = $request->RESP_PROF[$i];
+         $responsavel->RESP_END_TRAB = $request->RESP_END_TRAB[$i];
+         $responsavel->FK_GRPA_ID = $request->FK_GRPA_ID[$i];
 
-           $responsavel->save();
-           $lastID_resp = DB::table('ldcr_responsaveis')->select('RESP_ID')->where('RESP_CPF', '=',  $responsavel->RESP_CPF)->get();
-           foreach($lastID_resp as $resp_id){
+         $responsavel->save();
+         $lastID_resp = DB::table('ldcr_responsaveis')->select('RESP_ID')->where('RESP_CPF', '=',  $responsavel->RESP_CPF)->get();
+         foreach($lastID_resp as $resp_id){
             $lastID_resp = $resp_id->RESP_ID;
         }
         $cria_resp = new Ldcr_crianca_resp();
@@ -273,7 +273,7 @@ class ChildController extends Controller
         //pegando o array de todas as questões que foram inseridas nos checkbox's
     $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');       
 
-         //inserindo na tabela de questões do pia
+    //inserindo na tabela de questões do pia
     foreach($acmt_qpi->FK_QEPI_ID as $qepi_id){
         $qpia = new Ldcr_acmt_questoes_pia_iten();
 
@@ -303,7 +303,7 @@ class ChildController extends Controller
 
     }
 
-    return redirect('register_child')->with(['success' => 'Cadastro criado com sucesso!']);    
+    return redirect('list_child')->with(['success' => 'Cadastro criado com sucesso!']);    
 
 }
 
@@ -546,12 +546,12 @@ class ChildController extends Controller
         ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 16 )
         ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
         ->get();
-        $qt_opiniao_vida = count($tp_acoes_pia);
+        $qt_tipo_acoes_pia = count($tp_acoes_pia);
         foreach($tp_acoes_pia as $tipo_acoes_pia[$i]){$i++;}
 
         //echo '<pre>'; print_r($tipo_acoes_pia); exit;    
 
-        return view('show_child', compact('crianca','acmt', 'racas', 'nome_conselho','nome_conselheiro', 'raca_crianca', 'meio_de_chegada', 'proibicao_judicial','situacao_poder_familiar','qt_cria_ext', 'criancas_externas','qt_falta_recurso_resp', 'falta_recurso_resp', 'qt_tipo_orfn_aband','tipo_orfn_aband', 'qt_ausencia_temp_resp', 'ausencia_temp_resp', 'qt_cond_desfa_resp', 'cond_desfa_resp', 'qt_crian_adoles_sit', 'crian_adoles_sit', 'qt_tipo_documento', 'tipo_documento', 'qt_tipo_documento2', 'tipo_documento2', 'cria_saude', 'qt_prob_saude', 'prob_saude', 'qt_prob_saude2', 'prob_saude2', 'qt_opiniao_vida', 'opiniao_vida', 'qt_crianca_resp', 'crianca_resp', 'qt_grau_parentesco', 'grau_parentesco', 'orientacao_tipo_1', 'orientacao_tipo_2', 'renda_familiar', 'tipo_moradia', 'situacao_imovel', 'qt_opiniao_vida', 'tipo_acoes_pia'  ));
+        return view('show_child', compact('crianca','acmt', 'racas', 'nome_conselho','nome_conselheiro', 'raca_crianca', 'meio_de_chegada', 'proibicao_judicial','situacao_poder_familiar','qt_cria_ext', 'criancas_externas','qt_falta_recurso_resp', 'falta_recurso_resp', 'qt_tipo_orfn_aband','tipo_orfn_aband', 'qt_ausencia_temp_resp', 'ausencia_temp_resp', 'qt_cond_desfa_resp', 'cond_desfa_resp', 'qt_crian_adoles_sit', 'crian_adoles_sit', 'qt_tipo_documento', 'tipo_documento', 'qt_tipo_documento2', 'tipo_documento2', 'cria_saude', 'qt_prob_saude', 'prob_saude', 'qt_prob_saude2', 'prob_saude2', 'qt_opiniao_vida', 'opiniao_vida', 'qt_crianca_resp', 'crianca_resp', 'qt_grau_parentesco', 'grau_parentesco', 'orientacao_tipo_1', 'orientacao_tipo_2', 'renda_familiar', 'tipo_moradia', 'situacao_imovel', 'qt_opiniao_vida', 'tipo_acoes_pia', 'qt_tipo_acoes_pia'  ));
     }
 
     /**
@@ -891,13 +891,13 @@ class ChildController extends Controller
         foreach($acolhimento_id as $acmt_id){}
 
             DB::table('ldcr_cria_saude')->where('FK_ACMT_ID', $acmt_id->ACMT_ID)->update([
-             'CSAU_CART_VAC' => $request->CSAU_CART_VAC,
-             'CSAU_DIAG_MED' => $request->CSAU_DIAG_MED,
-             'CSAU_DTA_DIAG_MED' => $request->CSAU_DTA_DIAG_MED,
-             'CSAU_ACOP_MED' => $request->CSAU_ACOP_MED,
-             'CSAU_USO_MED' => $request->CSAU_USO_MED,
-             'CSAU_USO_MED_ESP' => $request->CSAU_USO_MED_ESP, 
-         ]); 
+               'CSAU_CART_VAC' => $request->CSAU_CART_VAC,
+               'CSAU_DIAG_MED' => $request->CSAU_DIAG_MED,
+               'CSAU_DTA_DIAG_MED' => $request->CSAU_DTA_DIAG_MED,
+               'CSAU_ACOP_MED' => $request->CSAU_ACOP_MED,
+               'CSAU_USO_MED' => $request->CSAU_USO_MED,
+               'CSAU_USO_MED_ESP' => $request->CSAU_USO_MED_ESP, 
+           ]); 
 
         DB::table('ldcr_orientacao')->where('FK_CRIA_ID', $id)->where('ORNT_TIPO', 1)->update([
             'ORNT_CONS_TUT' => $request->ORNT_CONS_TUT,
@@ -942,7 +942,7 @@ class ChildController extends Controller
 
         for($i =0; $i< $qt_cria_ext ; $i++){
 
-           DB::table('ldcr_cria_externa')->where('CRIA_EXTR_ID', $criancas_externas[$i]->CRIA_EXTR_ID)->update([
+         DB::table('ldcr_cria_externa')->where('CRIA_EXTR_ID', $criancas_externas[$i]->CRIA_EXTR_ID)->update([
             'CRIA_EXTR_NOME' => $request->CRIA_EXTR_NOME[$i],
             'CRIA_EXTR_FAM_NOME' => $request->CRIA_EXTR_FAM_NOME[$i],
             'CRIA_EXTR_NOME_INSTI' => $request->CRIA_EXTR_NOME_INSTI[$i],
@@ -955,11 +955,11 @@ class ChildController extends Controller
             'CRIA_EXTR_ADOT' => $request->CRIA_EXTR_ADOT[$i],
             
         ]);            
-       }
+     }
 
-       for($i =0; $i< $qt_crianca_resp ; $i++){
+     for($i =0; $i< $qt_crianca_resp ; $i++){
 
-           DB::table('ldcr_responsaveis')->where('RESP_ID', $crianca_resp[$i]->RESP_ID)->update([
+         DB::table('ldcr_responsaveis')->where('RESP_ID', $crianca_resp[$i]->RESP_ID)->update([
             'RESP_NOME' => $request->RESP_NOME[$i],
             'RESP_DT_NASCI' => $request->RESP_DT_NASCI[$i],
             'FK_RESP_CIDADE' => $request->FK_RESP_CIDADE[$i],
@@ -974,18 +974,37 @@ class ChildController extends Controller
             'RESP_END_TRAB' => $request->RESP_END_TRAB[$i],
             'FK_GRPA_ID' => $request->FK_GRPA_ID[$i],            
         ]);            
-       }
-
-       
-       
-       
+     }
 
 
+        DB::table('ldcr_acmt_questoes_pia_iten')->where('FK_ACMT_ID', '=', $acmt->ACMT_ID)->delete();
+        $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');       
+
+        //inserindo na tabela de questões do pia
+        foreach($acmt_qpi->FK_QEPI_ID as $qepi_id){
+            $qpia = new Ldcr_acmt_questoes_pia_iten();
+
+            $qesp_id = DB::table('ldcr_questoes_pia_iten')->select('FK_QESP_ID')->where('QEPI_ID', '=', $qepi_id)->get();
+            foreach($qesp_id as $qesp){
+                $qesp_id = $qesp->FK_QESP_ID;
+            }
+            $qpia->FK_ACMT_ID = $acmt->ACMT_ID;
+            $qpia->FK_QEPI_ID = $qepi_id;
+            $qpia->FK_QESP_ID = $qesp_id;
+
+            $qpia->save();
+        }
 
 
 
-       return redirect('list_child')->with(['success' => 'Criança editada com sucesso!']);
-   }
+
+
+
+
+
+
+     return redirect('list_child')->with(['success' => 'Criança editada com sucesso!']);
+ }
 
     /**
      * Remove the specified resource from storage.

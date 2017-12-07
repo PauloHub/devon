@@ -1147,7 +1147,7 @@
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <ul>                                                
-                                                        <?php for($i=0; $i<$qt_opiniao_vida; $i++): ?>
+                                                        <?php for($i=0; $i<$qt_tipo_acoes_pia; $i++): ?>
                                                                     <li style="list-style-type:none;">          
                                                                         <label class="checkbox-inline"><input type="checkbox" checked disabled /><?php echo e($tipo_acoes_pia[$i]->QEPI_DESCRICAO); ?></label>
                                                                     </li>

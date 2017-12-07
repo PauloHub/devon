@@ -48,7 +48,7 @@
                                     {{session('success')}} </p>
                                     @endif
 
-                                    <form action="{{ url('/register_child') }}" method="POST">
+                                    <form action="{{ url('/edit_child', $crianca->ID) }}" method="POST">
                                         {{csrf_field()}}
                                         {!! method_field('PUT') !!}
 
@@ -1679,7 +1679,7 @@
 
     <br><br>
     <div align="center" >
-        <button type="submit" class="btn btn-info btn-fill">Editar Criança</button>
+        <input type="submit" value="Editar Criança" class="btn btn-info btn-fill">
         <input style="margin-left:10%; width: 150px;" type="button" name="" value="Cancelar" class="btn btn-info btn-danger" onClick="JavaScript: window.history.back();">
     </div>
     <br>
