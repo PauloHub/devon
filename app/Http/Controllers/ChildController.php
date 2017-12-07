@@ -50,7 +50,7 @@ class ChildController extends Controller
     //Register
     public function create()
     {
-        
+
         $cities = Ldcr_cidade::all();
         $stats = Ldcr_estado::all();
         $conselheiros = Ldcr_conselheiros_tute::all();
@@ -237,75 +237,75 @@ class ChildController extends Controller
 
             $cria_extr->save();
 
-     }
+        }
         
         //inserindo na tabela de responsáveis após pegar a quantidade de responsáveis que foram inseridos nos forms dinâmicos
         $result = count($request->get('RESP_NOME'));
-      
-       for ($i =0; $i< $result ; $i++ ){
-             $responsavel = new Ldcr_responsaveis();
 
-            $responsavel->RESP_NOME = $request->RESP_NOME[$i];
-            $responsavel->FK_RESP_ESTD = $request->FK_RESP_ESTD[$i];
-            $responsavel->FK_RESP_CIDADE = $request->FK_RESP_CIDADE[$i];
-            $responsavel->RESP_END_CSA = $request->RESP_END_CSA[$i];
-            $responsavel->RESP_BAIRRO = $request->RESP_BAIRRO[$i];
-            $responsavel->RESP_DT_NASCI = $request->RESP_DT_NASCI[$i];
-            $responsavel->RESP_RG = $request->RESP_RG[$i];
-            $responsavel->RESP_CPF = $request->RESP_CPF[$i];
-            $responsavel->RESP_TEL = $request->RESP_TEL[$i];
-            $responsavel->RESP_PONT_REF = $request->RESP_PONT_REF[$i];
-            $responsavel->RESP_PROF = $request->RESP_PROF[$i];
-            $responsavel->RESP_END_TRAB = $request->RESP_END_TRAB[$i];
-            $responsavel->FK_GRPA_ID = $request->FK_GRPA_ID[$i];
+        for ($i =0; $i< $result ; $i++ ){
+           $responsavel = new Ldcr_responsaveis();
 
-            $responsavel->save();
-            $lastID_resp = DB::table('ldcr_responsaveis')->select('RESP_ID')->where('RESP_CPF', '=',  $responsavel->RESP_CPF)->get();
-            foreach($lastID_resp as $resp_id){
-                $lastID_resp = $resp_id->RESP_ID;
-            }
-            $cria_resp = new Ldcr_crianca_resp();
-            $cria_resp->FK_CRIA_ID = $lastID_crianca;
-            $cria_resp->FK_RESP_ID = $lastID_resp;
-            $cria_resp->save();
-       }
+           $responsavel->RESP_NOME = $request->RESP_NOME[$i];
+           $responsavel->FK_RESP_ESTD = $request->FK_RESP_ESTD[$i];
+           $responsavel->FK_RESP_CIDADE = $request->FK_RESP_CIDADE[$i];
+           $responsavel->RESP_END_CSA = $request->RESP_END_CSA[$i];
+           $responsavel->RESP_BAIRRO = $request->RESP_BAIRRO[$i];
+           $responsavel->RESP_DT_NASCI = $request->RESP_DT_NASCI[$i];
+           $responsavel->RESP_RG = $request->RESP_RG[$i];
+           $responsavel->RESP_CPF = $request->RESP_CPF[$i];
+           $responsavel->RESP_TEL = $request->RESP_TEL[$i];
+           $responsavel->RESP_PONT_REF = $request->RESP_PONT_REF[$i];
+           $responsavel->RESP_PROF = $request->RESP_PROF[$i];
+           $responsavel->RESP_END_TRAB = $request->RESP_END_TRAB[$i];
+           $responsavel->FK_GRPA_ID = $request->FK_GRPA_ID[$i];
+
+           $responsavel->save();
+           $lastID_resp = DB::table('ldcr_responsaveis')->select('RESP_ID')->where('RESP_CPF', '=',  $responsavel->RESP_CPF)->get();
+           foreach($lastID_resp as $resp_id){
+            $lastID_resp = $resp_id->RESP_ID;
+        }
+        $cria_resp = new Ldcr_crianca_resp();
+        $cria_resp->FK_CRIA_ID = $lastID_crianca;
+        $cria_resp->FK_RESP_ID = $lastID_resp;
+        $cria_resp->save();
+    }
 
         //pegando o array de todas as questões que foram inseridas nos checkbox's
-         $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');       
+    $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');       
 
          //inserindo na tabela de questões do pia
-        foreach($acmt_qpi->FK_QEPI_ID as $qepi_id){
-                $qpia = new Ldcr_acmt_questoes_pia_iten();
-                
-                $qesp_id = DB::table('ldcr_questoes_pia_iten')->select('FK_QESP_ID')->where('QEPI_ID', '=', $qepi_id)->get();
-                foreach($qesp_id as $qesp){
-                    $qesp_id = $qesp->FK_QESP_ID;
-                }
-                $qpia->FK_ACMT_ID = $lastID_acmt;
-                $qpia->FK_QEPI_ID = $qepi_id;
-                $qpia->FK_QESP_ID = $qesp_id;
-                
-                $qpia->save();
+    foreach($acmt_qpi->FK_QEPI_ID as $qepi_id){
+        $qpia = new Ldcr_acmt_questoes_pia_iten();
 
+        $qesp_id = DB::table('ldcr_questoes_pia_iten')->select('FK_QESP_ID')->where('QEPI_ID', '=', $qepi_id)->get();
+        foreach($qesp_id as $qesp){
+            $qesp_id = $qesp->FK_QESP_ID;
         }
+        $qpia->FK_ACMT_ID = $lastID_acmt;
+        $qpia->FK_QEPI_ID = $qepi_id;
+        $qpia->FK_QESP_ID = $qesp_id;
 
-        //pegando o array de todos documentos que foram inseridos nos checkbox's
-        $doc_apsen->FK_TPDO_ID = $request->get('FK_TPDO_ID');
-
-        //inserindo na tabela de doc apsen
-        foreach($doc_apsen->FK_TPDO_ID as $doct){
-                $doc = new Ldcr_doc_apsen();
-                $doc->FK_ACMT_ID = $lastID_acmt;
-                $doc->FK_TPDO_ID = $doct;
-                $doc->SIT_DOC_APRESEN =  "T";
-
-                $doc->save();
-
-        }
-
-        return redirect('register_child')->with(['success' => 'Cadastro criado com sucesso!']);    
+        $qpia->save();
 
     }
+
+        //pegando o array de todos documentos que foram inseridos nos checkbox's
+    $doc_apsen->FK_TPDO_ID = $request->get('FK_TPDO_ID');
+
+        //inserindo na tabela de doc apsen
+    foreach($doc_apsen->FK_TPDO_ID as $doct){
+        $doc = new Ldcr_doc_apsen();
+        $doc->FK_ACMT_ID = $lastID_acmt;
+        $doc->FK_TPDO_ID = $doct;
+        $doc->SIT_DOC_APRESEN =  "T";
+
+        $doc->save();
+
+    }
+
+    return redirect('register_child')->with(['success' => 'Cadastro criado com sucesso!']);    
+
+}
 
     /**
      * Display the specified resource.
@@ -321,126 +321,126 @@ class ChildController extends Controller
         $stats = Ldcr_estado::all();
         $racas = Ldcr_raca::all();
         $crianca = Ldcr_crianca::findOrFail($id);
-       
+
         //pegando o acolhimento
         $acolhimento = DB::table('ldcr_acolhimento')->select()->where('FK_CRIA_ID', '=', $id)->get();       
         foreach($acolhimento as $acmt){}              
-        
-        $orientacao = DB::table('ldcr_orientacao')->select()->where('FK_CRIA_ID', '=', $id)->get();
+
+            $orientacao = DB::table('ldcr_orientacao')->select()->where('FK_CRIA_ID', '=', $id)->get();
         $doc_apsen = DB::table('ldcr_doc_apsen')->select()->where('FK_ACMT_ID', '=', $acmt->ACMT_ID)->get();
 
         //pegando nome do conselho
         $nome_conselho = DB::table('ldcr_conselho_tutelar')->select('COTL_NOME')
-            ->join('ldcr_conselheiros_tute', 'ldcr_conselho_tutelar.id', '=', 'ldcr_conselheiros_tute.FK_COTL_ID')
-            ->join('ldcr_acolhimento', 'ldcr_conselheiros_tute.CONS_ID', '=', 'ldcr_acolhimento.FK_CONS_ID')
-            ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get(); 
-         foreach($nome_conselho as $nome_cons){ $nome_conselho = $nome_cons->COTL_NOME;}
+        ->join('ldcr_conselheiros_tute', 'ldcr_conselho_tutelar.id', '=', 'ldcr_conselheiros_tute.FK_COTL_ID')
+        ->join('ldcr_acolhimento', 'ldcr_conselheiros_tute.CONS_ID', '=', 'ldcr_acolhimento.FK_CONS_ID')
+        ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get(); 
+        foreach($nome_conselho as $nome_cons){ $nome_conselho = $nome_cons->COTL_NOME;}
 
         //pegando nome do conselheiro
         $nome_conselheiro = DB::table('ldcr_conselheiros_tute')->select('CONS_NOME')
-            ->join('ldcr_acolhimento', 'ldcr_acolhimento.FK_CONS_ID', '=', 'ldcr_conselheiros_tute.CONS_ID')
-            ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get();
+        ->join('ldcr_acolhimento', 'ldcr_acolhimento.FK_CONS_ID', '=', 'ldcr_conselheiros_tute.CONS_ID')
+        ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get();
         foreach($nome_conselheiro as $nome_cons){ $nome_conselheiro = $nome_cons->CONS_NOME;}
 
         //pegando a raça da criança
         $raca_crianca = DB::table('ldcr_raca')->select('RACA_DESCRICAO')
-            ->join('ldcr_crianca', 'ldcr_raca.RACA_ID', '=', 'ldcr_crianca.FK_RACA_ID')
-            ->where('ldcr_crianca.ID', '=', $crianca->ID)->get();
+        ->join('ldcr_crianca', 'ldcr_raca.RACA_ID', '=', 'ldcr_crianca.FK_RACA_ID')
+        ->where('ldcr_crianca.ID', '=', $crianca->ID)->get();
         foreach($raca_crianca as $raca_cria){ $raca_crianca = $raca_cria->RACA_DESCRICAO;}
 
         //pegando o meio de chegada
         $meio = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 1 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 1 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($meio as $meio_de_chegada) {}
 
-        $proib_jud = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 2 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $proib_jud = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 2 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($proib_jud as $proibicao_judicial) {}
 
-        $sit_pod_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 3 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $sit_pod_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 3 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($sit_pod_fam as $situacao_poder_familiar) {}
 
         //incrementando o array para cada posição do objeto
-        $i=0;
+            $i=0;
         $crias_exts = DB::table('ldcr_cria_externa')->select()
-            ->join('ldcr_crianca', 'ldcr_cria_externa.FK_CRIA_ID', '=', 'ldcr_crianca.ID')
-            ->where('ldcr_cria_externa.FK_CRIA_ID', '=', $crianca->ID)->get();
+        ->join('ldcr_crianca', 'ldcr_cria_externa.FK_CRIA_ID', '=', 'ldcr_crianca.ID')
+        ->where('ldcr_cria_externa.FK_CRIA_ID', '=', $crianca->ID)->get();
         //pegando a quantidade de crianças externas, para fazer um laço criando a quantidade de forms necessários
         $qt_cria_ext = count($crias_exts);        
         foreach($crias_exts as $criancas_externas[$i]){$i++;}
 
         $i=0;
         $falt_rec_resp =DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 4 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 4 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_falta_recurso_resp = count($falt_rec_resp);
         foreach($falt_rec_resp as $falta_recurso_resp[$i]){$i++;}
 
         $i=0;
         $tp_orfn_abd = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 5 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 5 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_tipo_orfn_aband = count($tp_orfn_abd);
         foreach($tp_orfn_abd as $tipo_orfn_aband[$i]){$i++;}
 
         $i=0;
         $aus_temp_resp = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 6 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 6 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_ausencia_temp_resp = count($aus_temp_resp);
         foreach($aus_temp_resp as $ausencia_temp_resp[$i]){$i++;}
 
         $i=0;
         $cond_des_resp = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 7 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 7 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_cond_desfa_resp = count($cond_des_resp);
         foreach($cond_des_resp as $cond_desfa_resp[$i]){$i++;}
 
         $i=0;
         $cria_adol_sit = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 9 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 9 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_crian_adoles_sit = count($cria_adol_sit);
         foreach($cria_adol_sit as $crian_adoles_sit[$i]){$i++;}
 
         //tipo de documento apresentados
         $i=0;
         $tp_doc = DB::table('ldcr_tipo_documento')->select('TPDO_DESC')
-            ->join('ldcr_doc_apsen', 'ldcr_doc_apsen.FK_TPDO_ID', '=', 'ldcr_tipo_documento.TPDO_ID')
-            ->where('ldcr_doc_apsen.FK_TPDO_ID', '<=', 10 )
-            ->where('ldcr_doc_apsen.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_doc_apsen', 'ldcr_doc_apsen.FK_TPDO_ID', '=', 'ldcr_tipo_documento.TPDO_ID')
+        ->where('ldcr_doc_apsen.FK_TPDO_ID', '<=', 10 )
+        ->where('ldcr_doc_apsen.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_tipo_documento = count($tp_doc);
         foreach($tp_doc as $tipo_documento[$i]){$i++;}
 
         //tipo de documentos a serem providenciados
         $i=0;
         $tp_doc2 = DB::table('ldcr_tipo_documento')->select('TPDO_DESC')
-            ->join('ldcr_doc_apsen', 'ldcr_doc_apsen.FK_TPDO_ID', '=', 'ldcr_tipo_documento.TPDO_ID')
-            ->where('ldcr_doc_apsen.FK_TPDO_ID', '>', 10 )
-            ->where('ldcr_doc_apsen.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_doc_apsen', 'ldcr_doc_apsen.FK_TPDO_ID', '=', 'ldcr_tipo_documento.TPDO_ID')
+        ->where('ldcr_doc_apsen.FK_TPDO_ID', '>', 10 )
+        ->where('ldcr_doc_apsen.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_tipo_documento2 = count($tp_doc2);
         foreach($tp_doc2 as $tipo_documento2[$i]){$i++;}
 
@@ -449,41 +449,41 @@ class ChildController extends Controller
         foreach($saude as $cria_saude){}
 
         //problemas de saúde fisica e mental    
-        $i=0;
+            $i=0;
         $prob_sau = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 10 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 10 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_prob_saude = count($prob_sau);
         foreach($prob_sau as $prob_saude[$i]){$i++;}
 
         //problemas de saúde fisica e mental 
         $i=0;
         $prob_sau2 = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 17 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 17 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_prob_saude2 = count($prob_sau2);
         foreach($prob_sau2 as $prob_saude2[$i]){$i++;}
 
         //opinião de vida
         $i=0;
         $op_vida = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 12 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 12 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_opiniao_vida = count($op_vida);
         foreach($op_vida as $opiniao_vida[$i]){$i++;}
 
         //responsáveis
         $i=0;
         $cria_resp = DB::table('ldcr_responsaveis')->select()
-            ->join('ldcr_crianca_resp', 'ldcr_responsaveis.RESP_ID', '=', 'ldcr_crianca_resp.FK_RESP_ID')
-            ->where('ldcr_crianca_resp.FK_CRIA_ID', '=', $crianca->ID)
-            ->get();
+        ->join('ldcr_crianca_resp', 'ldcr_responsaveis.RESP_ID', '=', 'ldcr_crianca_resp.FK_RESP_ID')
+        ->where('ldcr_crianca_resp.FK_CRIA_ID', '=', $crianca->ID)
+        ->get();
         
         $qt_crianca_resp = count($cria_resp);        
         foreach($cria_resp as $crianca_resp[$i]){$i++;}
@@ -508,7 +508,7 @@ class ChildController extends Controller
         foreach($orient_tipo_1 as $orientacao_tipo_1){}
 
         //orientação tipo 2
-        $i=0;
+            $i=0;
         $orient_tipo_2 = DB::table('ldcr_orientacao')->select()
         ->where('FK_CRIA_ID', '=', $crianca->ID)
         ->where('ORNT_TIPO', '=', 2)
@@ -516,36 +516,36 @@ class ChildController extends Controller
         foreach($orient_tipo_2 as $orientacao_tipo_2){}
 
         //renda familiar
-        $rend_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 13 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $rend_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 13 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($rend_fam as $renda_familiar){}
 
         //tipo de moradia
-        $tip_mora = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 14 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $tip_mora = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 14 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($tip_mora as $tipo_moradia){}
 
         //situação do imóvel
-        $sit_imo = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 15 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $sit_imo = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 15 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($sit_imo as $situacao_imovel){}
 
         //tipo de açoes do pia
-        $i=0;
+            $i=0;
         $tp_acoes_pia = DB::table('ldcr_questoes_pia_iten')->select('QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 16 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 16 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_opiniao_vida = count($tp_acoes_pia);
         foreach($tp_acoes_pia as $tipo_acoes_pia[$i]){$i++;}
 
@@ -600,122 +600,122 @@ class ChildController extends Controller
         //pegando o acolhimento
         $acolhimento = DB::table('ldcr_acolhimento')->select()->where('FK_CRIA_ID', '=', $id)->get();       
         foreach($acolhimento as $acmt){}              
-        
-        $orientacao = DB::table('ldcr_orientacao')->select()->where('FK_CRIA_ID', '=', $id)->get();
+
+            $orientacao = DB::table('ldcr_orientacao')->select()->where('FK_CRIA_ID', '=', $id)->get();
         $doc_apsen = DB::table('ldcr_doc_apsen')->select()->where('FK_ACMT_ID', '=', $acmt->ACMT_ID)->get();
 
         //pegando nome do conselho
         $nome_conselho = DB::table('ldcr_conselho_tutelar')->select('COTL_NOME')
-            ->join('ldcr_conselheiros_tute', 'ldcr_conselho_tutelar.id', '=', 'ldcr_conselheiros_tute.FK_COTL_ID')
-            ->join('ldcr_acolhimento', 'ldcr_conselheiros_tute.CONS_ID', '=', 'ldcr_acolhimento.FK_CONS_ID')
-            ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get(); 
-         foreach($nome_conselho as $nome_cons){ $nome_conselho = $nome_cons->COTL_NOME;}
+        ->join('ldcr_conselheiros_tute', 'ldcr_conselho_tutelar.id', '=', 'ldcr_conselheiros_tute.FK_COTL_ID')
+        ->join('ldcr_acolhimento', 'ldcr_conselheiros_tute.CONS_ID', '=', 'ldcr_acolhimento.FK_CONS_ID')
+        ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get(); 
+        foreach($nome_conselho as $nome_cons){ $nome_conselho = $nome_cons->COTL_NOME;}
 
         //pegando nome do conselheiro
         $nome_conselheiro = DB::table('ldcr_conselheiros_tute')->select('CONS_NOME')
-            ->join('ldcr_acolhimento', 'ldcr_acolhimento.FK_CONS_ID', '=', 'ldcr_conselheiros_tute.CONS_ID')
-            ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get();
+        ->join('ldcr_acolhimento', 'ldcr_acolhimento.FK_CONS_ID', '=', 'ldcr_conselheiros_tute.CONS_ID')
+        ->where('ldcr_acolhimento.FK_CRIA_ID', '=', $crianca->ID)->get();
         foreach($nome_conselheiro as $nome_cons){ $nome_conselheiro = $nome_cons->CONS_NOME;}
 
         //pegando a raça da criança
         $raca_crianca = DB::table('ldcr_raca')->select('RACA_DESCRICAO')
-            ->join('ldcr_crianca', 'ldcr_raca.RACA_ID', '=', 'ldcr_crianca.FK_RACA_ID')
-            ->where('ldcr_crianca.ID', '=', $crianca->ID)->get();
+        ->join('ldcr_crianca', 'ldcr_raca.RACA_ID', '=', 'ldcr_crianca.FK_RACA_ID')
+        ->where('ldcr_crianca.ID', '=', $crianca->ID)->get();
         foreach($raca_crianca as $raca_cria){ $raca_crianca = $raca_cria->RACA_DESCRICAO;}
 
         //pegando o meio de chegada
         $meio = DB::table('ldcr_questoes_pia_iten')->select( 'QEPI_ID' ,'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 1 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 1 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($meio as $meio_de_chegada) {}
 
-        $proib_jud = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 2 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $proib_jud = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 2 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($proib_jud as $proibicao_judicial) {}
 
-        $sit_pod_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID','QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 3 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $sit_pod_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID','QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 3 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($sit_pod_fam as $situacao_poder_familiar) {}
 
         //incrementando o array para cada posição do objeto
-        $i=0;
+            $i=0;
         $crias_exts = DB::table('ldcr_cria_externa')->select()
-            ->join('ldcr_crianca', 'ldcr_cria_externa.FK_CRIA_ID', '=', 'ldcr_crianca.ID')
-            ->where('ldcr_cria_externa.FK_CRIA_ID', '=', $crianca->ID)->get();
+        ->join('ldcr_crianca', 'ldcr_cria_externa.FK_CRIA_ID', '=', 'ldcr_crianca.ID')
+        ->where('ldcr_cria_externa.FK_CRIA_ID', '=', $crianca->ID)->get();
         //pegando a quantidade de crianças externas, para fazer um laço criando a quantidade de forms necessários
         $qt_cria_ext = count($crias_exts);        
         foreach($crias_exts as $criancas_externas[$i]){$i++;}
 
         $i=0;
         $falt_rec_resp =DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID','QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 4 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 4 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_falta_recurso_resp = count($falt_rec_resp);
         foreach($falt_rec_resp as $falta_recurso_resp[$i]){$i++;}
 
         $i=0;
         $tp_orfn_abd = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 5 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 5 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_tipo_orfn_aband = count($tp_orfn_abd);
         foreach($tp_orfn_abd as $tipo_orfn_aband[$i]){$i++;}
 
         $i=0;
         $aus_temp_resp = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 6 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 6 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_ausencia_temp_resp = count($aus_temp_resp);
         foreach($aus_temp_resp as $ausencia_temp_resp[$i]){$i++;}
 
         $i=0;
         $cond_des_resp = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 7 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 7 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_cond_desfa_resp = count($cond_des_resp);
         foreach($cond_des_resp as $cond_desfa_resp[$i]){$i++;}
 
         $i=0;
         $cria_adol_sit = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 9 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 9 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_crian_adoles_sit = count($cria_adol_sit);
         foreach($cria_adol_sit as $crian_adoles_sit[$i]){$i++;}
 
         //tipo de documento apresentados
         $i=0;
         $tp_doc = DB::table('ldcr_tipo_documento')->select('TPDO_ID', 'TPDO_DESC')
-            ->join('ldcr_doc_apsen', 'ldcr_doc_apsen.FK_TPDO_ID', '=', 'ldcr_tipo_documento.TPDO_ID')
-            ->where('ldcr_doc_apsen.FK_TPDO_ID', '<=', 10 )
-            ->where('ldcr_doc_apsen.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_doc_apsen', 'ldcr_doc_apsen.FK_TPDO_ID', '=', 'ldcr_tipo_documento.TPDO_ID')
+        ->where('ldcr_doc_apsen.FK_TPDO_ID', '<=', 10 )
+        ->where('ldcr_doc_apsen.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_tipo_documento = count($tp_doc);
         foreach($tp_doc as $tipo_documento[$i]){$i++;}
 
         //tipo de documentos a serem providenciados
         $i=0;
         $tp_doc2 = DB::table('ldcr_tipo_documento')->select('TPDO_ID', 'TPDO_DESC')
-            ->join('ldcr_doc_apsen', 'ldcr_doc_apsen.FK_TPDO_ID', '=', 'ldcr_tipo_documento.TPDO_ID')
-            ->where('ldcr_doc_apsen.FK_TPDO_ID', '>', 10 )
-            ->where('ldcr_doc_apsen.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_doc_apsen', 'ldcr_doc_apsen.FK_TPDO_ID', '=', 'ldcr_tipo_documento.TPDO_ID')
+        ->where('ldcr_doc_apsen.FK_TPDO_ID', '>', 10 )
+        ->where('ldcr_doc_apsen.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_tipo_documento2 = count($tp_doc2);
         foreach($tp_doc2 as $tipo_documento2[$i]){$i++;}
 
@@ -724,41 +724,41 @@ class ChildController extends Controller
         foreach($saude as $cria_saude){}
 
         //problemas de saúde fisica e mental    
-        $i=0;
+            $i=0;
         $prob_sau = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 10 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 10 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_prob_saude = count($prob_sau);
         foreach($prob_sau as $prob_saude[$i]){$i++;}
 
         //problemas de saúde fisica e mental 
         $i=0;
         $prob_sau2 = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 17 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 17 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_prob_saude2 = count($prob_sau2);
         foreach($prob_sau2 as $prob_saude2[$i]){$i++;}
 
         //opinião de vida
         $i=0;
         $op_vida = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 12 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 12 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_opiniao_vida = count($op_vida);
         foreach($op_vida as $opiniao_vida[$i]){$i++;}
 
         //responsáveis
         $i=0;
         $cria_resp = DB::table('ldcr_responsaveis')->select()
-            ->join('ldcr_crianca_resp', 'ldcr_responsaveis.RESP_ID', '=', 'ldcr_crianca_resp.FK_RESP_ID')
-            ->where('ldcr_crianca_resp.FK_CRIA_ID', '=', $crianca->ID)
-            ->get();
+        ->join('ldcr_crianca_resp', 'ldcr_responsaveis.RESP_ID', '=', 'ldcr_crianca_resp.FK_RESP_ID')
+        ->where('ldcr_crianca_resp.FK_CRIA_ID', '=', $crianca->ID)
+        ->get();
         
         $qt_crianca_resp = count($cria_resp);        
         foreach($cria_resp as $crianca_resp[$i]){$i++;}
@@ -783,7 +783,7 @@ class ChildController extends Controller
         foreach($orient_tipo_1 as $orientacao_tipo_1){}
 
         //orientação tipo 2
-        $i=0;
+            $i=0;
         $orient_tipo_2 = DB::table('ldcr_orientacao')->select()
         ->where('FK_CRIA_ID', '=', $crianca->ID)
         ->where('ORNT_TIPO', '=', 2)
@@ -791,36 +791,36 @@ class ChildController extends Controller
         foreach($orient_tipo_2 as $orientacao_tipo_2){}
 
         //renda familiar
-        $rend_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 13 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $rend_fam = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 13 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($rend_fam as $renda_familiar){}
 
         //tipo de moradia
-        $tip_mora = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 14 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $tip_mora = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 14 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($tip_mora as $tipo_moradia){}
 
         //situação do imóvel
-        $sit_imo = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 15 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+            $sit_imo = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 15 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         foreach($sit_imo as $situacao_imovel){}
 
         //tipo de açoes do pia
-        $i=0;
+            $i=0;
         $tp_acoes_pia = DB::table('ldcr_questoes_pia_iten')->select('QEPI_ID', 'QEPI_DESCRICAO')
-            ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
-            ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 16 )
-            ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
-            ->get();
+        ->join('ldcr_acmt_questoes_pia_iten', 'ldcr_acmt_questoes_pia_iten.FK_QEPI_ID', '=', 'ldcr_questoes_pia_iten.QEPI_ID')
+        ->where('ldcr_acmt_questoes_pia_iten.FK_QESP_ID', '=', 16 )
+        ->where('ldcr_acmt_questoes_pia_iten.FK_ACMT_ID', '=', $acmt->ACMT_ID)
+        ->get();
         $qt_tipo_acoes_pia = count($tp_acoes_pia);
         foreach($tp_acoes_pia as $tipo_acoes_pia[$i]){$i++;}
 
@@ -884,20 +884,20 @@ class ChildController extends Controller
             'ACMT_MORA_CONDICAO' => $request->ACMT_MORA_CONDICAO,
             'ACMT_INFOR_FAM_EXTENSA' => $request->ACMT_INFOR_FAM_EXTENSA,
             'ACMT_OBS_GERAIS' => $request->ACMT_OBS_GERAIS,
-         ]);
+        ]);
 
         //pegando o id do acolhimento relacionado com a criança em questão
         $acolhimento_id = DB::table('ldcr_acolhimento')->select('ACMT_ID')->where('FK_CRIA_ID', '=', $id)->get();
-        forech($acolhimento_id as $acmt_id){}
+        foreach($acolhimento_id as $acmt_id){}
 
-        DB::table('ldcr_cria_saude')->where('FK_ACMT_ID', $acmt_id->ACMT_ID)->update([
-           'CSAU_CART_VAC' => $request->CSAU_CART_VAC,
-           'CSAU_DIAG_MED' => $request->CSAU_DIAG_MED,
-           'CSAU_DTA_DIAG_MED' => $request->CSAU_DTA_DIAG_MED,
-           'CSAU_ACOP_MED' => $request->CSAU_ACOP_MED,
-           'CSAU_USO_MED' => $request->CSAU_USO_MED,
-           'CSAU_USO_MED_ESP' => $request->CSAU_USO_MED_ESP, 
-        ]); 
+            DB::table('ldcr_cria_saude')->where('FK_ACMT_ID', $acmt_id->ACMT_ID)->update([
+             'CSAU_CART_VAC' => $request->CSAU_CART_VAC,
+             'CSAU_DIAG_MED' => $request->CSAU_DIAG_MED,
+             'CSAU_DTA_DIAG_MED' => $request->CSAU_DTA_DIAG_MED,
+             'CSAU_ACOP_MED' => $request->CSAU_ACOP_MED,
+             'CSAU_USO_MED' => $request->CSAU_USO_MED,
+             'CSAU_USO_MED_ESP' => $request->CSAU_USO_MED_ESP, 
+         ]); 
 
         DB::table('ldcr_orientacao')->where('FK_CRIA_ID', $id)->where('ORNT_TIPO', 1)->update([
             'ORNT_CONS_TUT' => $request->ORNT_CONS_TUT,
@@ -938,20 +938,54 @@ class ChildController extends Controller
             'ORNT_PROFISSIO_TRAB' => $request->ORNT_PROFISSIO_TRAB,
             'ORNT_PROFISSIO_TRAB_OBS' => $request->ORNT_PROFISSIO_TRAB_OBS,
         ]);
+        
 
-        DB::table('ldcr_cria_externa')->where('FK_CRIA_ID', $id)->update([
+        for($i =0; $i< $qt_cria_ext ; $i++){
+
+           DB::table('ldcr_cria_externa')->where('CRIA_EXTR_ID', $criancas_externas[$i]->CRIA_EXTR_ID)->update([
+            'CRIA_EXTR_NOME' => $request->CRIA_EXTR_NOME[$i],
+            'CRIA_EXTR_FAM_NOME' => $request->CRIA_EXTR_FAM_NOME[$i],
+            'CRIA_EXTR_NOME_INSTI' => $request->CRIA_EXTR_NOME_INSTI[$i],
+            'CRIA_EXTR_END_INSTI' => $request->CRIA_EXTR_END_INSTI[$i],
+            'CRIA_EXTR_DATA_NASC' => $request->CRIA_EXTR_DATA_NASC[$i],
+            'CRIA_EXTR_FAM_CONT' => $request->CRIA_EXTR_FAM_CONT[$i],   
+            'CRIA_EXTR_MSM_INSTI' => $request->CRIA_EXTR_MSM_INSTI[$i],             
+            'CRIA_EXTR_OUTR_INST' => $request->CRIA_EXTR_OUTR_INST[$i],
+            'CRIA_EXTR_FAM_TER' => $request->CRIA_EXTR_FAM_TER[$i],
+            'CRIA_EXTR_ADOT' => $request->CRIA_EXTR_ADOT[$i],
             
-        ]);
+        ]);            
+       }
+
+       for($i =0; $i< $qt_crianca_resp ; $i++){
+
+           DB::table('ldcr_responsaveis')->where('RESP_ID', $crianca_resp[$i]->RESP_ID)->update([
+            'RESP_NOME' => $request->RESP_NOME[$i],
+            'RESP_DT_NASCI' => $request->RESP_DT_NASCI[$i],
+            'FK_RESP_CIDADE' => $request->FK_RESP_CIDADE[$i],
+            'FK_RESP_ESTD' => $request->FK_RESP_ESTD[$i],
+            'RESP_END_CSA' => $request->RESP_END_CSA[$i],
+            'RESP_RG' => $request->RESP_RG[$i],   
+            'RESP_CPF' => $request->RESP_CPF[$i],             
+            'RESP_BAIRRO' => $request->RESP_BAIRRO[$i],
+            'RESP_TEL' => $request->RESP_TEL[$i],
+            'RESP_PONT_REFP' => $request->RESP_PONT_REFP[$i],
+            'RESP_PROF' => $request->RESP_PROF[$i],
+            'RESP_END_TRAB' => $request->RESP_END_TRAB[$i],
+            'FK_GRPA_ID' => $request->FK_GRPA_ID[$i],            
+        ]);            
+       }
+
+       
+       
+       
 
 
 
 
 
-
-
-
-        return redirect('list_child')->with(['success' => 'Criança editada com sucesso!']);
-    }
+       return redirect('list_child')->with(['success' => 'Criança editada com sucesso!']);
+   }
 
     /**
      * Remove the specified resource from storage.
