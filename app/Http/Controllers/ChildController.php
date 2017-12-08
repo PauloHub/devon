@@ -371,7 +371,7 @@ class ChildController extends Controller
         foreach($sit_pod_fam as $situacao_poder_familiar) {}
 
         //incrementando o array para cada posição do objeto
-            $i=0;
+        $i=0;
         $crias_exts = DB::table('ldcr_cria_externa')->select()
         ->join('ldcr_crianca', 'ldcr_cria_externa.FK_CRIA_ID', '=', 'ldcr_crianca.ID')
         ->where('ldcr_cria_externa.FK_CRIA_ID', '=', $crianca->ID)->get();
@@ -939,6 +939,13 @@ class ChildController extends Controller
             'ORNT_PROFISSIO_TRAB_OBS' => $request->ORNT_PROFISSIO_TRAB_OBS,
         ]);
         
+        $crias_exts = DB::table('ldcr_cria_externa')->select()
+        ->join('ldcr_crianca', 'ldcr_cria_externa.FK_CRIA_ID', '=', 'ldcr_crianca.ID')
+        ->where('ldcr_cria_externa.FK_CRIA_ID', '=', $id)->get();
+        //pegando a quantidade de crianças externas, para fazer um laço criando a quantidade de forms necessários
+        $qt_cria_ext = count($crias_exts);  
+        $i=0;     
+        foreach($crias_exts as $criancas_externas[$i]){$i++;}
 
         for($i =0; $i< $qt_cria_ext ; $i++){
 
@@ -957,6 +964,15 @@ class ChildController extends Controller
         ]);            
      }
 
+        $i=0;
+        $cria_resp = DB::table('ldcr_responsaveis')->select()
+        ->join('ldcr_crianca_resp', 'ldcr_responsaveis.RESP_ID', '=', 'ldcr_crianca_resp.FK_RESP_ID')
+        ->where('ldcr_crianca_resp.FK_CRIA_ID', '=', $id)
+        ->get();
+        
+        $qt_crianca_resp = count($cria_resp);        
+        foreach($cria_resp as $crianca_resp[$i]){$i++;}
+
      for($i =0; $i< $qt_crianca_resp ; $i++){
 
          DB::table('ldcr_responsaveis')->where('RESP_ID', $crianca_resp[$i]->RESP_ID)->update([
@@ -969,13 +985,16 @@ class ChildController extends Controller
             'RESP_CPF' => $request->RESP_CPF[$i],             
             'RESP_BAIRRO' => $request->RESP_BAIRRO[$i],
             'RESP_TEL' => $request->RESP_TEL[$i],
-            'RESP_PONT_REFP' => $request->RESP_PONT_REFP[$i],
+            'RESP_PONT_REF' => $request->RESP_PONT_REF[$i],
             'RESP_PROF' => $request->RESP_PROF[$i],
             'RESP_END_TRAB' => $request->RESP_END_TRAB[$i],
             'FK_GRPA_ID' => $request->FK_GRPA_ID[$i],            
         ]);            
      }
 
+        $acmt_qpi = new Ldcr_acmt_questoes_pia_iten();
+        $acolhimento = DB::table('ldcr_acolhimento')->select()->where('FK_CRIA_ID', '=', $id)->get();       
+        foreach($acolhimento as $acmt){}  
 
         DB::table('ldcr_acmt_questoes_pia_iten')->where('FK_ACMT_ID', '=', $acmt->ACMT_ID)->delete();
         $acmt_qpi->FK_QEPI_ID = $request->get('FK_QEPI_ID');       
