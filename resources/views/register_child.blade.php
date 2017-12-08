@@ -59,7 +59,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Conselho Tutelar</label><br>
-                                                        <select name="ACMT_CONSELHO" class="form-control">
+                                                        <select name="ACMT_CONSELHO" class="form-control" required>
                                                             <option value="">Selecione</option>
                                                             @foreach($conselhos as $conselho)
                                                             <option value="{{$conselho->ID}}">{{$conselho->COTL_NOME}}</option>
@@ -70,7 +70,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Conselheiro Responsável</label><br>
-                                                        <input type="text" class="form-control" placeholder="Nome do Conselheiro" name="ACMT_CONSELHEIRO"> 
+                                                        <input type="text" class="form-control" placeholder="Nome do Conselheiro" name="ACMT_CONSELHEIRO" required> 
                                                     </div>
                                                 </div> 
                                             </div>
@@ -86,14 +86,14 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Nome da Criança</label>
-                                                    <input type="text" class="form-control" placeholder="Nome da criança" name="CRIA_NOME">
+                                                    <input type="text" class="form-control" placeholder="Nome da criança" name="CRIA_NOME" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label>Estado</label><br>
-                                                    <select name="FK_CRIA_ESTD" id="state_city" class="form-control state_city ">
+                                                    <select name="FK_CRIA_ESTD" id="state_city" class="form-control state_city" required>
                                                         <option value="">Selecione</option>
                                                         @foreach($stats as $state)
                                                         <option value="{{ $state->ESTD_UF }}">{{ $state->ESTD_DESC }}</option>
@@ -104,7 +104,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Cidade</label><br>
-                                                    <select name="FK_CRIA_CIDADE" id="city_state" class="form-control city_state ">
+                                                    <select name="FK_CRIA_CIDADE" id="city_state" class="form-control city_state" required>
                                                         <option value="">Selecione</option>
                                                         @foreach($cities as $city)
                                                         <option value="{{ $city->CIDADE_DESC }}">{{ $city->CIDADE_DESC }}</option>
@@ -118,13 +118,13 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Data de Nascimento</label>
-                                                    <input type="date" class="form-control"  name="CRIA_DTA_NASC">
+                                                    <input type="date" class="form-control"  name="CRIA_DTA_NASC" required>
                                                 </div>    
                                             </div>
                                             <div class="col-md-1 input_number">
                                                 <div class="form-group">
                                                     <label>Idade</label>
-                                                    <input type="number" class="form-control" placeholder="00" name="CRIA_IDADE_EST">                                                
+                                                    <input type="number" class="form-control" placeholder="00" name="CRIA_IDADE_EST" required>                                                
                                                 </div>    
                                             </div>
                                         </div>  
@@ -152,7 +152,7 @@
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label>Raça/Cor</label><br>
-                                                    <select name="FK_RACA_ID" class="form-control">
+                                                    <select name="FK_RACA_ID" class="form-control" required>
                                                         <option value="">Selecione</option>
                                                         @foreach($racas as $raca)
                                                         <option value="{{ $raca->RACA_ID }}">{{ $raca->RACA_DESCRICAO}}</option>
@@ -194,14 +194,14 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Data Acolhimento</label><br>
-                                                <input type="date" class="form-control"  name="ACMT_DTA_ACOLHI"> 
+                                                <label>Data do Acolhimento</label><br>
+                                                <input type="date" class="form-control"  name="ACMT_DTA_ACOLHI" required> 
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Meio de Chegada</label><br>
-                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
+                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2" required> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                     <option value="">Selecione</option>
                                                     @foreach($qpis as $qpi)
                                                     @if($qpi->FK_QESP_ID == 1 && $qpi->QEPI_SIT == 1)
@@ -481,7 +481,7 @@
                                                                     @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}" required/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                     </li>
                                                                     @if($flag == $dividir)
                                                                 </ul>    
@@ -516,7 +516,7 @@
                                                                     @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}" required/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                     </li>
                                                                     @if($flag == $dividir)
                                                                 </ul>    
@@ -550,7 +550,7 @@
                                                                     @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}" required/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                     </li>
                                                                     @if($flag == $dividir)
                                                                 </ul>    
@@ -584,7 +584,7 @@
                                                                     @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}" required/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                     </li>
                                                                     @if($flag == $dividir)
                                                                 </ul>    
@@ -618,7 +618,7 @@
                                                                     @if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1)
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}"/>{{ $qpi->QEPI_DESCRICAO }}</label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="{{ $qpi->QEPI_ID }}" required/>{{ $qpi->QEPI_DESCRICAO }}</label>
                                                                     </li>
                                                                     @if($flag == $dividir)
                                                                 </ul>    
@@ -657,7 +657,7 @@
                                                                     @if($tipo_documento->TPDO_ID <= 10 )
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}" required/>{{ $tipo_documento->TPDO_DESC }}</label>
                                                                     </li>
                                                                     @endif
                                                                     @if($flag == $dividir)
@@ -689,7 +689,7 @@
                                                                 @if($tipo_documento->TPDO_ID > 10)
                                                                 <?php $flag = $flag + 1; ?>
                                                                 <li style="list-style-type:none;">          
-                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}"/>{{ $tipo_documento->TPDO_DESC }}</label>
+                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="{{ $tipo_documento->TPDO_ID }}" required/>{{ $tipo_documento->TPDO_DESC }}</label>
                                                                 </li>
                                                                 @endif
                                                                 @if($flag == $dividir)

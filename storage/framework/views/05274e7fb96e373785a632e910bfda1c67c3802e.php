@@ -58,7 +58,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Conselho Tutelar</label><br>
-                                                        <select name="ACMT_CONSELHO" class="form-control">
+                                                        <select name="ACMT_CONSELHO" class="form-control" required>
                                                             <option value="">Selecione</option>
                                                             <?php $__currentLoopData = $conselhos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $conselho): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                             <option value="<?php echo e($conselho->ID); ?>"><?php echo e($conselho->COTL_NOME); ?></option>
@@ -69,7 +69,7 @@
                                                 <div class="col-md-3">
                                                     <div class="form-group">
                                                         <label>Conselheiro Responsável</label><br>
-                                                        <input type="text" class="form-control" placeholder="Nome do Conselheiro" name="ACMT_CONSELHEIRO"> 
+                                                        <input type="text" class="form-control" placeholder="Nome do Conselheiro" name="ACMT_CONSELHEIRO" required> 
                                                     </div>
                                                 </div> 
                                             </div>
@@ -85,14 +85,14 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Nome da Criança</label>
-                                                    <input type="text" class="form-control" placeholder="Nome da criança" name="CRIA_NOME">
+                                                    <input type="text" class="form-control" placeholder="Nome da criança" name="CRIA_NOME" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label>Estado</label><br>
-                                                    <select name="FK_CRIA_ESTD" id="state_city" class="form-control state_city ">
+                                                    <select name="FK_CRIA_ESTD" id="state_city" class="form-control state_city" required>
                                                         <option value="">Selecione</option>
                                                         <?php $__currentLoopData = $stats; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $state): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <option value="<?php echo e($state->ESTD_UF); ?>"><?php echo e($state->ESTD_DESC); ?></option>
@@ -103,7 +103,7 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Cidade</label><br>
-                                                    <select name="FK_CRIA_CIDADE" id="city_state" class="form-control city_state ">
+                                                    <select name="FK_CRIA_CIDADE" id="city_state" class="form-control city_state" required>
                                                         <option value="">Selecione</option>
                                                         <?php $__currentLoopData = $cities; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $city): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <option value="<?php echo e($city->CIDADE_DESC); ?>"><?php echo e($city->CIDADE_DESC); ?></option>
@@ -117,13 +117,13 @@
                                             <div class="col-md-3">
                                                 <div class="form-group">
                                                     <label>Data de Nascimento</label>
-                                                    <input type="date" class="form-control"  name="CRIA_DTA_NASC">
+                                                    <input type="date" class="form-control"  name="CRIA_DTA_NASC" required>
                                                 </div>    
                                             </div>
                                             <div class="col-md-1 input_number">
                                                 <div class="form-group">
                                                     <label>Idade</label>
-                                                    <input type="number" class="form-control" placeholder="00" name="CRIA_IDADE_EST">                                                
+                                                    <input type="number" class="form-control" placeholder="00" name="CRIA_IDADE_EST" required>                                                
                                                 </div>    
                                             </div>
                                         </div>  
@@ -151,7 +151,7 @@
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <label>Raça/Cor</label><br>
-                                                    <select name="FK_RACA_ID" class="form-control">
+                                                    <select name="FK_RACA_ID" class="form-control" required>
                                                         <option value="">Selecione</option>
                                                         <?php $__currentLoopData = $racas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $raca): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <option value="<?php echo e($raca->RACA_ID); ?>"><?php echo e($raca->RACA_DESCRICAO); ?></option>
@@ -193,14 +193,14 @@
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label>Data Acolhimento</label><br>
-                                                <input type="date" class="form-control"  name="ACMT_DTA_ACOLHI"> 
+                                                <label>Data do Acolhimento</label><br>
+                                                <input type="date" class="form-control"  name="ACMT_DTA_ACOLHI" required> 
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group">
                                                 <label>Meio de Chegada</label><br>
-                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2"> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
+                                                <select name="FK_QEPI_ID[]"  class="form-control col-md-2" required> <!-- aqui tem que dar um foreach no QEPI_DESCRICAO e um if no FK_QESP_ID  da tabela de questoes pia item-->
                                                     <option value="">Selecione</option>
                                                     <?php $__currentLoopData = $qpis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $qpi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <?php if($qpi->FK_QESP_ID == 1 && $qpi->QEPI_SIT == 1): ?>
@@ -480,7 +480,7 @@
                                                                     <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" required/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
                                                                     </li>
                                                                     <?php if($flag == $dividir): ?>
                                                                 </ul>    
@@ -515,7 +515,7 @@
                                                                     <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" required/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
                                                                     </li>
                                                                     <?php if($flag == $dividir): ?>
                                                                 </ul>    
@@ -549,7 +549,7 @@
                                                                     <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" required/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
                                                                     </li>
                                                                     <?php if($flag == $dividir): ?>
                                                                 </ul>    
@@ -583,7 +583,7 @@
                                                                     <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" required/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
                                                                     </li>
                                                                     <?php if($flag == $dividir): ?>
                                                                 </ul>    
@@ -617,7 +617,7 @@
                                                                     <?php if($qpi->FK_QESP_ID == $question && $qpi->QEPI_SIT == 1): ?>
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>"/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_QEPI_ID[]" value="<?php echo e($qpi->QEPI_ID); ?>" required/><?php echo e($qpi->QEPI_DESCRICAO); ?></label>
                                                                     </li>
                                                                     <?php if($flag == $dividir): ?>
                                                                 </ul>    
@@ -656,7 +656,7 @@
                                                                     <?php if($tipo_documento->TPDO_ID <= 10 ): ?>
                                                                     <?php $flag = $flag + 1; ?>
                                                                     <li style="list-style-type:none;">          
-                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento->TPDO_ID); ?>"/><?php echo e($tipo_documento->TPDO_DESC); ?></label>
+                                                                        <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento->TPDO_ID); ?>" required/><?php echo e($tipo_documento->TPDO_DESC); ?></label>
                                                                     </li>
                                                                     <?php endif; ?>
                                                                     <?php if($flag == $dividir): ?>
@@ -688,7 +688,7 @@
                                                                 <?php if($tipo_documento->TPDO_ID > 10): ?>
                                                                 <?php $flag = $flag + 1; ?>
                                                                 <li style="list-style-type:none;">          
-                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento->TPDO_ID); ?>"/><?php echo e($tipo_documento->TPDO_DESC); ?></label>
+                                                                    <label class="checkbox-inline"><input type="checkbox"  name="FK_TPDO_ID[]" value="<?php echo e($tipo_documento->TPDO_ID); ?>" required/><?php echo e($tipo_documento->TPDO_DESC); ?></label>
                                                                 </li>
                                                                 <?php endif; ?>
                                                                 <?php if($flag == $dividir): ?>
