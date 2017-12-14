@@ -34,10 +34,15 @@
                                         </ul>
                                     </div>
                                     <ul>
+                                           <li style="list-style-type:none; text-align: right; float:left;">
+                                            <a href="{{ url('/register_child') }}" class="btn btn-primary btn-lg">
+                                            <span class="glyphicon glyphicon-list"></span>Registrar Nova Criança</a>
+                                        </li>
+
                                         <li style="list-style-type:none; text-align: right; margin-right: 8%;">
                                             <a href="{{ url('/list_child') }}" class="btn btn-primary btn-lg">
                                                 <span class="glyphicon glyphicon-list"></span> Listar Crianças</a>
-                                            </li>
+                                            </li>                                           
                                         </ul>
                                     </div>
                                 </div>

@@ -33,7 +33,12 @@
                                         </ul>
                                     </div>
                                     <ul>
-                                        <li style="list-style-type:none; text-align: right; margin-right: 8%;">
+                                        <li style="list-style-type:none; text-align: right; float:left; margin-left:100px;">
+                                            <a href="<?php echo e(url('/edit_child', $crianca->ID)); ?>" class="btn btn-primary btn-lg">
+                                            <span class="glyphicon glyphicon-list"></span>Editar Criança</a>
+                                        </li>
+
+                                        <li style="list-style-type:none; text-align: right; margin-right: 10px;">
                                             <a href="<?php echo e(url('/list_child')); ?>" class="btn btn-primary btn-lg">
                                             <span class="glyphicon glyphicon-list"></span> Listar Crianças</a>
                                         </li>
